@@ -67,7 +67,7 @@ interface UartTxMonitorBfm (input  bit   clk,
   // Task: Baud_div
   // this task will calculate the baud divider based on sys clk frequency
   //-------------------------------------------------------------------
-  task Baud_div(input oversamplingmethod,input baudrate);
+	task Baud_div(input int oversamplingmethod,input int baudrate);
       real clkPeriodStartTime; 
       real clkPeriodStopTime;
       real clkPeriod;
@@ -110,7 +110,7 @@ interface UartTxMonitorBfm (input  bit   clk,
   //  This task will count the number of cycles of bclk and generate oversamplingClk to sample data
   //--------------------------------------------------------------------------------------------
 
-  task BclkCounter(input uartOverSamplingMethod);
+  task BclkCounter(input int uartOverSamplingMethod);
     static int countbClk = 0;
     forever begin
 	@(posedge baudClk)
@@ -143,36 +143,36 @@ interface UartTxMonitorBfm (input  bit   clk,
   //  converts serial data to parallel
   //-------------------------------------------------------
 
- // task Deserializer(output UartTxPacketStruct uartTxPacketStruct, input UartConfigStruct uartConfigStruct);
- //   static int total_transmission = NO_OF_PACKETS;
- //    @(negedge tx);
- //    for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
- //      for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
- //    	@(posedge oversamplingClk or negedge oversamplingClk) begin
- //          uartTxPacketStruct.transmissionData[transmission_number][i] = tx;
- //        end
- //      end
+  task Deserializer(inout UartTxPacketStruct uartTxPacketStruct, input UartConfigStruct uartConfigStruct);
+    static int total_transmission = NO_OF_PACKETS;
+    for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
+      @(negedge tx);
+      for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
+	@(posedge oversamplingClk ) begin
+	  uartTxPacketStruct.transmissionData[transmission_number][i] = tx;
+	end
+      end
   
-   //      if(uartConfigStruct.uartParityEnable ==1) begin 
-	  // if(uartConfigStruct.uartParityType == EVEN_PARITY)begin
-	  //   @(posedge oversamplingClk)
-	  //    uartTxPacketStruct.parity[transmission_number] = ^uartTxPacketStruct.transmissionData[transmission_number];
-   //        end
+      if(uartConfigStruct.uartParityEnable ==1) begin 
+        if(uartConfigStruct.uartParityType == EVEN_PARITY)begin
+	  @(posedge oversamplingClk)
+	  uartTxPacketStruct.parity[transmission_number] = ^uartTxPacketStruct.transmissionData[transmission_number];
+	end
 	
-	  // else begin 
-	  //   @(posedge oversamplingClk)
-	  //     uartTxPacketStruct.parity[transmission_number] = ~^uartTxPacketStruct.transmissionData[transmission_number];
-   //      end 
-   //    end 	
+	else begin 
+	  @(posedge oversamplingClk)
+	  uartTxPacketStruct.parity[transmission_number] = ~^uartTxPacketStruct.transmissionData[transmission_number];
+	end 
+      end 	
  
      
- //      @(posedge oversamplingClk) begin
- //        if(tx == 0)
- //          `uvm_info(TxMonitor, $sformatf(" Stop bit is detected in Tx monitor "), UVM_LOW);
- //        else
- //          `uvm_error(TxMonitor, $sformatf(" Stop bit is not recieved by Tx monitor "));
- //       end 
- //    end
- // endtask
+      @(posedge oversamplingClk) begin
+	if(tx == 0)
+	  `uvm_info(TxMonitor, $sformatf(" Stop bit is detected in Tx monitor "), UVM_LOW);
+	else
+	  `uvm_error(TxMonitor, $sformatf(" Stop bit is not recieved by Tx monitor "));
+       end 
+    end
+ endtask
 	
 endinterface : UartTxMonitorBfm
