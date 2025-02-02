@@ -60,9 +60,10 @@ endfunction : build_phase
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
 task UartTxMonitorProxy :: run_phase(uvm_phase phase);
-   `uvm_info("Tx_Monitor_proxy","*&*&&**&^%&&^%&*%^&*&^&*&^&*&^&^^&*&^&*^&^**",UVM_LOW)
+  
    UartTxTransaction uartTxTransaction;
    UartConfigStruct uartConfigStruct;
+    `uvm_info("Tx_Monitor_proxy","*&*&&**&^%&&^%&*%^&*&^&*&^&*&^&^^&*&^&*^&^**",UVM_LOW)
    uartTxTransaction = UartTxTransaction::type_id::create("uartTxTransaction");
    
    UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
