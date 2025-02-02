@@ -72,7 +72,7 @@ function void UartTxTransaction :: do_print(uvm_printer printer);
    super.do_print(printer);
    foreach(this.transmissionData[i])
       printer.print_field($sformatf("transmissionData[%0d]",i),transmissionData[i],$bits(transmissionData[i]),UVM_BIN);
-   printer.print_field("parity",parity,$bits(parity),UVM_BIN);
+	printer.print_field($sformat("parity[%0d]",i),parity[i],$bits(parity[i]),UVM_BIN);
 endfunction : do_print
 
 `endif
