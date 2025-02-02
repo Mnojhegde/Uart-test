@@ -36,10 +36,10 @@ function void UartTxSeqItemConverter :: fromTxClass(input UartTxTransaction uart
   for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
     for( int i=0 ; i< uartTxAgentConfig.uartDataType ; i++) begin  
       uartTxPacketStruct.transmissionData[transmission_number][i] = uartTxTransaction.transmissionData[transmission_number][i];
-     end 
-   end 
-   uartTxPacketStruct.parity = uartTxTransaction.parity;
- endfunction : fromTxClass
+    end
+    uartTxPacketStruct.parity[transmission_number] = uartTxTransaction.parity[transmission_number];
+  end 
+endfunction : fromTxClass
 
 //--------------------------------------------------------------------------------------------
 // Function: toTxClass
@@ -50,9 +50,9 @@ function void UartTxSeqItemConverter :: toTxClass(input UartTxPacketStruct uartT
   for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
     for( int i=0 ; i<uartTxAgentConfig.uartDataType ; i++) begin
       uartTxTransaction.transmissionData[transmission_number][i] = uartTxPacketStruct.transmissionData[transmission_number][i];
-    end 
-  end 
-   uartTxTransaction.parity = uartTxPacketStruct.parity;
+    end
+    uartTxTransaction.parity[transmission_number] = uartTxPacketStruct.parity[transmission_number];
+  end
 endfunction : toTxClass
 
 `endif
