@@ -148,19 +148,18 @@ interface UartTxMonitorBfm (input  bit   clk,
     for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
       @(negedge tx);
       for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
-	@(posedge oversamplingClk ) begin
-	  uartTxPacketStruct.transmissionData[transmission_number][i] = tx;
-	end
+	@(posedge oversamplingClk );
+	uartTxPacketStruct.transmissionData[transmission_number][i] = tx;
       end
   
       if(uartConfigStruct.uartParityEnable ==1) begin 
         if(uartConfigStruct.uartParityType == EVEN_PARITY)begin
-	  @(posedge oversamplingClk)
+	  @(posedge oversamplingClk);
 	  uartTxPacketStruct.parity[transmission_number] = ^uartTxPacketStruct.transmissionData[transmission_number];
 	end
 	
 	else begin 
-	  @(posedge oversamplingClk)
+	  @(posedge oversamplingClk);
 	  uartTxPacketStruct.parity[transmission_number] = ~^uartTxPacketStruct.transmissionData[transmission_number];
 	end 
       end 	
