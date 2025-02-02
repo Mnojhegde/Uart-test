@@ -10,6 +10,9 @@ class UartTxMonitorProxy extends uvm_monitor;
   `uvm_component_utils(UartTxMonitorProxy)
  
   virtual UartTxMonitorBfm uartTxMonitorBfm;
+  UartTxPacketStruct uartTxPacketStruct;
+  UartTxAgentConfig uartTxAgentConfig;
+   
   //declaring analysis port for the monitor port
   uvm_analysis_port#(UartTxTransaction) uartTxMonitorAnalysisPort;
   
@@ -45,6 +48,10 @@ function void UartTxMonitorProxy :: build_phase( uvm_phase phase);
    begin 
     `uvm_fatal(get_type_name(),$sformatf("FAILED TO GET VIRTUAL BFM HANDLE "))
    end 
+  if(!(uvm_config_db #(UartTxAgentConfig) :: get(this, "" ,"uartTxAgentConfig",uartTxAgentConfig)))
+    begin 
+      `uvm_fatal(get_type_name(),$sformatf("FAILED TO GET AGENT CONFIG"))
+    end  
 endfunction : build_phase
     
 //--------------------------------------------------------------------------------------------
@@ -54,14 +61,28 @@ endfunction : build_phase
 //--------------------------------------------------------------------------------------------
 task UartTxMonitorProxy :: run_phase(uvm_phase phase);
    UartTxTransaction uartTxTransaction;
-   // uartTxTransaction = UartTxTransaction::type_id::create("uartTxTransaction");
-   // uartTxMonitorBfm.WaitForReset();
-   // fork 
-   //    uartTxMonitorBfm.BaudClkGenerator(
+   UartConfigStruct uartConfigStruct;
+   uartTxTransaction = UartTxTransaction::type_id::create("uartTxTransaction");
    
+   UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
+   uartTxMonitorBfm.WaitForReset();
+   fork 
+      uartTxMonitorBfm.BaudClkGenerator(uartConfigStruct);
+   join_none
 
-   
-  `uvm_info(get_type_name(), $sformatf("Inside the TX_monitor_proxy"), UVM_LOW);
+   forever begin
+      UartTxSeqItemConverter :: fromTxClass(uartTxTransaction,uartTxAgentConfig,uartTxPacketStruct);
+       UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
+       uartTxMonitorBfm.Deserializer(uartTxPacketStruct, uartConfigStruct);
+
+       UartTxSeqItemConverter::to_class(uartTxPacketStruct,uartTxTransaction);
+
+      `uvm_info("Tx_Monitor_BFM",$sformatf("data in monitor is %p",uartTxTransaction.transmissionData),UVM_LOW)
+      `uvm_info("Tx_Monitor_BFM",$sformatf("data in monitor is %p",uartTxTransaction.parity),UVM_LOW)
+      
+      uartTxMonitorAnalysisPort.write(uartTxTransaction);
+   end
+
 endtask : run_phase
 `endif
  
