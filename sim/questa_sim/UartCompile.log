@@ -1,5 +1,5 @@
 QuestaSim vlog 10.6c Compiler 2017.07 Jul 25 2017
-Start time: 19:59:39 on Feb 01,2025
+Start time: 22:40:19 on Feb 02,2025
 vlog -sv "+acc" "+cover" "+fcover" -l UartCompile.log -f ../UartCompile.f 
 -- Compiling package UartGlobalPkg
 -- Compiling package UartTxPkg
@@ -54,5 +54,5 @@ vlog -sv "+acc" "+cover" "+fcover" -l UartCompile.log -f ../UartCompile.f
 Top level modules:
 	HdlTop
 	HvlTop
-End time: 19:59:41 on Feb 01,2025, Elapsed time: 0:00:02
+End time: 22:40:20 on Feb 02,2025, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0
