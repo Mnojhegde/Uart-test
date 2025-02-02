@@ -53,8 +53,14 @@ endfunction : build_phase
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
 task UartTxMonitorProxy :: run_phase(uvm_phase phase);
-  UartTxTransaction uartTxTransaction;
- 
+   UartTxTransaction uartTxTransaction;
+   // uartTxTransaction = UartTxTransaction::type_id::create("uartTxTransaction");
+   // uartTxMonitorBfm.WaitForReset();
+   // fork 
+   //    uartTxMonitorBfm.BaudClkGenerator(
+   
+
+   
   `uvm_info(get_type_name(), $sformatf("Inside the TX_monitor_proxy"), UVM_LOW);
 endtask : run_phase
 `endif
