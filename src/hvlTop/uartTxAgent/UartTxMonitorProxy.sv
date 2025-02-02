@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------------------
 // Class: device0_monitor_proxy
 //--------------------------------------------------------------------------------------------
-class UartTxMonitorProxy extends uvm_monitor;
+class UartTxMonitorProxy extends uvm_component;
    //register with factory so can use create uvm_method and
    //override in future if necessary
   `uvm_component_utils(UartTxMonitorProxy)
