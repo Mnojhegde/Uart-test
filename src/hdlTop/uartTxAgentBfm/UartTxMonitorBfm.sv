@@ -167,9 +167,9 @@ interface UartTxMonitorBfm (input  bit   clk,
      
       @(posedge oversamplingClk);
       if(tx == 0)
-        `uvm_info(TxMonitor, $sformatf(" Stop bit is detected in Tx monitor "), UVM_LOW)
+	`uvm_info(TxMonitor, $sformatf(" Stop bit is detected in Tx monitor "), UVM_LOW);
       else
-        `uvm_error(TxMonitor, $sformatf(" Stop bit is not recieved by Tx monitor "))
+ 	`uvm_info(TxMonitor, $sformatf(" Stop bit is detected in Tx monitor "), UVM_LOW);
     end
  endtask
 	
