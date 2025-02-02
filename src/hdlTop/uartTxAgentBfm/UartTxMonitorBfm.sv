@@ -167,9 +167,9 @@ interface UartTxMonitorBfm (input  bit   clk,
      
       @(posedge oversamplingClk);
       if(tx == 0)
-	`uvm_info(TxMonitor, " Stop bit is detected in Tx monitor ", UVM_LOW);
+	`uvm_info("TxMonitor", " Stop bit is detected in Tx monitor ", UVM_LOW);
       else
- 	`uvm_info(TxMonitor, " Stop bit is detected in Tx monitor ", UVM_LOW);
+        `uvm_error("TxMonitor", " Stop bit is detected in Tx monitor ");
     end
  endtask
 	
