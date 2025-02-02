@@ -78,7 +78,7 @@ task UartTxMonitorProxy :: run_phase(uvm_phase phase);
        UartTxSeqItemConverter::to_class(uartTxPacketStruct,uartTxTransaction);
 
       `uvm_info("Tx_Monitor_BFM",$sformatf("data in monitor is %p",uartTxTransaction.transmissionData),UVM_LOW)
-      `uvm_info("Tx_Monitor_BFM",$sformatf("data in monitor is %p",uartTxTransaction.parity),UVM_LOW)
+      `uvm_info("Tx_Monitor_BFM",$sformatf("parity in monitor is %p",uartTxTransaction.parity),UVM_LOW)
       
       uartTxMonitorAnalysisPort.write(uartTxTransaction);
    end
