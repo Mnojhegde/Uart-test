@@ -18,7 +18,7 @@ class UartTxTransaction extends uvm_sequence_item;
    // constraints for uart
    //-------------------------------------------------------
    constraint set_number_of_transmissionn_range{ soft transmissionData.size() <= NO_OF_PACKETS;
-													transmissionData.size() == parity.size();}
+						 transmissionData.size() == parity.size();}
    constraint set_transmissionData_range{ foreach(transmissionData[i]) transmissionData[i] inside{[1:$]};}
    
    //-------------------------------------------------------
@@ -70,9 +70,10 @@ endfunction : do_compare
 //--------------------------------------------------------------------------------------------
 function void UartTxTransaction :: do_print(uvm_printer printer);
    super.do_print(printer);
-   foreach(this.transmissionData[i])
+   foreach(this.transmissionData[i]) begin
       printer.print_field($sformatf("transmissionData[%0d]",i),transmissionData[i],$bits(transmissionData[i]),UVM_BIN);
-	printer.print_field($sformat("parity[%0d]",i),parity[i],$bits(parity[i]),UVM_BIN);
+      printer.print_field($sformat("parity[%0d]",i),parity[i],$bits(parity[i]),UVM_BIN);
+   end
 endfunction : do_print
 
 `endif
