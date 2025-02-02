@@ -75,7 +75,7 @@ task UartTxMonitorProxy :: run_phase(uvm_phase phase);
        UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
        uartTxMonitorBfm.Deserializer(uartTxPacketStruct, uartConfigStruct);
 
-       UartTxSeqItemConverter::to_class(uartTxPacketStruct,uartTxTransaction);
+       UartTxSeqItemConverter::toTxClass(uartTxPacketStruct,uartTxTransaction);
 
       `uvm_info("Tx_Monitor_BFM",$sformatf("data in monitor is %p",uartTxTransaction.transmissionData),UVM_LOW)
       `uvm_info("Tx_Monitor_BFM",$sformatf("parity in monitor is %p",uartTxTransaction.parity),UVM_LOW)
