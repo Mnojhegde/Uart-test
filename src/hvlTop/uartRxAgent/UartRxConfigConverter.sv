@@ -1,5 +1,5 @@
-`ifndef UARTRXAGENTCONFIG_INCLUDED_
-`define UARTRXAGENTCONFIG_INCLUDED_
+`ifndef UARTRXCONFIGCONVERTER_INCLUDED_
+`define UARTRXCONFIGCONVERTER_INCLUDED_
 //--------------------------------------------------------------------------------------------
 // Class: UartRxAgentConfig 
 // Used as the configuration class for device0 agent and it's components
