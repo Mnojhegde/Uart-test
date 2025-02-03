@@ -150,6 +150,8 @@ interface UartTxMonitorBfm (input  bit   clk,
       for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
 	@(posedge oversamplingClk );
 	uartTxPacketStruct.transmissionData[transmission_number][i] = tx;
+	      $display("packet %0d",tx);
+	      $display("packet %0d",uartTxPacketStruct.transmissionData[transmission_number][i]);
       end
   
       if(uartConfigStruct.uartParityEnable ==1) begin 
@@ -170,7 +172,7 @@ interface UartTxMonitorBfm (input  bit   clk,
 	// `uvm_info("TxMonitor", " Stop bit is detected in Tx monitor ", UVM_LOW);
  //      else
  //        `uvm_error("TxMonitor", " Stop bit is detected in Tx monitor ");
-	    $display("packet %p",uartTxPacketStruct.transmissionData[transmission_number]);
+	    $display("packet[%0d] =  %p",transmission_number,uartTxPacketStruct.transmissionData[transmission_number]);
     end
  endtask
 	
