@@ -184,6 +184,7 @@ endtask
       	@(posedge oversamplingClk)
       		tx = STOP_BIT;  
     end
+	  $display("packet drived *&*&**&**&**&*&&*&&");
   endtask 
 		
     
