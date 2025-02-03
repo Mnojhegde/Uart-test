@@ -14,6 +14,7 @@ class UartRxMonitorProxy extends uvm_monitor;
   virtual UartRxMonitorBfm uartRxMonitorBfm;
 
   UartRxAgentConfig uartRxAgentConfig;
+  UartRxPacketStruct uartRxPacketStruct;
 
   //Declaring Monitor Analysis Import
   uvm_analysis_port#(UartRxTransaction) uartRxMonitorAnalysisPort;
@@ -51,7 +52,7 @@ function void UartRxMonitorProxy :: build_phase( uvm_phase phase);
   if(!(uvm_config_db #(virtual UartRxMonitorBfm) :: get(this, "" , "uartRxMonitorBfm",uartRxMonitorBfm))) begin 
     `uvm_fatal(get_type_name(),$sformatf("FAILED TO GET VIRTUAL BFM HANDLE "))
   end
-  if(!(uvm_config_db #(UartTxAgentConfig) :: get(this, "" ,"uartTxAgentConfig",uartTxAgentConfig)))
+  if(!(uvm_config_db #(UartRxAgentConfig) :: get(this, "" ,"uartRxAgentConfig",uartRxAgentConfig)))
     begin 
       `uvm_fatal(get_type_name(),$sformatf("FAILED TO GET AGENT CONFIG"))
     end  
@@ -67,9 +68,30 @@ endfunction : build_phase
     
 task UartRxMonitorProxy :: run_phase(uvm_phase phase);
   UartRxTransaction uartRxTransaction;
-  `uvm_info(get_type_name(), $sformatf("Inside the RX_monitor_proxy"), UVM_LOW);
+  UartConfigStruct uartConfigStruct;
+
   uartRxTransaction = UartRxTransaction::type_id::create("uartRxTransaction");
   
-  	
+  UartRxConfigConverter::from_Class(uartRxAgentConfig , uartConfigStruct);
+   uartRxMonitorBfm.WaitForReset();
+  
+  fork 
+      uartRxMonitorBfm.GenerateBaudClk(uartConfigStruct);
+   join_none
+
+   forever begin
+     UartRxSeqItemConverter :: fromRxClass(uartRxTransaction,uartRxAgentConfig,uartRxPacketStruct);
+     UartRxConfigConverter::from_Class(uartRxAgentConfig , uartConfigStruct);
+     uartRxMonitorBfm.Deserializer(uartRxPacketStruct, uartConfigStruct);
+
+     UartRxSeqItemConverter::toRxClass(uartRxPacketStruct,uartRxAgentConfig,uartRxTransaction);
+
+     `uvm_info("Rx_Monitor_BFM",$sformatf("data in monitor is %p",uartRxTransaction.transmissionData),UVM_LOW)
+     `uvm_info("Rx_Monitor_BFM",$sformatf("parity in monitor is %p",uartRxTransaction.parity),UVM_LOW)
+      
+     uartRxMonitorAnalysisPort.write(uartRxTransaction);
+   
+   end
+
 endtask : run_phase
 `endif
