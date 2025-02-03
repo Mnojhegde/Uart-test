@@ -8,6 +8,7 @@ package UartRxPkg;
   `include "UartRxAgentConfig.sv"
   `include "UartRxTransaction.sv"
   `include "UartRxSeqItemConverter.sv"
+  `include "UartTxConfigConverter.sv"
   `include "UartRxSequencer.sv"
   `include "UartRxDriverProxy.sv"
   `include "UartRxMonitorProxy.sv"
