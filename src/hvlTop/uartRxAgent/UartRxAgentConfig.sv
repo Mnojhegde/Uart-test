@@ -11,26 +11,12 @@ class UartRxAgentConfig extends uvm_object;
   //Used to declare whether the agent is active or passive
   uvm_active_passive_enum is_active;
 
-  //Variable: has_coverage
-  //Used to set whether we need to create coverage or not
   bit hasCoverage;
-
- 
-  //Variable: has_coverage 
   bit hasParity;
-
-  //no. of stop bit required
-  rand STOP_BIT_E stop_bit;
-
-  //oversamping method
-  rand OVER_SAMPLING_E uartOverSamplingMethod;
-
-  //no. of data bit tranferred
-  rand DATA_TYPE_E uartDataType;
-
-  //no. of parity bit required
-  rand PARITY_TYPE_E parity_type;
-
+  OVER_SAMPLING_E uartOverSamplingMethod;
+  BAUD_RATE_E uartBaudRate;
+  DATA_TYPE_E uartDataType;/* these enum can be randomized and can apply inline constraint in test file*/
+  PARITY_TYPE_E uartParityType;
   
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
