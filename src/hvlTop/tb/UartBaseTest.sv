@@ -93,6 +93,10 @@ endfunction : setupUartTxAgentConfig
   uartEnvConfig.uartRxAgentConfig.is_active = UVM_PASSIVE;
   uartEnvConfig.uartRxAgentConfig.hasCoverage = 1;
   uartEnvConfig.uartRxAgentConfig.hasParity = PARITY_ENABLED;
+  uartEnvConfig.uartRxAgentConfig.uartOverSamplingMethod = OVERSAMPLING_16;
+  uartEnvConfig.uartRxAgentConfig.uartBaudRate = BAUD_9600;
+  uartEnvConfig.uartRxAgentConfig.uartDataType = FIVE_BIT;
+  uartEnvConfig.uartRxAgentConfig.uartParityType = EVEN_PARITY;
   uvm_config_db#(UartRxAgentConfig) :: set(this, "*" , "uartRxAgentConfig", uartEnvConfig.uartRxAgentConfig);
 
 endfunction : setupUartRxAgentConfig
