@@ -170,6 +170,7 @@ interface UartTxMonitorBfm (input  bit   clk,
 	// `uvm_info("TxMonitor", " Stop bit is detected in Tx monitor ", UVM_LOW);
  //      else
  //        `uvm_error("TxMonitor", " Stop bit is detected in Tx monitor ");
+	    $display("packet %p",uartTxPacketStruct.transmissionData[transmission_number]);
     end
  endtask
 	
