@@ -4,34 +4,25 @@
 // Class: UartRxAgentConfig 
 // Used as the configuration class for device0 agent and it's components
 //--------------------------------------------------------------------------------------------
-class UartRxAgentConfig extends uvm_object;
-  `uvm_object_utils(UartRxAgentConfig)
 
-  // Variable: is_active
-  // Used for creating the agent in either passive or active mode
-  uvm_active_passive_enum is_active;
+class UartRxConfigConverter extends uvm_object;
+  `uvm_object_utils(UartRxConfigConverter)
+  extern function new( string name = "uartRxConfigConverter");
+  extern static function void from_Class(input UartRxAgentConfig uartRxAgentConfig, output UartConfigStruct uartConfigStruct);
+endclass :UartRxConfigConverter
+    
 
-  //Variables
-  bit hasCoverage;
-  bit hasParity;
-  OVER_SAMPLING_E uartOverSamplingMethod;
-  BAUD_RATE_E uartBaudRate;
-  DATA_TYPE_E uartDataType;/* these enum can be randomized and can apply inline constraint in test file*/
-  PARITY_TYPE_E uartParityType;
-//-------------------------------------------------------
-// Externally defined Tasks and Functions
-//-------------------------------------------------------
-  extern function new(string name = "UartRxAgentConfig");
-
-endclass : UartRxAgentConfig
-
-//--------------------------------------------------------------------------------------------
-// Construct: new
-// Parameters:
-// name - UartRxAgentConfig 
-//--------------------------------------------------------------------------------------------
-function UartRxAgentConfig :: new(string name = "UartRxAgentConfig");
+function UartRxConfigConverter :: new(string name = "uartRxConfigConverter");
   super.new(name);
 endfunction : new
 
-`endif
+function void UartRxConfigConverter :: from_Class(input UartRxAgentConfig uartRxAgentConfig, output UartConfigStruct uartConfigStruct);
+  uartConfigStruct.uartOverSamplingMethod =  uartRxAgentConfig.uartOverSamplingMethod;
+  uartConfigStruct.uartBaudRate =  uartRxAgentConfig.uartBaudRate;
+  uartConfigStruct.uartDataType = uartRxAgentConfig.uartDataType;
+  uartConfigStruct.uartParityType = uartRxAgentConfig.uartParityType;
+  uartConfigStruct.uartParityEnable = uartRxAgentConfig.hasParity;
+endfunction : from_Class
+
+
+`endif   
