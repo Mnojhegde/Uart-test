@@ -15,12 +15,14 @@ endfunction : new
 
 task UartTxBaseSequence :: body();
   super.body();
+  repeat(2) begin
   req = UartTxTransaction :: type_id :: create("req");
   start_item(req);
   if( !(req.randomize()))
    `uvm_fatal(get_type_name(),"Randomization failed")
   req.print(); 
   finish_item(req);
+  end
 endtask : body
  
 `endif   
