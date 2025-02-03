@@ -147,11 +147,12 @@ interface UartTxDriverBfm (input  bit   clk,
   //  This block will count the number of cycles of bclk and generate oversamplingClk to sample data
   //--------------------------------------------------------------------------------------------
 
-  task BclkCounter(input int uartOverSamplingMethod);
+  // task BclkCounter(input int uartOverSamplingMethod);
+   initial begin
     static int countbClk = 0;
     forever begin
 	@(posedge baudClk)
-	if(countbClk == (uartOverSamplingMethod/2)-1) begin
+	    if(countbClk == (16/2)-1) begin
       	  oversamplingClk = ~oversamplingClk;
       	  countbClk=0;
       	end
@@ -159,7 +160,8 @@ interface UartTxDriverBfm (input  bit   clk,
       	countbClk = countbClk+1;
       end
     end 
-endtask 
+// endtask 
+   end
   
   //--------------------------------------------------------------------------------------------
   // Task: sample_data
