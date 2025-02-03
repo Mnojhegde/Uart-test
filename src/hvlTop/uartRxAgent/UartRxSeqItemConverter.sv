@@ -57,7 +57,6 @@ endfunction : fromRxClass
 
   function void UartRxSeqItemConverter :: toRxClass(input UartRxPacketStruct uartRxPacketStruct,input UartRxAgentConfig uartRxAgentConfig,inout UartRxTransaction uartRxTransaction);
   int total_receiving = $size(uartRxPacketStruct.receivingData);
-      uartRxTransaction.receivingData = new[total_receiving];
   for(int receiving_number=0 ; receiving_number < total_receiving; receiving_number++)begin 
     for( int i=0 ; i<uartRxAgentConfig.uartDataType ; i++) begin
       uartRxTransaction.receivingData[receiving_number][i] = uartRxPacketStruct.receivingData[receiving_number][i];
