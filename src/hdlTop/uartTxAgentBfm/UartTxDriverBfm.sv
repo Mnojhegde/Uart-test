@@ -134,9 +134,7 @@ interface UartTxDriverBfm (input  bit   clk,
   task DriveToBfm(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
     	`uvm_info(name,$sformatf("data_packet=\n%p",uartTxPacketStruct),UVM_HIGH);
     	`uvm_info(name,$sformatf("DRIVE TO BFM TASK"),UVM_HIGH);
-
-	  fork
-	  BclkCounter(uartConfigStruct.uartOverSamplingMethod);   /* NEED TO UPDATE CONFIG CONVERTER IN DRIVER PROXY SIDE */
+	// BclkCounter(uartConfigStruct.uartOverSamplingMethod);   /* NEED TO UPDATE CONFIG CONVERTER IN DRIVER PROXY SIDE */
         SampleData(uartTxPacketStruct , uartConfigStruct);
 	join_any
 	disable fork;
@@ -147,8 +145,8 @@ interface UartTxDriverBfm (input  bit   clk,
   //  This block will count the number of cycles of bclk and generate oversamplingClk to sample data
   //--------------------------------------------------------------------------------------------
 
-   task BclkCounter(input int uartOverSamplingMethod);
-   // initial begin
+   // task BclkCounter(input int uartOverSamplingMethod);
+    initial begin
     static int countbClk = 0;
     forever begin
 	@(posedge baudClk)
@@ -160,7 +158,7 @@ interface UartTxDriverBfm (input  bit   clk,
       	countbClk = countbClk+1;
       end
     end 
-endtask 
+//endtask 
    // end
   
   //--------------------------------------------------------------------------------------------
