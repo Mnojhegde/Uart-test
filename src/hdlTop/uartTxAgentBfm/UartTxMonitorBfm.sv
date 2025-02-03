@@ -114,7 +114,7 @@ interface UartTxMonitorBfm (input  bit   clk,
     static int countbClk = 0;
     forever begin
 	@(posedge baudClk)
-	if(countbClk == (uartOverSamplingMethod/2)-1) begin
+	    if(countbClk == (16/2)-1) begin
       	  oversamplingClk = ~oversamplingClk;
       	  countbClk=0;
       	end
