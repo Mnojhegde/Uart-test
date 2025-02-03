@@ -14,8 +14,8 @@ class UartRxSeqItemConverter extends uvm_object;
   //-------------------------------------------------------
   
   extern function new( string name = "UartRxSeqItemConverter");
-  extern static function void fromRxClass(input UartRxTransaction uartRxTransaction, output UartRxPacketStruct uartRxPacketStruct);
-  extern static function void toRxClass(input UartRxPacketStruct uartRxPacketStruct, output UartRxTransaction uartRxTransaction);
+    extern static function void fromRxClass(input UartRxTransaction uartRxTransaction, input UartRxAgentConfig uartRxAgentConfig, output UartRxPacketStruct uartRxPacketStruct);
+      extern static function void toRxClass(input UartRxPacketStruct uartRxPacketStruct, input UartRxAgentConfig uartRxAgentConfig, inout UartRxTransaction uartRxTransaction);
 endclass :UartRxSeqItemConverter
     
 //--------------------------------------------------------------------------------------------
