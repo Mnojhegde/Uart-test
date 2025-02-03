@@ -135,8 +135,8 @@ interface UartTxDriverBfm (input  bit   clk,
     	`uvm_info(name,$sformatf("data_packet=\n%p",uartTxPacketStruct),UVM_HIGH);
     	`uvm_info(name,$sformatf("DRIVE TO BFM TASK"),UVM_HIGH);
 	// BclkCounter(uartConfigStruct.uartOverSamplingMethod);   /* NEED TO UPDATE CONFIG CONVERTER IN DRIVER PROXY SIDE */
-        SampleData(uartTxPacketStruct , uartConfigStruct);
-	join_any
+	  SampleData(uartTxPacketStruct , uartConfigStruct);
+
 	disable fork;
 		
   endtask: DriveToBfm
