@@ -13,7 +13,7 @@ class UartTxSeqItemConverter extends uvm_object;
   //-------------------------------------------------------
   extern function new( string name = "UartTxSeqItemConverter");
   extern static function void fromTxClass(input UartTxTransaction uartTxTransaction, input UartTxAgentConfig, output UartTxPacketStruct uartTxPacketStruct);
-  extern static function void toTxClass(input UartTxPacketStruct uartTxPacketStruct,input UartTxAgentConfig uartTxAgentConfig,output UartTxTransaction uartTxTransaction);
+    extern static function void toTxClass(input UartTxPacketStruct uartTxPacketStruct,input UartTxAgentConfig uartTxAgentConfig,inout UartTxTransaction uartTxTransaction);
 endclass :UartTxSeqItemConverter
     
 //--------------------------------------------------------------------------------------------
