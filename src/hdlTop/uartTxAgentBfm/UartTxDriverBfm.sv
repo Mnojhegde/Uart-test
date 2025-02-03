@@ -159,7 +159,7 @@ interface UartTxDriverBfm (input  bit   clk,
       end
     end 
 //endtask 
-   // end
+    end
   
   //--------------------------------------------------------------------------------------------
   // Task: sample_data
