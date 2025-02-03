@@ -13,6 +13,8 @@ class UartRxMonitorProxy extends uvm_monitor;
   // Handle for receiver monitor bfm
   virtual UartRxMonitorBfm uartRxMonitorBfm;
 
+  UartRxAgentConfig uartRxAgentConfig;
+
   //Declaring Monitor Analysis Import
   uvm_analysis_port#(UartRxTransaction) uartRxMonitorAnalysisPort;
 
@@ -48,7 +50,11 @@ function void UartRxMonitorProxy :: build_phase( uvm_phase phase);
   super.build_phase(phase);
   if(!(uvm_config_db #(virtual UartRxMonitorBfm) :: get(this, "" , "uartRxMonitorBfm",uartRxMonitorBfm))) begin 
     `uvm_fatal(get_type_name(),$sformatf("FAILED TO GET VIRTUAL BFM HANDLE "))
-  end 
+  end
+  if(!(uvm_config_db #(UartTxAgentConfig) :: get(this, "" ,"uartTxAgentConfig",uartTxAgentConfig)))
+    begin 
+      `uvm_fatal(get_type_name(),$sformatf("FAILED TO GET AGENT CONFIG"))
+    end  
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
@@ -63,6 +69,7 @@ task UartRxMonitorProxy :: run_phase(uvm_phase phase);
   UartRxTransaction uartRxTransaction;
   `uvm_info(get_type_name(), $sformatf("Inside the RX_monitor_proxy"), UVM_LOW);
   uartRxTransaction = UartRxTransaction::type_id::create("uartRxTransaction");
+  
   	
 endtask : run_phase
 `endif
