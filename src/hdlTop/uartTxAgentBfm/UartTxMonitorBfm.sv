@@ -150,6 +150,7 @@ interface UartTxMonitorBfm (input  bit   clk,
     static int total_transmission = NO_OF_PACKETS;
     for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
       @(negedge tx);
+	@(posedge oversamplingClk );    
       for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
 	@(posedge oversamplingClk );
 	uartTxPacketStruct.transmissionData[transmission_number][i] = tx;
