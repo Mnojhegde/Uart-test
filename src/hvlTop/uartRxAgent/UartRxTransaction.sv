@@ -53,12 +53,12 @@ endfunction : do_copy
 // do_compare method
 //-------------------------------------------------------------------------------------------- 
     
-function bit UartRxTransaction :: do_compare(uvm_object rhs, uvm_comparer comparer = null);
-  UartRxTransaction rhs1;
-  if(! $cast(rhs1,rhs))
-   `uvm_fatal("do_compare","Casting failed during comparing");
-  return (super.compare(rhs,comparer) && (this.receivingData == rhs1.receivingData) && (this.parity && rhs1.parity));
-endfunction : do_compare
+// function bit UartRxTransaction :: do_compare(uvm_object rhs, uvm_comparer comparer = null);
+//   UartRxTransaction rhs1;
+//   if(! $cast(rhs1,rhs))
+//    `uvm_fatal("do_compare","Casting failed during comparing");
+//   return (super.compare(rhs,comparer) && (this.receivingData == rhs1.receivingData) && (this.parity && rhs1.parity));
+// endfunction : do_compare
 
 //--------------------------------------------------------------------------------------------
 // Function: do_print method
