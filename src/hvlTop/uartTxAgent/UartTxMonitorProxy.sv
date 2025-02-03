@@ -64,7 +64,7 @@ task UartTxMonitorProxy :: run_phase(uvm_phase phase);
    UartTxTransaction uartTxTransaction;
    UartConfigStruct uartConfigStruct;
     `uvm_info("Tx_Monitor_proxy","*&*&&**&^%&&^%&*%^&*&^&*&^&*&^&^^&*&^&*^&^**",UVM_LOW)
-   phase.raise_objection(this);
+  
    uartTxTransaction = UartTxTransaction::type_id::create("uartTxTransaction");
    
    UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
@@ -84,7 +84,7 @@ task UartTxMonitorProxy :: run_phase(uvm_phase phase);
       `uvm_info("Tx_Monitor_BFM",$sformatf("parity in monitor is %p",uartTxTransaction.parity),UVM_LOW)
       
       uartTxMonitorAnalysisPort.write(uartTxTransaction);
-      phase.drop_objection(this);
+   
    end
 
 endtask : run_phase
