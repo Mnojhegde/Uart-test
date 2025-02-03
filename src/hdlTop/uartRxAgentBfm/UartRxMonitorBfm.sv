@@ -156,12 +156,12 @@ task Deserializer(inout UartRxPacketStruct uartRxPacketStruct, input UartConfigS
       if(uartConfigStruct.uartParityEnable ==1) begin 
         if(uartConfigStruct.uartParityType == EVEN_PARITY)begin
 	  @(posedge oversamplingClk);
-		uartRxPacketStruct.parity[transmission_number] = ^uartRxPacketStruct.recievingData[transmission_number];
+		uartRxPacketStruct.parity[transmission_number] = ^uartRxPacketStruct.receivingData[transmission_number];
 	end
 	
 	else begin 
 	  @(posedge oversamplingClk);
-	  uartRxPacketStruct.parity[transmission_number] = ~^uartRxPacketStruct.recievingData[transmission_number];
+	  uartRxPacketStruct.parity[transmission_number] = ~^uartRxPacketStruct.receivingData[transmission_number];
 	end 
       end 	
  
