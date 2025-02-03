@@ -70,7 +70,7 @@ task UartTxMonitorProxy :: run_phase(uvm_phase phase);
    UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
    uartTxMonitorBfm.WaitForReset();
    fork 
-      uartTxMonitorBfm.BaudClkGenerator(uartConfigStruct);
+      uartTxMonitorBfm.GenerateBaudClk(uartConfigStruct);
    join_none
 
    forever begin
