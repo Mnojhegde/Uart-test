@@ -137,7 +137,7 @@ interface UartTxDriverBfm (input  bit   clk,
 	// BclkCounter(uartConfigStruct.uartOverSamplingMethod);   /* NEED TO UPDATE CONFIG CONVERTER IN DRIVER PROXY SIDE */
 	  SampleData(uartTxPacketStruct , uartConfigStruct);
 
-	disable fork;
+	//disable fork;
 		
   endtask: DriveToBfm
  
