@@ -47,6 +47,7 @@ endfunction : fromTxClass
 //--------------------------------------------------------------------------------------------
     function void UartTxSeqItemConverter :: toTxClass(input UartTxPacketStruct uartTxPacketStruct,input UartTxAgentConfig uartTxAgentConfig,inout UartTxTransaction uartTxTransaction);
   int total_transmission = $size(uartTxPacketStruct.transmissionData);
+      uartTxTransaction.transmissionData = new[total_transmission];
   for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
     for( int i=0 ; i<uartTxAgentConfig.uartDataType ; i++) begin
       uartTxTransaction.transmissionData[transmission_number][i] = uartTxPacketStruct.transmissionData[transmission_number][i];
