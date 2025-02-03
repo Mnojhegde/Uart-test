@@ -45,7 +45,7 @@ endfunction : fromTxClass
 // Function: toTxClass
 // Converting struct data items into seq_item transactions
 //--------------------------------------------------------------------------------------------
-function void UartTxSeqItemConverter :: toTxClass(input UartTxPacketStruct uartTxPacketStruct,input UartTxAgentConfig uartTxAgentConfig,output UartTxTransaction uartTxTransaction);
+    function void UartTxSeqItemConverter :: toTxClass(input UartTxPacketStruct uartTxPacketStruct,input UartTxAgentConfig uartTxAgentConfig,inout UartTxTransaction uartTxTransaction);
   int total_transmission = $size(uartTxPacketStruct.transmissionData);
   for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
     for( int i=0 ; i<uartTxAgentConfig.uartDataType ; i++) begin
