@@ -67,8 +67,10 @@ endfunction : do_compare
     
 function void UartRxTransaction :: do_print(uvm_printer printer);
   super.do_print(printer);
-  foreach(this.receivingData[i])
+  foreach(this.receivingData[i]) begin
    printer.print_field($sformatf("receivingData[%0d]",i),receivingData[i],$bits(receivingData[i]),UVM_BIN);
+   printer.print_field($sformatf("parity[%0d]",i),parity[i],$bits(parity[i]),UVM_BIN);
+  end
 endfunction : do_print
 
 `endif
