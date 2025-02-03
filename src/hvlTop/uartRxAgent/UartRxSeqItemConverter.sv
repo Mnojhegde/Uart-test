@@ -35,16 +35,17 @@ endfunction : new
 // Parameters:
 // name -UartRxTransaction, UartRxPacketStruct 
 //--------------------------------------------------------------------------------------------
-function void UartRxSeqItemConverter :: fromRxClass(input UartRxTransaction uartRxTransaction, output UartRxPacketStruct uartRxPacketStruct);
-  int total_receiving = uartRxTransaction.receivingData.size();
 
-  for(int receiving_number=0 ; receiving_number < total_receiving; receiving_number++) begin 
-    for(int i=0 ; i<DATA_WIDTH ; i++) begin 
+function void UartRxSeqItemConverter :: fromRxClass(input UartRxTransaction uartRxTransaction,input UartRxAgentConfig uartRxAgentConfig, output UartRxPacketStruct uartRxPacketStruct);
+  int total_transmission = uartRxTransaction.receivingData.size();
+
+  for(int receiving_number=0 ; receiving_number < total_transmission; receiving_number++)begin 
+    for( int i=0 ; i< uartRxAgentConfig.uartDataType ; i++) begin  
       uartRxPacketStruct.receivingData[receiving_number][i] = uartRxTransaction.receivingData[receiving_number][i];
-    end 
+    end
+    uartRxPacketStruct.parity[receiving_number] = uartRxTransaction.parity[receiving_number];
   end 
-  uartRxPacketStruct.parity = uartRxTransaction.parity;
- endfunction : fromRxClass
+endfunction : fromRxClass
     
 //--------------------------------------------------------------------------------------------
 // Function: to_class
@@ -53,15 +54,16 @@ function void UartRxSeqItemConverter :: fromRxClass(input UartRxTransaction uart
 // Parameters:
 //  name - UartRxPacketStruct,UartRxTransaction 
 //--------------------------------------------------------------------------------------------
-function void UartRxSeqItemConverter :: toRxClass(input UartRxPacketStruct uartRxPacketStruct, output UartRxTransaction uartRxTransaction);
+
+  function void UartRxSeqItemConverter :: toRxClass(input UartRxPacketStruct uartRxPacketStruct,input UartRxAgentConfig uartRxAgentConfig,inout UartRxTransaction uartRxTransaction);
   int total_receiving = $size(uartRxPacketStruct.receivingData);
-  
-  for(int receiving_number=0 ; receiving_number < total_receiving; receiving_number++) begin 
-    for(int i=0 ; i<DATA_WIDTH ; i++) begin
+      uartRxTransaction.receivingData = new[total_transmission];
+  for(int receiving_number=0 ; receiving_number < total_receiving; receiving_number++)begin 
+    for( int i=0 ; i<uartRxAgentConfig.uartDataType ; i++) begin
       uartRxTransaction.receivingData[receiving_number][i] = uartRxPacketStruct.receivingData[receiving_number][i];
-    end 
-  end 
-  uartRxTransaction.parity = uartRxPacketStruct.parity;
+    end
+    uartRxTransaction.parity[receiving_number] = uartRxPacketStruct.parity[receiving_number];
+  end
 endfunction : toRxClass
    
 `endif
