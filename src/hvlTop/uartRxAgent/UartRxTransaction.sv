@@ -19,7 +19,7 @@ class UartRxTransaction extends uvm_sequence_item;
   extern function new(string name = "UartRxTransaction");
   extern function void do_copy(uvm_object rhs);
   extern function void do_print(uvm_printer printer);
-  extern function bit do_compare(uvm_object rhs, uvm_comparer comparer = null);
+  // extern function bit do_compare(uvm_object rhs, uvm_comparer comparer = null);
 endclass : UartRxTransaction
 
 //--------------------------------------------------------------------------------------------
