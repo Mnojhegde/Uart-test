@@ -68,6 +68,7 @@ task UartTxDriverProxy :: run_phase(uvm_phase phase);
   UartTxSeqItemConverter :: fromTxClass(req,uartTxAgentConfig,uartTxPacketStruct);
   `uvm_info("BFM",$sformatf("data in driver is %p",uartTxPacketStruct.transmissionData),UVM_LOW)
     `uvm_info("BFM",$sformatf("parity in driver is %p",uartTxPacketStruct.parity),UVM_LOW)
+    $display("enter ing drive to bfm");
    uartTxDriverBfm.DriveToBfm(uartTxPacketStruct , uartConfigStruct);
    seq_item_port.item_done();
   end 
