@@ -150,7 +150,7 @@ interface UartTxMonitorBfm (input  bit   clk,
       for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
 	@(posedge oversamplingClk );
 	uartTxPacketStruct.transmissionData[transmission_number][i] = tx;
-	      $display("packet %0d",tx);
+	      $display("tx %0d",tx);
 	      $display("packet %0d",uartTxPacketStruct.transmissionData[transmission_number][i]);
       end
   
