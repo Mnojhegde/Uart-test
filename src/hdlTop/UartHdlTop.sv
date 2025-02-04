@@ -70,5 +70,7 @@ module HdlTop;
   //-------------------------------------------------------
 
   UartRxAgentBfm uartRxAgentBfm(uartIf);
+
+  assign uartRxAgentBfm.uartIf.rx = uartTxAgentBfm.uartIf.tx;
   
 endmodule : HdlTop
