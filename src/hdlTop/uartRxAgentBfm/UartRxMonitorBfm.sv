@@ -171,7 +171,6 @@ task Deserializer(inout UartRxPacketStruct uartRxPacketStruct, input UartConfigS
 	// `uvm_info("RxMonitor", " Stop bit is detected in Rx monitor ", UVM_LOW);
  //      else
  //        `uvm_error("RxMonitor", " Stop bit is detected in Rx monitor ");
-	    $display("packet[%0d] =  %p",transmission_number,uartRxPacketStruct.receivingData[transmission_number]);
     end
  endtask
 	
