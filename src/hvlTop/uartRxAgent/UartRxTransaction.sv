@@ -11,7 +11,7 @@ class UartRxTransaction extends uvm_sequence_item;
  
   //input signals
   bit[DATA_WIDTH-1: 0]receivingData[];
-  bit parity[];
+  bit [NO_OF_PACKETS-1:0] parity;
   
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
