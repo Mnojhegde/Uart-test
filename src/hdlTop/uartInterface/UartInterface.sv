@@ -15,4 +15,6 @@ interface UartIf (input clk, input reset);
 
   logic rx;
 
+  assign rx = tx;
+
 endinterface : UartIf 
