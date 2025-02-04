@@ -86,8 +86,8 @@ task UartRxMonitorProxy :: run_phase(uvm_phase phase);
 
      UartRxSeqItemConverter::toRxClass(uartRxPacketStruct,uartRxAgentConfig,uartRxTransaction);
 
-     `uvm_info("Rx_Monitor_BFM",$sformatf("data in monitor is %p",uartRxTransaction.receivingData),UVM_LOW)
-     `uvm_info("Rx_Monitor_BFM",$sformatf("parity in monitor is %p",uartRxTransaction.parity),UVM_LOW)
+     `uvm_info("Rx_Monitor_BFM",$sformatf("data in Rx monitor proxy is %p",uartRxTransaction.receivingData),UVM_LOW)
+     `uvm_info("Rx_Monitor_BFM",$sformatf("parity in Rx monitor proxy is %p",uartRxTransaction.parity),UVM_LOW)
       
      uartRxMonitorAnalysisPort.write(uartRxTransaction);
    
