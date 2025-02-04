@@ -72,7 +72,7 @@ endfunction : setupUartEnvConfig
 //--------------------------------------------------------------------------------------------
  function void UartBaseTest :: setupUartTxAgentConfig();
   uartEnvConfig.uartTxAgentConfig = UartTxAgentConfig :: type_id :: create("uartTxAgentConfig");
-  uartEnvConfig.uartTxAgentConfig.is_active = UVM_ACTIVE;
+  uartEnvConfig.uartTxAgentConfig.is_active = UVM_PASSIVE;
   uartEnvConfig.uartTxAgentConfig.hasCoverage = 1;
   uartEnvConfig.uartTxAgentConfig.hasParity = PARITY_ENABLED;
   uartEnvConfig.uartTxAgentConfig.uartOverSamplingMethod = OVERSAMPLING_16;
@@ -90,7 +90,7 @@ endfunction : setupUartTxAgentConfig
 //--------------------------------------------------------------------------------------------
  function void UartBaseTest :: setupUartRxAgentConfig();
   uartEnvConfig.uartRxAgentConfig = UartRxAgentConfig :: type_id :: create("uartRxAgentConfig");
-  uartEnvConfig.uartRxAgentConfig.is_active = UVM_PASSIVE;
+  uartEnvConfig.uartRxAgentConfig.is_active = UVM_ACTIVE;
   uartEnvConfig.uartRxAgentConfig.hasCoverage = 1;
   uartEnvConfig.uartRxAgentConfig.hasParity = PARITY_ENABLED;
   uartEnvConfig.uartRxAgentConfig.uartOverSamplingMethod = OVERSAMPLING_16;
