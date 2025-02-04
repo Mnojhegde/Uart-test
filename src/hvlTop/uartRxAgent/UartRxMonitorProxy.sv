@@ -76,13 +76,13 @@ task UartRxMonitorProxy :: run_phase(uvm_phase phase);
    uartRxMonitorBfm.WaitForReset();
   
   fork 
-      uartRxMonitorBfm.GenerateBaudClk(uartConfigStruct);
+      // uartRxMonitorBfm.GenerateBaudClk(uartConfigStruct);
    join_none
 
    forever begin
      UartRxSeqItemConverter :: fromRxClass(uartRxTransaction,uartRxAgentConfig,uartRxPacketStruct);
      UartRxConfigConverter::from_Class(uartRxAgentConfig , uartConfigStruct);
-     uartRxMonitorBfm.Deserializer(uartRxPacketStruct, uartConfigStruct);
+     // uartRxMonitorBfm.Deserializer(uartRxPacketStruct, uartConfigStruct);
 
      UartRxSeqItemConverter::toRxClass(uartRxPacketStruct,uartRxAgentConfig,uartRxTransaction);
 
