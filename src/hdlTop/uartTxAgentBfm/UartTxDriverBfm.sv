@@ -182,7 +182,6 @@ interface UartTxDriverBfm (input  bit   clk,
       	@(posedge oversamplingClk)
       		tx = STOP_BIT;  
     end
-	  $display("packet drived *&*&**&**&**&*&&*&&");
   endtask 
 		
     
