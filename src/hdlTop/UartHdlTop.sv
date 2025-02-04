@@ -71,6 +71,6 @@ module HdlTop;
 
   UartRxAgentBfm uartRxAgentBfm(uartIf);
 
-  assign uartRxAgentBfm.uartRxMonitorBfm.rx = uartTxAgentBfm.uartTxDriverBfm.tx;
+  
   
 endmodule : HdlTop
