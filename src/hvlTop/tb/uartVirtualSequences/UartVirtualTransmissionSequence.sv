@@ -21,8 +21,6 @@ endclass : UartVirtualTransmissionSequence
     
 //--------------------------------------------------------------------------------------------
 // Constructor:new
-//
-// Paramters:
 // name - Instance name of the virtual_sequence
 // parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
@@ -33,8 +31,6 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 // task:body
 // Creates the required ports
-//
-// Parameters:
 // phase - stores the current phase
 //--------------------------------------------------------------------------------------------
 
@@ -49,7 +45,6 @@ task UartVirtualTransmissionSequence :: body();
      `uvm_do_on_with(uartTxBaseSequence , p_sequencer.uartTxSequencer,{array_size ==uartTxAgentConfig.packetsNeeded;})
  //  uartRxBaseSequence.start(p_sequencer.uartRxSequencer);
   end 
-
 
 endtask : body
 
