@@ -23,8 +23,6 @@ endclass : UartEvenParityTest
 //--------------------------------------------------------------------------------------------
 // Constructor:new
 //
-// Paramters:
-//
 // parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
 function UartEvenParityTest :: new(string name = "UartEvenParityTest" , uvm_component parent = null);
@@ -34,8 +32,6 @@ endfunction  : new
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
 //  Create required ports
-//
-// Parameters:
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void UartEvenParityTest :: build_phase(uvm_phase phase);
@@ -47,18 +43,16 @@ endfunction  : build_phase
 //--------------------------------------------------------------------------------------------
 // task:body
 // Creates the required ports
-//
-// Parameters:
 // phase - stores the current phase
 //--------------------------------------------------------------------------------------------
  task UartEvenParityTest :: run_phase(uvm_phase phase);
-  UartVirtualBaseSequence :: type_id ::set_type_override(UartVirtualTransmissionSequence::get_type());
-  uartVirtualBaseSequence = UartVirtualBaseSequence :: type_id :: create("uartVirtualBaseSequence");
-  uartVirtualBaseSequence.print();
-  phase.raise_objection(this);
+   UartVirtualBaseSequence :: type_id ::set_type_override(UartVirtualTransmissionSequence::get_type());
+   uartVirtualBaseSequence = UartVirtualBaseSequence :: type_id :: create("uartVirtualBaseSequence");
+   uartVirtualBaseSequence.print();
+   phase.raise_objection(this);
    uartVirtualBaseSequence.start(uartEnv.uartVirtualSequencer);
    #100000;
-  phase.drop_objection(this);
+   phase.drop_objection(this);
 
 endtask : run_phase
 
