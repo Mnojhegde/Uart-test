@@ -1,0 +1,7 @@
+var g_db_data = [
+{dummy:0},
+{name:'UartRxCovergroup',f:1,type:6,id:1034,tb:'26',h:'7',m:'19',hp:'26.92%',cov:['41.07%','R'],g:'100.00%',gp:['41.07%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/UartRxPkg/UartRxCoverage',parent:'1029'},
+{name:'UartTxCovergroup',f:1,type:6,id:1170,tb:'26',h:'7',m:'19',hp:'26.92%',cov:['41.07%','R'],g:'100.00%',gp:['41.07%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/UartTxPkg/UartTxCoverage',parent:'1165'},
+{name:'UartRxCovergroup',f:1,type:6,id:1483,tb:'26',h:'7',m:'19',hp:'26.92%',cov:['41.07%','R'],g:'100.00%',gp:['41.07%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.UartRxPkg::UartRxCoverage',parent:'1478'},
+{name:'UartTxCovergroup',f:1,type:6,id:1693,tb:'26',h:'7',m:'19',hp:'26.92%',cov:['41.07%','R'],g:'100.00%',gp:['41.07%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.UartTxPkg::UartTxCoverage',parent:'1688'}];
+processConsCovergroupsData(g_db_data);
