@@ -1,4 +1,0 @@
-var g_data = {
-dummyEnd:0
-};
-processCovergroupsData(g_data);
