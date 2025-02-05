@@ -18,12 +18,9 @@ endclass : UartVirtualBaseSequence
 
 //--------------------------------------------------------------------------------------------
 // Constructor:new
-//
-// Paramters:
 // name - Instance name of the virtual_sequence
 // parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
-  
 function UartVirtualBaseSequence :: new(string name = "UartVirtualBaseSequence" );
   super.new(name);
 endfunction : new
@@ -31,8 +28,6 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 // task:body
 // Creates the required ports
-//
-// Parameters:
 // phase - stores the current phase
 //--------------------------------------------------------------------------------------------
 task UartVirtualBaseSequence :: body();
@@ -40,7 +35,7 @@ task UartVirtualBaseSequence :: body();
 
   if( !($cast(p_sequencer , m_sequencer)))
     `uvm_error(get_type_name(),"FAILED TO CASTE TO SEQUENCER SUBPOINTER");
-
+  
 endtask : body
 
 `endif
