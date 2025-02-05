@@ -29,8 +29,6 @@ endclass : UartBaseTest
 //--------------------------------------------------------------------------------------------
 // Constructor:new
 //
-// Paramters:
-//
 // parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
 function UartBaseTest :: new(string name = "UartBaseTest" , uvm_component parent = null);
@@ -40,8 +38,6 @@ endfunction  : new
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
 //  Create required ports
-//
-// Parameters:
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void UartBaseTest :: build_phase(uvm_phase phase);
@@ -56,12 +52,12 @@ endfunction  : build_phase
 // and store the handle into the config_db
 //--------------------------------------------------------------------------------------------
  function void UartBaseTest :: setupUartEnvConfig();
-  uartEnvConfig = UartEnvConfig :: type_id :: create("uartEnvConfig");
-  uartEnvConfig.hasscoreboard = 1;
-  uartEnvConfig.hasvirtualsequencer = 1;
-  uvm_config_db #(UartEnvConfig) :: set(this,"*", "uartEnvConfig",uartEnvConfig);
-  setupUartTxAgentConfig();
-  setupUartRxAgentConfig();
+   uartEnvConfig = UartEnvConfig :: type_id :: create("uartEnvConfig");
+   uartEnvConfig.hasScoreboard = 1;
+   uartEnvConfig.hasVirtualSequencer = 1;
+   uvm_config_db #(UartEnvConfig) :: set(this,"*", "uartEnvConfig",uartEnvConfig);
+   setupUartTxAgentConfig();
+   setupUartRxAgentConfig();
 endfunction : setupUartEnvConfig 
 
 //--------------------------------------------------------------------------------------------
@@ -70,18 +66,17 @@ endfunction : setupUartEnvConfig
 // and store the handle into the config_db
 //--------------------------------------------------------------------------------------------
  function void UartBaseTest :: setupUartTxAgentConfig();
-   
-  uartEnvConfig.uartTxAgentConfig = UartTxAgentConfig :: type_id :: create("uartTxAgentConfig");
-  uartEnvConfig.uartTxAgentConfig.randomize() with{packetsNeeded inside {[5:15]};};
-  uartEnvConfig.uartTxAgentConfig.is_active = UVM_ACTIVE;
-  uartEnvConfig.uartTxAgentConfig.hasCoverage = 1;
-  uartEnvConfig.uartTxAgentConfig.hasParity = PARITY_ENABLED;
-  uartEnvConfig.uartTxAgentConfig.uartOverSamplingMethod = OVERSAMPLING_16;
-  uartEnvConfig.uartTxAgentConfig.uartBaudRate = BAUD_9600;
-  uartEnvConfig.uartTxAgentConfig.uartDataType = FIVE_BIT;
-  uartEnvConfig.uartTxAgentConfig.uartParityType = EVEN_PARITY;
-  uartEnvConfig.uartTxAgentConfig.parityErrorInjection = 0;
-  uvm_config_db #(UartTxAgentConfig) :: set(null,"*", "uartTxAgentConfig",uartEnvConfig.uartTxAgentConfig);
+   uartEnvConfig.uartTxAgentConfig = UartTxAgentConfig :: type_id :: create("uartTxAgentConfig");
+   uartEnvConfig.uartTxAgentConfig.randomize() with{packetsNeeded inside {[5:15]};};
+   uartEnvConfig.uartTxAgentConfig.is_active = UVM_ACTIVE;
+   uartEnvConfig.uartTxAgentConfig.hasCoverage = 1;
+   uartEnvConfig.uartTxAgentConfig.hasParity = PARITY_ENABLED;
+   uartEnvConfig.uartTxAgentConfig.uartOverSamplingMethod = OVERSAMPLING_16;
+   uartEnvConfig.uartTxAgentConfig.uartBaudRate = BAUD_9600;
+   uartEnvConfig.uartTxAgentConfig.uartDataType = FIVE_BIT;
+   uartEnvConfig.uartTxAgentConfig.uartParityType = EVEN_PARITY;
+   uartEnvConfig.uartTxAgentConfig.parityErrorInjection = 0;
+   uvm_config_db #(UartTxAgentConfig) :: set(null,"*", "uartTxAgentConfig",uartEnvConfig.uartTxAgentConfig);
 
 endfunction : setupUartTxAgentConfig
    
@@ -91,25 +86,23 @@ endfunction : setupUartTxAgentConfig
 // and store the handle into the config_db
 //--------------------------------------------------------------------------------------------
  function void UartBaseTest :: setupUartRxAgentConfig();
-  uartEnvConfig.uartRxAgentConfig = UartRxAgentConfig :: type_id :: create("uartRxAgentConfig");
-  uartEnvConfig.uartRxAgentConfig.randomize() with{packetsNeeded inside {[5:15]};};
-  uartEnvConfig.uartRxAgentConfig.is_active = UVM_PASSIVE;
-  uartEnvConfig.uartRxAgentConfig.hasCoverage = 1;
-  uartEnvConfig.uartRxAgentConfig.hasParity = PARITY_ENABLED;
-  uartEnvConfig.uartRxAgentConfig.uartOverSamplingMethod = OVERSAMPLING_16;
-  uartEnvConfig.uartRxAgentConfig.uartBaudRate = BAUD_9600;
-  uartEnvConfig.uartRxAgentConfig.uartDataType = FIVE_BIT;
-  uartEnvConfig.uartRxAgentConfig.uartParityType = EVEN_PARITY;
-  uartEnvConfig.uartRxAgentConfig.parityErrorInjection = 0;
-  uvm_config_db #(UartRxAgentConfig) :: set(null,"*", "uartRxAgentConfig",uartEnvConfig.uartRxAgentConfig);
+   uartEnvConfig.uartRxAgentConfig = UartRxAgentConfig :: type_id :: create("uartRxAgentConfig");
+   uartEnvConfig.uartRxAgentConfig.randomize() with{packetsNeeded inside {[5:15]};};
+   uartEnvConfig.uartRxAgentConfig.is_active = UVM_PASSIVE;
+   uartEnvConfig.uartRxAgentConfig.hasCoverage = 1;
+   uartEnvConfig.uartRxAgentConfig.hasParity = PARITY_ENABLED;
+   uartEnvConfig.uartRxAgentConfig.uartOverSamplingMethod = OVERSAMPLING_16;
+   uartEnvConfig.uartRxAgentConfig.uartBaudRate = BAUD_9600;
+   uartEnvConfig.uartRxAgentConfig.uartDataType = FIVE_BIT;
+   uartEnvConfig.uartRxAgentConfig.uartParityType = EVEN_PARITY;
+   uartEnvConfig.uartRxAgentConfig.parityErrorInjection = 0;
+   uvm_config_db #(UartRxAgentConfig) :: set(null,"*", "uartRxAgentConfig",uartEnvConfig.uartRxAgentConfig);
 
 endfunction : setupUartRxAgentConfig
    
 //--------------------------------------------------------------------------------------------
 // Function: end_of_elaboration_phase
 // Used for printing the testbench topology
-//
-// Parameters:
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void UartBaseTest :: end_of_elaboration_phase(uvm_phase phase); 
@@ -120,16 +113,13 @@ endfunction : end_of_elaboration_phase
 //--------------------------------------------------------------------------------------------
 // task:body
 // Creates the required ports
-//
-// Parameters:
 // phase - stores the current phase
 //--------------------------------------------------------------------------------------------
  task UartBaseTest :: run_phase(uvm_phase phase);
-  
   uartVirtualTransmissionSequence = UartVirtualTransmissionSequence :: type_id :: create("uartVirtualTransmissionSequence");
   phase.raise_objection(this);
-   uartVirtualTransmissionSequence.start(uartEnv.uartVirtualSequencer);
-   #100;
+  uartVirtualTransmissionSequence.start(uartEnv.uartVirtualSequencer);
+  #100;
   phase.drop_objection(this);
 
 endtask : run_phase
