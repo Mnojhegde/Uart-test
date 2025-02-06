@@ -57,8 +57,8 @@ endfunction  : build_phase
 //--------------------------------------------------------------------------------------------
  function void UartBaseTest :: setupUartEnvConfig();
   uartEnvConfig = UartEnvConfig :: type_id :: create("uartEnvConfig");
-  uartEnvConfig.hasscoreboard = 1;
-  uartEnvConfig.hasvirtualsequencer = 1;
+  uartEnvConfig.hasScoreboard = 1;
+  uartEnvConfig.hasVirtualSequencer = 1;
   uvm_config_db #(UartEnvConfig) :: set(this,"*", "uartEnvConfig",uartEnvConfig);
   setupUartTxAgentConfig();
   setupUartRxAgentConfig();
