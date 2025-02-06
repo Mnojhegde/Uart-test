@@ -128,7 +128,8 @@ interface UartTxDriverBfm (input  logic   clk,
     	`uvm_info(name,$sformatf("data_packet=\n%p",uartTxPacketStruct),UVM_LOW);
     	`uvm_info(name,$sformatf("DRIVE TO BFM TASK"),UVM_LOW);
 	fork
-	BclkCounter(uartConfigStruct.uartOverSamplingMethod);  
+	BclkCounter(uartConfigStruct.uartOverSamplingMethod);
+	SampleData(uartTxPacketStruct , uartConfigStruct);
 	join_any
 	disable fork;	
   endtask: DriveToBfm
