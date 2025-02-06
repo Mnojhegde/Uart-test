@@ -39,18 +39,18 @@ package UartGlobalPkg;
 												 EIGHT_BIT=8} dataTypeEnum;
 
   // required Tx struct packet
-  typedef struct packed { bit[NO_OF_PACKETS -1 :0][DATA_WIDTH-1:0] transmissionData; 
-												  bit [NO_OF_PACKETS-1:0]parity; 
-												  bit [NO_OF_PACKETS-1:0]parityError; 
-												  bit [NO_OF_PACKETS-1:0]breakingError; 
-												  bit [NO_OF_PACKETS-1:0]overrunError;} UartTxPacketStruct;
+  typedef struct packed { logic[NO_OF_PACKETS -1 :0][DATA_WIDTH-1:0] transmissionData; 
+												  logic [NO_OF_PACKETS-1:0]parity; 
+												  logic [NO_OF_PACKETS-1:0]parityError; 
+												  logic [NO_OF_PACKETS-1:0]breakingError; 
+												  logic [NO_OF_PACKETS-1:0]overrunError;} UartTxPacketStruct;
 	
 	// required Rx struct packet
-  typedef struct packed { bit[NO_OF_PACKETS -1 :0][DATA_WIDTH-1:0] receivingData;
-												  bit [NO_OF_PACKETS-1:0]parity; 
-												  bit [NO_OF_PACKETS-1:0]parityError; 
-												  bit [NO_OF_PACKETS-1:0]breakingError; 
-												  bit [NO_OF_PACKETS-1:0]overrunError;} UartRxPacketStruct;
+  typedef struct packed { logic[NO_OF_PACKETS -1 :0][DATA_WIDTH-1:0] receivingData;
+												  logic [NO_OF_PACKETS-1:0]parity; 
+												  logic [NO_OF_PACKETS-1:0]parityError; 
+												  logic [NO_OF_PACKETS-1:0]breakingError; 
+												  logic [NO_OF_PACKETS-1:0]overrunError;} UartRxPacketStruct;
 
 	// config parameter struct packet
 	typedef struct packed { overSamplingEnum uartOverSamplingMethod; 
