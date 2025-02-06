@@ -115,10 +115,8 @@ endfunction : build_phase
 //--------------------------------------------------------------------------------------------
 function void UartTxCoverage::write(UartTxTransaction t);
   foreach(t.transmissionData[i]) begin
-    foreach(t.transmissionData[j]) begin
-      data =  t.transmissionData[j];
-      UartTxCovergroup.sample(uartTxAgentConfig,t);
-    end
+    data =  t.transmissionData[i];
+    UartTxCovergroup.sample(uartTxAgentConfig,data);
   end
 endfunction : write
 
