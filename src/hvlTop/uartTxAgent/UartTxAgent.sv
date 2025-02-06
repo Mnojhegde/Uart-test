@@ -54,8 +54,6 @@ endfunction  : new
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
 // creates the required ports,gets the required configuration from config_db
-//
-// Parameters:
 // phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void UartTxAgent :: build_phase( uvm_phase phase);
@@ -82,8 +80,6 @@ endfunction : build_phase
 //--------------------------------------------------------------------------------------------
 // Function: connect_phase
 // Connecting device0_driver, device0_monitor and device0_sequencer for configuration
-//
-// Parameters:
 // phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void UartTxAgent :: connect_phase( uvm_phase phase);
