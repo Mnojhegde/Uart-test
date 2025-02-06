@@ -9,20 +9,17 @@ class UartRxAgentConfig extends uvm_object;
   
   uvm_active_passive_enum is_active;
 
-  //Variables
+  // config variables for rx agent
   bit hasCoverage;
   bit hasParity;
-  OVER_SAMPLING_E uartOverSamplingMethod;
-  BAUD_RATE_E uartBaudRate;
-  DATA_TYPE_E uartDataType;/* these enum can be randomized and can apply inline constraint in test file*/
-  PARITY_TYPE_E uartParityType;
-  STOP_BIT_E  uartstopbit;
+  overSamplingEnum uartOverSamplingMethod;
+  baudRateEnum uartBaudRate;
+  dataTypeEnum uartDataType;
+  parityTypeEnum uartParityType;
+  stopBitEnum  uartstopbit;
   rand int packetsNeeded;
   bit parityErrorInjection;
 
- 
-
-  
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
@@ -32,8 +29,6 @@ endclass : UartRxAgentConfig
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
-//
-// Parameters:
 //  name -  UartRxAgentConfig
 //--------------------------------------------------------------------------------------------
 function UartRxAgentConfig :: new(string name = "UartRxAgentConfig");
