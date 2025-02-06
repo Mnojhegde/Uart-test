@@ -43,7 +43,7 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
       bins BAUD_19200_3 = {BAUD_19200};
     }
 
-    OVER_SAMPLING_CP: coverpoint uartRXAgentCongig.uartOverSamplingMethod{
+    OVER_SAMPLING_CP: coverpoint uartRXAgentConfig.uartOverSamplingMethod{
       option.comment="over_sampling";
       bins OVERSAMPLING_16_1_1 = {OVERSAMPLING_16};
       bins OVERSAMPLING_13_2_2 = {OVERSAMPLING_13};
