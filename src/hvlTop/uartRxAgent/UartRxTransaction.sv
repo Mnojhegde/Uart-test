@@ -11,11 +11,11 @@ class UartRxTransaction extends uvm_sequence_item;
   `uvm_object_utils(UartRxTransaction)
  
   //input signals
-  bit[DATA_WIDTH-1: 0]receivingData[];
-  bit [NO_OF_PACKETS-1:0] parity;
-	bit [NO_OF_PACKETS-1:0]parityError; 
-	bit [NO_OF_PACKETS-1:0]breakingError; 
-	bit [NO_OF_PACKETS-1:0]overrunError;
+  logic [DATA_WIDTH-1: 0]receivingData[];
+  logic [NO_OF_PACKETS-1:0] parity;
+	logic [NO_OF_PACKETS-1:0]parityError; 
+	logic [NO_OF_PACKETS-1:0]breakingError; 
+	logic [NO_OF_PACKETS-1:0]overrunError;
   
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
