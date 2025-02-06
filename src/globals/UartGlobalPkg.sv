@@ -55,4 +55,4 @@ package UartGlobalPkg;
 												  bit uartParityErrorInjection;} UartConfigStruct;
 
 endpackage : UartGlobalPkg
-`endif
+`endif 
