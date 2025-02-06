@@ -8,6 +8,12 @@ package UartGlobalPkg;
   // no. of packets to be transferred
   parameter NO_OF_PACKETS = 50;
 
+	// indicates start bit
+  parameter START_BIT = 0;
+
+  // indicates stop bit
+  parameter STOP_BIT = 1;
+
   // can enable or disable parity
   parameter PARITY_ENABLED = 1'b 1;
 
