@@ -8,12 +8,11 @@
 class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
   `uvm_component_utils(UartRxCoverage)
 
-  //Variable: uartRxAgentConfig;
   //Handle for uart recevier agent configuration
   UartRxAgentConfig uartRxAgentConfig;
 
   //Declating a variable to store the receiveing data
-  bit[DATA_WIDTH-1:0] a; 
+  bit[DATA_WIDTH-1:0] data; 
   
   //-------------------------------------------------------
   // Covergroup : UartRxCovergroup 
@@ -21,48 +20,67 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
   //  based on the number of the variables used to improve the coverage.
   //-------------------------------------------------------
   covergroup UartRxCovergroup with function sample (UartRxAgentConfig uartRxAgentConfig, UartRxTransaction uartRxTransaction);
-    RX_CP : coverpoint a{
+    RX_CP : coverpoint data{
       option.comment = "rx";
-      bins UART_RX = {[0:255]};
+      bins UART_TX1 = {[0:63]};
+      bins UART_TX2 = {[64:127]};
+      bins UART_TX3 = {[128:191]};
+      bins UART_TX4 = {[192:255]};
     }
 
-     DATA_WIDTH_CP : coverpoint uartRxAgentConfig.uartDataType{
-     option.comment = "data_width";
-       bins TRANSFER_BIT_5 = {5};
-       bins TRANSFER_BIT_6 = {6};
-       bins TRANSFER_BIT_7 = {7};
-       bins TRANSFER_BIT_8 = {8};
-     }
+    DATA_WIDTH_CP : coverpoint uartRxAgentConfig.uartDataType{
+      option.comment = "data_width";
+      bins TRANSFER_BIT_5 = { FIVE_BIT};
+      bins TRANSFER_BIT_6 = {SIX_BIT};
+      bins TRANSFER_BIT_7 = {SEVEN_BIT};
+      bins TRANSFER_BIT_8 = {EIGHT_BIT};
+    }
 
-     PARITY_CP : coverpoint uartRxAgentConfig.uartParityType{
-       option.comment = "parity_type";
-       bins EVEN_PARITY = {0};
-       bins ODD_PARITY = {1};
-     }
+    BAUD_RATE_CP:coverpoint uartRxAgentConfig.uartBaudRate{
+      option.comment="baud_rate";
+      bins BAUD_4800_1 = {BAUD_4800};
+      bins BAUD_9600_2 = {BAUD_9600};
+      bins BAUD_19200_3 = {BAUD_19200};
+    }
 
-    // STOP_BIT_CP : coverpoint uartRxAgentConfig.stop_bit{
+    OVER_SAMPLING_CP: coverpoint uartRXAgentCongig.uartOverSamplingMethod{
+      option.comment="over_sampling";
+      bins OVERSAMPLING_16_1_1 = {OVERSAMPLING_16};
+      bins OVERSAMPLING_13_2_2 = {OVERSAMPLING_13};
+    }
+    
+    PARITY_CP : coverpoint uartRxAgentConfig.uartParityType{
+      option.comment = "parity_type";
+      bins EVEN_PARITY_0 = {0};
+      bins ODD_PARITY_1 = {1};
+    }
+
+    // STOP_BIT_CP : coverpoint uartRxAgentConfig.uartstopbit{
     //   option.comment = "stop bit width";
-    //   bins STOP_BIT_1 = {1};
-    //   bins STOP_BIT_2 = {2};
+    //   bins STOP_BIT_1_1 = {1};
+    //   bins STOP_BIT_2_2 = {2};
     // }
     
-       BAUD_RATE : coverpoint uartRxAgentConfig.uartBaudRate{
-       option.comment = "baud rate";
-       bins BAUD_4800 = {4800};
-       bins BAUD_9600 = {9600};
-       bins BAUD_19200 = {19200}; }
-
-       OVER_SAMPLING : coverpoint uartRxAgentConfig.uartOverSamplingMethod{
-       option.comment = "over sampling";
-       bins OVERSAMPLING_16 = {16};
-       bins OVERSAMPLING_13 = {13};}
-
-      DATA_WIDTH_CP_PARITY_CP : cross DATA_WIDTH_CP,PARITY_CP;
-    // DATA_WIDTH_CP_STOP_BIT_CP :cross DATA_WIDTH_CP,STOP_BIT_CP;
-      BAUD_RATE_OVER_SAMPLING : cross BAUD_RATE,OVER_SAMPLING;
+    HAS_PARITY_CP: coverpoint uartRxAgentConfig.hasparity{
+      option.comment = "has parity";
+      bins HAS_PARITY_0 = {0};
+      bins HAS_PARITY_1 = {1};
+    }
+ 
+    PARITY_ERROR_INJECTION:coverpoint uartRxAgentConfig.parityErrorInjection{
+      option.comment = "parity error injection";
+      bins WITH_NO_ERROR = {0};
+      bins WITH_ERROR = {1};
+    }
     
-  endgroup: UartRxCovergroup
-
+    DATA_WIDTH_CP_PARITY_CP : cross DATA_WIDTH_CP,PARITY_CP;
+    DATA_WIDTH_CP_STOP_BIT_CP :cross DATA_WIDTH_CP,STOP_BIT_CP;
+    OVER_SAMPLINGxBAUD_RATE:cross BAUD_RATE_CP,  OVER_SAMPLING_CP;
+    OVER_SAMPLINGxDATA_TYPE:cross  DATA_WIDTH_CP,OVER_SAMPLING_CP;
+    DATA_WIDTHxBAUD_RATE: cross  DATA_WIDTH_CP ,BAUD_RATE_CP;
+           
+    
+endgroup: UartRxCovergroup
   
   //-------------------------------------------------------
   //Externally defined tasks and functions
@@ -75,8 +93,6 @@ endclass : UartRxCoverage
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
-// 
-// Parameters:
 //  name -  UartRxCoverage
 //  parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
@@ -87,7 +103,6 @@ endfunction : new
 
 //---------------------------------------------------------------------------------------------------------
 // Build Phase
-//
 //-------------------------------------------------------------------------------------------------------------
 function void UartRxCoverage :: build_phase(uvm_phase phase);
   super.build_phase(phase);
@@ -99,18 +114,14 @@ endfunction : build_phase
 //-------------------------------------------------------
 // Function: write
 //  Creates the write method
-//
-// Parameters:
 //  t - UartRxTransaction handle
 //-------------------------------------------------------
 function void UartRxCoverage::write(UartRxTransaction t);
   `uvm_info(get_type_name(),$sformatf("Before calling SAMPLE METHOD"),UVM_NONE);
   foreach(t.receivingData[i]) begin
-    foreach(t.receivingData[j]) begin
-      a =  t.receivingData[j];
+    data =  t.receivingData[i];
     UartRxCovergroup.sample(uartRxAgentConfig,t);
   end
-end
   `uvm_info(get_type_name(),"After calling SAMPLE METHOD",UVM_NONE);
 
 endfunction : write
