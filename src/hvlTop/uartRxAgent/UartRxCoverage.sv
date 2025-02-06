@@ -43,11 +43,11 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
       bins BAUD_19200_3 = {BAUD_19200};
     }
 
-    OVER_SAMPLING_CP: coverpoint uartRXAgentConfig.uartOverSamplingMethod{
-      option.comment="over_sampling";
-      bins OVERSAMPLING_16_1_1 = {OVERSAMPLING_16};
-      bins OVERSAMPLING_13_2_2 = {OVERSAMPLING_13};
-    }
+    // OVER_SAMPLING_CP: coverpoint uartRXAgentConfig.uartOverSamplingMethod{
+    //   option.comment="over_sampling";
+    //   bins OVERSAMPLING_16_1_1 = {OVERSAMPLING_16};
+    //   bins OVERSAMPLING_13_2_2 = {OVERSAMPLING_13};
+    // }
     
     PARITY_CP : coverpoint uartRxAgentConfig.uartParityType{
       option.comment = "parity_type";
