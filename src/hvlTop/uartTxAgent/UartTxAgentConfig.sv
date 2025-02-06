@@ -11,26 +11,26 @@ class UartTxAgentConfig extends uvm_object;
   // Used for creating the agent in either passive or active mode
   uvm_active_passive_enum is_active;
 
-  //Variables
+  // config variables required for transmitting data
   bit hasCoverage;
   bit hasParity;
-  OVER_SAMPLING_E uartOverSamplingMethod;
-  BAUD_RATE_E uartBaudRate;
-  DATA_TYPE_E uartDataType;/* these enum can be randomized and can apply inline constraint in test file*/
-  PARITY_TYPE_E uartParityType;
-  STOP_BIT_E uartStopBit;
+  overSamplingEnum uartOverSamplingMethod;
+  baudRateEnum uartBaudRate;
+  dataTypeEnum uartDataType;
+  parityTypeEnum uartParityType;
+  stopBitEnum uartStopBit;
   rand int packetsNeeded;
   bit parityErrorInjection;
-//-------------------------------------------------------
-// Externally defined Tasks and Functions
-//-------------------------------------------------------
+  
+  //-------------------------------------------------------
+  // Externally defined Tasks and Functions
+  //-------------------------------------------------------
   extern function new(string name = "UartTxAgentConfig");
 
 endclass : UartTxAgentConfig
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
-// Parameters:
 // name - UartTxAgentConfig 
 //--------------------------------------------------------------------------------------------
 function UartTxAgentConfig :: new(string name = "UartTxAgentConfig");
