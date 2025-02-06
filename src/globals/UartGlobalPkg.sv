@@ -3,7 +3,7 @@
 
 package UartGlobalPkg;
   // maximum width of data packet
-  parameter DATA_WIDTH=8;
+  parameter DATA_WIDTH=8; 
 
   // no. of packets to be transferred
   parameter NO_OF_PACKETS = 50;
