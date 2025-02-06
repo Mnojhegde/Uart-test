@@ -55,11 +55,11 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
       bins ODD_PARITY_1 = {1};
     }
 
-    // STOP_BIT_CP : coverpoint uartRxAgentConfig.uartStopbit{
-    //   option.comment = "stop bit width";
-    //   bins STOP_BIT_1_1 = {1};
-    //   bins STOP_BIT_2_2 = {2};
-    // }
+    STOP_BIT_CP : coverpoint uartRxAgentConfig.uartStopbit{
+      option.comment = "stop bit width";
+      bins STOP_BIT_1_1 = {1};
+      bins STOP_BIT_2_2 = {2};
+    }
     
     HAS_PARITY_CP: coverpoint uartRxAgentConfig.hasParity{
       option.comment = "has parity";
