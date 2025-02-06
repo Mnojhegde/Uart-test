@@ -43,11 +43,11 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
       bins BAUD_19200_3 = {BAUD_19200};
     }
 
-    // OVER_SAMPLING_CP: coverpoint uartRXAgentConfig.uartOverSamplingMethod{
-    //   option.comment="over_sampling";
-    //   bins OVERSAMPLING_16_1_1 = {OVERSAMPLING_16};
-    //   bins OVERSAMPLING_13_2_2 = {OVERSAMPLING_13};
-    // }
+    OVER_SAMPLING_CP: coverpoint uartRXAgentConfig.uartOverSamplingMethod{
+      option.comment="over_sampling";
+      bins OVERSAMPLING_16_1_1 = {OVERSAMPLING_16};
+      bins OVERSAMPLING_13_2_2 = {OVERSAMPLING_13};
+    }
     
     PARITY_CP : coverpoint uartRxAgentConfig.uartParityType{
       option.comment = "parity_type";
@@ -55,7 +55,7 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
       bins ODD_PARITY_1 = {1};
     }
 
-    // STOP_BIT_CP : coverpoint uartRxAgentConfig.uartstopbit{
+    // STOP_BIT_CP : coverpoint uartRxAgentConfig.uartStopbit{
     //   option.comment = "stop bit width";
     //   bins STOP_BIT_1_1 = {1};
     //   bins STOP_BIT_2_2 = {2};
@@ -75,8 +75,8 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
     
     DATA_WIDTH_CP_PARITY_CP : cross DATA_WIDTH_CP,PARITY_CP;
     // DATA_WIDTH_CP_STOP_BIT_CP :cross DATA_WIDTH_CP,STOP_BIT_CP;
-    // OVER_SAMPLINGxBAUD_RATE:cross BAUD_RATE_CP,  OVER_SAMPLING_CP;
-    // OVER_SAMPLINGxDATA_TYPE:cross  DATA_WIDTH_CP,OVER_SAMPLING_CP;
+    OVER_SAMPLINGxBAUD_RATE:cross BAUD_RATE_CP,  OVER_SAMPLING_CP;
+    OVER_SAMPLINGxDATA_TYPE:cross  DATA_WIDTH_CP,OVER_SAMPLING_CP;
     DATA_WIDTHxBAUD_RATE: cross  DATA_WIDTH_CP ,BAUD_RATE_CP;
            
     
