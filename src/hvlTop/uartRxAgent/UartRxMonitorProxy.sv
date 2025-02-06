@@ -9,14 +9,13 @@
 class UartRxMonitorProxy extends uvm_monitor;
   `uvm_component_utils(UartRxMonitorProxy)
 
-  // Variable:  uartRxMonitorBfm
   // Handle for receiver monitor bfm
   virtual UartRxMonitorBfm uartRxMonitorBfm;
 
-  UartRxAgentConfig uartRxAgentConfig;
-  UartRxPacketStruct uartRxPacketStruct;
-
+  // handles for struct packet, transaction packet and config class
   UartRxTransaction uartRxTransaction;
+  UartRxPacketStruct uartRxPacketStruct;
+  UartRxAgentConfig uartRxAgentConfig;
 
   //Declaring Monitor Analysis Import
   uvm_analysis_port#(UartRxTransaction) uartRxMonitorAnalysisPort;
@@ -32,8 +31,6 @@ endclass : UartRxMonitorProxy
   
 //--------------------------------------------------------------------------------------------
 // Construct: new
-//
-// Parameters:
 // name - UartRxMonitorProxy
 // parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
@@ -45,8 +42,6 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
 // uartRxMonitorBfm configuration is obtained in build_phase
-//
-// Parameters:
 // phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void UartRxMonitorProxy :: build_phase( uvm_phase phase);
@@ -62,39 +57,33 @@ endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
 // Task: run_phase
-// <Description_here>
-//
-// Parameters:
 // phase - uvm phase
 //--------------------------------------------------------------------------------------------
     
 task UartRxMonitorProxy :: run_phase(uvm_phase phase);
   UartConfigStruct uartConfigStruct;
-
   uartRxTransaction = UartRxTransaction::type_id::create("uartRxTransaction");
-  
-   UartRxConfigConverter::from_Class(uartRxAgentConfig , uartConfigStruct);
-   
+  UartRxConfigConverter::from_Class(uartRxAgentConfig , uartConfigStruct);
   
   fork 
-       uartRxMonitorBfm.GenerateBaudClk(uartConfigStruct);
-   join_none
-   uartRxMonitorBfm.WaitForReset();
-   forever begin
-     UartRxTransaction uartRxTransaction_clone;
-     UartRxSeqItemConverter :: fromRxClass(uartRxTransaction,uartRxAgentConfig,uartRxPacketStruct);
-     UartRxConfigConverter::from_Class(uartRxAgentConfig , uartConfigStruct);
-     uartRxMonitorBfm.StartMonitoring(uartRxPacketStruct, uartConfigStruct);
-
-     UartRxSeqItemConverter::toRxClass(uartRxPacketStruct,uartRxAgentConfig,uartRxTransaction);
-
-     `uvm_info("Rx_Monitor_BFM",$sformatf("data in Rx monitor proxy is %p",uartRxTransaction.receivingData),UVM_LOW)
-     `uvm_info("Rx_Monitor_BFM",$sformatf("parity in Rx monitor proxy is %p",uartRxTransaction.parity),UVM_LOW)
-      
-     $cast(uartRxTransaction_clone, uartRxTransaction.clone());  
-     uartRxMonitorAnalysisPort.write(uartRxTransaction_clone);
-   
-   end
+    // generating baud clck
+    uartRxMonitorBfm.GenerateBaudClk(uartConfigStruct);
+  join_none
+  uartRxMonitorBfm.WaitForReset();
+  forever begin
+    UartRxTransaction uartRxTransaction_clone;
+    UartRxSeqItemConverter :: fromRxClass(uartRxTransaction,uartRxAgentConfig,uartRxPacketStruct);
+    UartRxConfigConverter::from_Class(uartRxAgentConfig , uartConfigStruct);
+    uartRxMonitorBfm.StartMonitoring(uartRxPacketStruct, uartConfigStruct);
+    UartRxSeqItemConverter::toRxClass(uartRxPacketStruct,uartRxAgentConfig,uartRxTransaction);
+    
+    `uvm_info("Rx_Monitor_BFM",$sformatf("data in Rx monitor proxy is %p",uartRxTransaction.receivingData),UVM_LOW)
+    `uvm_info("Rx_Monitor_BFM",$sformatf("parity in Rx monitor proxy is b",uartRxTransaction.parity),UVM_LOW)
+    
+    $cast(uartRxTransaction_clone, uartRxTransaction.clone());  
+    uartRxMonitorAnalysisPort.write(uartRxTransaction_clone);
+  
+  end
 
 endtask : run_phase
 `endif
