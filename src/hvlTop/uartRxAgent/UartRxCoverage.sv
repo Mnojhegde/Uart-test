@@ -119,7 +119,7 @@ endfunction : build_phase
 function void UartRxCoverage::write(UartRxTransaction t);
   foreach(t.receivingData[i]) begin
     data =  t.receivingData[i];
-    UartRxCovergroup.sample(uartRxAgentConfig,data);
+    UartRxCovergroup.sample(uartRxAgentConfig,t);
   end
 endfunction : write
 
