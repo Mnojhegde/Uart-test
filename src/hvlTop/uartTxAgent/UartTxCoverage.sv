@@ -20,7 +20,7 @@ class UartTxCoverage extends uvm_subscriber #(UartTxTransaction);
   //  Covergroup consists of the various coverpoints based on
   //  no. of the variables used to improve the coverage.
   //-------------------------------------------------------
-  covergroup UartTxCovergroup with function sample (UartTxAgentConfig uartTxAgentConfig, UartTxTransaction uartTxTransaction);
+  covergroup UartTxCovergroup with function sample (UartTxAgentConfig uartTxAgentConfig,  bit[DATA_WIDTH-1:0] data);
     TX_CP : coverpoint data{
      option.comment = "tx";
      bins UART_TX  = {[0:255]};}
