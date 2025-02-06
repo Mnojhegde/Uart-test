@@ -8,12 +8,18 @@
 
 class UartTxDriverProxy extends uvm_driver#(UartTxTransaction);
   `uvm_component_utils(UartTxDriverProxy)
- 
+
+	// virtual handle of transmitter driver bfm
   virtual UartTxDriverBfm uartTxDriverBfm;
+
+	// handles for struct packet, transaction packet and config class
   UartTxPacketStruct uartTxPacketStruct;
   UartTxAgentConfig uartTxAgentConfig;
   UartTxTransaction uartTxTransaction;
+
+	//event for controlling run phase drop objection
   event driverSynchronizer;  
+	
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
@@ -21,21 +27,18 @@ class UartTxDriverProxy extends uvm_driver#(UartTxTransaction);
   extern virtual function void build_phase( uvm_phase phase);
   extern virtual task run_phase(uvm_phase phase);
 endclass : UartTxDriverProxy
+		
 //--------------------------------------------------------------------------------------------
 // Construct: new
-//
-// Parameters:
 // name - UartTxDriverProxy
 // parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
-
 function UartTxDriverProxy :: new( string name = "UartTxDriverProxy" , uvm_component parent );
   super.new(name,parent);
 endfunction : new
+		
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
-//
-// Parameters:
 // phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void UartTxDriverProxy :: build_phase( uvm_phase phase);
@@ -51,6 +54,7 @@ function void UartTxDriverProxy :: build_phase( uvm_phase phase);
     end 
     uartTxTransaction = UartTxTransaction :: type_id :: create("uartTxTransaction");
 endfunction : build_phase
+		
 //--------------------------------------------------------------------------------------------
 // Task: run_phase
 // Parameters:
@@ -58,46 +62,25 @@ endfunction : build_phase
 //--------------------------------------------------------------------------------------------
 
 task UartTxDriverProxy :: run_phase(uvm_phase phase);
-  UartConfigStruct uartConfigStruct;
-  UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
-/*
- fork
-   uartTxDriverBfm.GenerateBaudClk(uartConfigStruct);
- join_none
-
-  uartTxDriverBfm.WaitForReset();
-  forever begin
-  seq_item_port.get_next_item(req);
-  UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
-  UartTxSeqItemConverter :: fromTxClass(req,uartTxAgentConfig,uartTxPacketStruct);
-   uartTxDriverBfm.DriveToBfm(uartTxPacketStruct , uartConfigStruct);
-//    wait(driverSynchronizer.triggered);
-     UartTxSeqItemConverter :: toTxClass(uartTxPacketStruct ,uartTxAgentConfig,uartTxTransaction);
-        foreach(uartTxTransaction.transmissionData[i])
-	    $display("SENT PACKET IS %b",uartTxTransaction.transmissionData[i]);
-
-    
-  #150;
-  seq_item_port.item_done();
-  end 
-*/
-
-fork 
-  begin 
- uartTxDriverBfm.GenerateBaudClk(uartConfigStruct);
-  end
-  begin 
-  uartTxDriverBfm.WaitForReset();
-    forever begin
-      seq_item_port.get_next_item(req);
-        UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
-	  UartTxSeqItemConverter :: fromTxClass(req,uartTxAgentConfig,uartTxPacketStruct);
-	     uartTxDriverBfm.DriveToBfm(uartTxPacketStruct , uartConfigStruct);
-	    wait(driverSynchronizer.triggered);
-	     seq_item_port.item_done();
-  end
-  end 
-join_any
-
-endtask : run_phase
+	UartConfigStruct uartConfigStruct;
+	UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
+	
+		fork 
+			begin 
+				// baud clck generation
+				uartTxDriverBfm.GenerateBaudClk(uartConfigStruct);
+			end
+			begin 
+				uartTxDriverBfm.WaitForReset();
+				forever begin
+					seq_item_port.get_next_item(req);
+					UartTxConfigConverter::from_Class(uartTxAgentConfig , uartConfigStruct);
+					UartTxSeqItemConverter :: fromTxClass(req,uartTxAgentConfig,uartTxPacketStruct);
+					uartTxDriverBfm.DriveToBfm(uartTxPacketStruct , uartConfigStruct);
+					wait(driverSynchronizer.triggered);
+					seq_item_port.item_done();
+				end
+			end 
+		join_any
+	endtask : run_phase
 `endif
