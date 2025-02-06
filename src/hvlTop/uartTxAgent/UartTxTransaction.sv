@@ -5,20 +5,21 @@
 //--------------------------------------------------------------------------------------------
 class UartTxTransaction extends uvm_sequence_item;
    
-   //register with factory so we can override with uvm method in future if necessary.
    `uvm_object_utils(UartTxTransaction)
-   //input signals
-   rand logic[DATA_WIDTH-1 : 0]transmissionData[];
-   bit [NO_OF_PACKETS-1:0]parity;
    
-   rand bit[31:0] baud_rate;
-   rand bit[4:0] oversample;
+   //input signals
+   rand logic [DATA_WIDTH-1 : 0] transmissionData[];
+   bit [NO_OF_PACKETS-1:0] parity;
+	bit [NO_OF_PACKETS-1:0]parityError; 
+	bit [NO_OF_PACKETS-1:0]breakingError; 
+	bit [NO_OF_PACKETS-1:0]overrunError;
+   
 
    //-------------------------------------------------------
    // constraints for uart
    //-------------------------------------------------------
-   //constraint set_number_of_transmissionn_range{ soft transmissionData.size() ==1;}
    constraint set_transmissionData_range{ foreach(transmissionData[i]) transmissionData[i] inside{[1:$]};}
+	
    //-------------------------------------------------------
    // Externally defined Tasks and Functions
    //-------------------------------------------------------
@@ -31,11 +32,10 @@ class UartTxTransaction extends uvm_sequence_item;
 //--------------------------------------------------------------------------------------------
 // Construct: new
 // initializes the class object
-// Parameters:
 // name - UartTxTransaction
 //--------------------------------------------------------------------------------------------
 function UartTxTransaction :: new(string name = "UartTxTransaction");
-   super.new(name);
+	super.new(name);
 endfunction : new
 
 //--------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ endfunction : do_compare
 function void UartTxTransaction :: do_print(uvm_printer printer);
    super.do_print(printer);
    foreach(this.transmissionData[i])
-      printer.print_field($sformatf("transmissionData[%0d]",i),transmissionData[i],$bits(transmissionData[i]),UVM_BIN);
+		printer.print_field($sformatf("transmissionData[%0d]",i),transmissionData[i],$bits(transmissionData[i]),UVM_BIN);
    printer.print_field("parity",parity,$bits(parity),UVM_BIN);
 endfunction : do_print
 
