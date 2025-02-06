@@ -16,7 +16,7 @@ class UartRxAgentConfig extends uvm_object;
   baudRateEnum uartBaudRate;
   dataTypeEnum uartDataType;
   parityTypeEnum uartParityType;
-  stopBitEnum  uartstopbit;
+  stopBitEnum  uartStopbit;
   rand int packetsNeeded;
   bit parityErrorInjection;
 
