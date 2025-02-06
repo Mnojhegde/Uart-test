@@ -19,7 +19,7 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
   //  Covergroup consists of the various coverpoints
   //  based on the number of the variables used to improve the coverage.
   //-------------------------------------------------------
-  covergroup UartRxCovergroup with function sample (UartRxAgentConfig uartRxAgentConfig, UartRxTransaction t);
+  covergroup UartRxCovergroup with function sample (UartRxAgentConfig uartRxAgentConfig, bit[DATA_WIDTH-1:0] data);
     RX_CP : coverpoint data{
       option.comment = "rx";
       bins UART_TX1 = {[0:63]};
@@ -119,7 +119,7 @@ endfunction : build_phase
 function void UartRxCoverage::write(UartRxTransaction t);
   foreach(t.receivingData[i]) begin
     data =  t.receivingData[i];
-    UartRxCovergroup.sample(uartRxAgentConfig,t);
+    UartRxCovergroup.sample(uartRxAgentConfig,data);
   end
 endfunction : write
 
