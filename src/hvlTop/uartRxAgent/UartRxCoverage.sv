@@ -61,7 +61,7 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
     //   bins STOP_BIT_2_2 = {2};
     // }
     
-    HAS_PARITY_CP: coverpoint uartRxAgentConfig.hasparity{
+    HAS_PARITY_CP: coverpoint uartRxAgentConfig.hasParity{
       option.comment = "has parity";
       bins HAS_PARITY_0 = {0};
       bins HAS_PARITY_1 = {1};
