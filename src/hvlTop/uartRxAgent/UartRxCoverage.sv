@@ -117,13 +117,10 @@ endfunction : build_phase
 //  t - UartRxTransaction handle
 //-------------------------------------------------------
 function void UartRxCoverage::write(UartRxTransaction t);
-  `uvm_info(get_type_name(),$sformatf("Before calling SAMPLE METHOD"),UVM_NONE);
   foreach(t.receivingData[i]) begin
     data =  t.receivingData[i];
     UartRxCovergroup.sample(uartRxAgentConfig,t);
   end
-  `uvm_info(get_type_name(),"After calling SAMPLE METHOD",UVM_NONE);
-
 endfunction : write
 
 //--------------------------------------------------------------------------------------------
