@@ -77,8 +77,8 @@ task UartRxMonitorProxy :: run_phase(uvm_phase phase);
     uartRxMonitorBfm.StartMonitoring(uartRxPacketStruct, uartConfigStruct);
     UartRxSeqItemConverter::toRxClass(uartRxPacketStruct,uartRxAgentConfig,uartRxTransaction);
     
-    $display("Tx MONITOR HAS received %p",uartTxPacketStruct.transmissionData);
-		$display("parity is %b",uartTxTransaction.parity);
+    $display("Rx MONITOR HAS received %p",uartRxPacketStruct.transmissionData);
+		$display("parity is %b",uartRxTransaction.parity);
 
     $cast(uartRxTransaction_clone, uartRxTransaction.clone());  
     uartRxMonitorAnalysisPort.write(uartRxTransaction_clone);
