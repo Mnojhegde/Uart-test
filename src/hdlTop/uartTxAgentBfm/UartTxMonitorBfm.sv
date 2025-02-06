@@ -7,7 +7,6 @@ import UartGlobalPkg::*;
 // Interface : UartTxMonitorBfm
 //  Connects the master monitor bfm with the master monitor prox
 //--------------------------------------------------------------------------------------------
-
 interface UartTxMonitorBfm (input  logic   clk,
                             input  logic reset,
                             input  logic   tx
@@ -22,39 +21,15 @@ interface UartTxMonitorBfm (input  logic   clk,
   //-------------------------------------------------------
   // Importing the Transmitter package file
   //-------------------------------------------------------
-  //import UartTxPkg:: UartTxMonitorProxy;
-  
-  //Variable: name
-  //Used to store the name of the interface
-
+   
   string name = "UART_TRANSMITTER_MONITOR_BFM"; 
 
   //Variable: bclk
   //baud clock for uart transmisson/reception
+	bit baudClk;
 	
-  bit baudClk;
-   bit oversamplingClk;
-   //Variable: baudRate
-  //Used to sample the uart data
+	bit oversamplingClk;
 	
- // reg[31:0] baudRate = 9600;
-  
-   //Variable: baudRate
-  // Counter to keep track of clock cycles
-	
-//  reg [15:0] counter;  
-  
-   //Variable: baudDivider
-  //to Calculate baud rate divider
-	
-  //reg [15:0] baudDivider;
-	
-
- //Creating the handle for the proxy_driver
-
- // UartTxMonitorProxy uartTxMonitorProxy;
-   
-
   //-------------------------------------------------------
   // Used to display the name of the interface
   //-------------------------------------------------------
@@ -89,7 +64,6 @@ interface UartTxMonitorBfm (input  logic   clk,
   // Task: BaudClkGenerator
   // this task will generate baud clk based on baud divider
   //-------------------------------------------------------------------
-
     task BaudClkGenerator(input int baudDiv);
       static int count=0;
       forever begin 
@@ -111,71 +85,63 @@ interface UartTxMonitorBfm (input  logic   clk,
   //--------------------------------------------------------------------------------------------
 
   task BclkCounter(input int uartOverSamplingMethod);
-    static int countbClk = 0;
-    forever begin
-	@(posedge baudClk)
-	if(countbClk == (uartOverSamplingMethod/2)-1) begin
-      	  oversamplingClk = ~oversamplingClk;
-      	  countbClk=0;
-      	end
-      	else begin
-      	countbClk = countbClk+1;
-      end
-   
-    end
+		static int countbClk = 0;
+		forever begin
+			@(posedge baudClk)
+			if(countbClk == (uartOverSamplingMethod/2)-1) begin
+				oversamplingClk = ~oversamplingClk;
+				countbClk=0;
+			end
+			else begin
+				countbClk = countbClk+1;
+			end 
+	  end
   endtask
 	
   //-------------------------------------------------------
   // Task: WaitForReset
   //  Waiting for the system reset
   //-------------------------------------------------------
-
   task WaitForReset();
-    //@(negedge reset)
     @(negedge reset);
     `uvm_info(name, $sformatf("system reset activated"), UVM_LOW)
     @(posedge reset);
     `uvm_info(name, $sformatf("system reset deactivated"), UVM_LOW)
   endtask: WaitForReset
 
- task StartMonitoring(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
-   fork 
-     BclkCounter(uartConfigStruct.uartOverSamplingMethod);
-     Deserializer(uartTxPacketStruct,uartConfigStruct);
-   join_any
-   disable fork ;
-endtask 
+	task StartMonitoring(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
+		fork 
+    	BclkCounter(uartConfigStruct.uartOverSamplingMethod);
+    	Deserializer(uartTxPacketStruct,uartConfigStruct);
+	 	join_any
+   	disable fork ;
+	endtask 
 
   //-------------------------------------------------------
   // Task: DeSerializer
   //  converts serial data to parallel
   //-------------------------------------------------------
-
   task Deserializer(inout UartTxPacketStruct uartTxPacketStruct, inout UartConfigStruct uartConfigStruct);
     static int total_transmission = NO_OF_PACKETS;
-     for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
-       @(negedge tx);
-       repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
-       for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
-     	@(posedge oversamplingClk) begin
-           uartTxPacketStruct.transmissionData[transmission_number][i] = tx;
-         end
-       end
-       if(uartConfigStruct.uartParityEnable ==1) begin   
-	   @(posedge oversamplingClk)
-	   uartTxPacketStruct.parity[transmission_number] = tx;
-         end
-/*	
-        @(posedge oversamplingClk) begin
-	StopBitCheck (uartTxPacketStruct,tx,transmission_number );
-    end*/
-
-        @(posedge oversamplingClk);
-  	end
-  endtask
-initial begin 
-$monitor("DATA IS BEING RECEIVED %b",tx);
-end 
+    	for(int transmission_number=0 ; transmission_number < total_transmission; transmission_number++)begin 
+      	@(negedge tx);
+       	repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
+       	for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
+     			@(posedge oversamplingClk) begin
+        		uartTxPacketStruct.transmissionData[transmission_number][i] = tx;
+        	end
+       	end
+      	if(uartConfigStruct.uartParityEnable ==1) begin   
+	   			@(posedge oversamplingClk)
+	   			uartTxPacketStruct.parity[transmission_number] = tx;
+      	end
+      	@(posedge oversamplingClk);
+  		end
+  	endtask
+			
+	initial begin 
+		$monitor("DATA IS BEING RECEIVED %b",tx);
+	end 
 
   //-------------------------------------------------------
   // Task: StopBitCheck
@@ -215,4 +181,4 @@ end
      // parity_error==1;
      // end
   // endtask:parityCheck
- endinterface : UartTxMonitorBfm
+endinterface : UartTxMonitorBfm
