@@ -162,9 +162,9 @@ endtask : run_phase
                `uvm_error(get_type_name(),$sformatf("Parity mismatch"))
              end*/
             transmissionReciveingSucessfulCount++;
-           //`uvm_info(get_type_name(),$sformatf("transmissionData = %p,receivingData = %p,parity = %0b",uartTxTransaction.transmissionData,uartRxTransaction.receivingData,uartTxTransaction.parity),UVM_LOW)
-          uartTxTransaction.print(); 
-          uartRxTransaction.print();
+            `uvm_info(get_type_name(),$sformatf("transmissionData = %p\n, receivingData = %p\n, tx parity = %0b\n rx parity=%0b",uartTxTransaction.transmissionData,uartRxTransaction.receivingData,uartTxTransaction.parity,uartRxTransaction.parity),UVM_LOW)
+          // uartTxTransaction.print(); 
+          // uartRxTransaction.print();
          end
  endtask : compareTxRx
 `endif
