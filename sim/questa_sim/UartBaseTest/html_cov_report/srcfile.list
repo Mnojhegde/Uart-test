@@ -9,6 +9,7 @@
 ../../src/hvlTop/UartHvlTop.sv
 ../../src/hvlTop/tb/UartBaseTest.sv
 ../../src/hvlTop/tb/UartBaseTestPkg.sv
+../../src/hvlTop/tb/UartEvenParityTest.sv
 ../../src/hvlTop/tb/uartVirtualSequences//UartVirtualBaseSequence.sv
 ../../src/hvlTop/tb/uartVirtualSequences//UartVirtualTransmissionSequence.sv
 ../../src/hvlTop/tb/uartVirtualSequences/UartVirtualSequencePkg.sv
