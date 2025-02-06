@@ -5,11 +5,11 @@
 //--------------------------------------------------------------------------------------------
 class UartTxTransaction extends uvm_sequence_item;
    
-   `uvm_object_utils(UartTxTransaction)
+	`uvm_object_utils(UartTxTransaction)
    
    //input signals
-   rand logic [DATA_WIDTH-1 : 0] transmissionData[];
-   bit [NO_OF_PACKETS-1:0] parity;
+	rand logic [DATA_WIDTH-1 : 0] transmissionData[];
+  bit [NO_OF_PACKETS-1:0] parity;
 	bit [NO_OF_PACKETS-1:0]parityError; 
 	bit [NO_OF_PACKETS-1:0]breakingError; 
 	bit [NO_OF_PACKETS-1:0]overrunError;
@@ -43,10 +43,8 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 function void UartTxTransaction :: do_copy(uvm_object rhs);
    UartTxTransaction rhs1;
-
    if(! $cast(rhs1,rhs))
       `uvm_fatal("do_copy","casting failed during copying");
-
    super.copy(rhs);
    this.transmissionData = rhs1.transmissionData;
    this.parity = rhs1.parity;
@@ -56,21 +54,20 @@ endfunction : do_copy
 // do_compare method
 //--------------------------------------------------------------------------------------------
 function bit UartTxTransaction :: do_compare(uvm_object rhs, uvm_comparer comparer = null);
-   UartTxTransaction rhs1;
-   if(! $cast(rhs1,rhs))
-      `uvm_fatal("do_compare","Casting failed during comparing");
-
-   return (super.compare(rhs,comparer) && this.transmissionData == rhs1.transmissionData && this.parity == rhs1.parity);
+	UartTxTransaction rhs1;
+	if(! $cast(rhs1,rhs))
+		`uvm_fatal("do_compare","Casting failed during comparing");
+	return (super.compare(rhs,comparer) && this.transmissionData == rhs1.transmissionData && this.parity == rhs1.parity);
 endfunction : do_compare
 
 //--------------------------------------------------------------------------------------------
 // Function: do_print method
 //--------------------------------------------------------------------------------------------
 function void UartTxTransaction :: do_print(uvm_printer printer);
-   super.do_print(printer);
-   foreach(this.transmissionData[i])
+	super.do_print(printer);
+	foreach(this.transmissionData[i])
 		printer.print_field($sformatf("transmissionData[%0d]",i),transmissionData[i],$bits(transmissionData[i]),UVM_BIN);
-   printer.print_field("parity",parity,$bits(parity),UVM_BIN);
+	printer.print_field("parity",parity,$bits(parity),UVM_BIN);
 endfunction : do_print
 
 `endif
