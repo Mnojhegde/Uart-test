@@ -16,7 +16,7 @@ interface UartTxMonitorBfm (input  logic   clk,
   // Importing the Transmitter package file
   //-------------------------------------------------------
   string name = "UART_TRANSMITTER_MONITOR_BFM";
-  //Variable: bclk
+  //Variable: baudClk
   //baud clock for uart transmisson/reception
         bit baudClk;
         bit oversamplingClk;
@@ -69,20 +69,20 @@ interface UartTxMonitorBfm (input  logic   clk,
       end
     endtask
   //--------------------------------------------------------------------------------------------
-  // Task: bclk_counter
-  //  This task will count the number of cycles of bclk and generate oversamplingClk to sample data
+  // Task: baudClk_counter
+  //  This task will count the number of cycles of baudClk and generate oversamplingClk to sample data
   //--------------------------------------------------------------------------------------------
-  task BclkCounter(input int uartOverSamplingMethod);
-                static int countbClk = 0;
+  task baudClkCounter(input int uartOverSamplingMethod);
+                static int countbaudClk = 0;
 				@(negedge tx);
                 forever begin
                         @(posedge baudClk)
-                        if(countbClk == (uartOverSamplingMethod/2)-1) begin
+                        if(countbaudClk == (uartOverSamplingMethod/2)-1) begin
                                 oversamplingClk = ~oversamplingClk;
-                                countbClk=0;
+                                countbaudClk=0;
                         end
                         else begin
-                                countbClk = countbClk+1;
+                                countbaudClk = countbaudClk+1;
                         end
           end
   endtask
@@ -97,9 +97,9 @@ interface UartTxMonitorBfm (input  logic   clk,
     `uvm_info(name, $sformatf("system reset deactivated"), UVM_LOW)
   endtask: WaitForReset
         task StartMonitoring(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
-        //BclkCounter(uartConfigStruct.uartOverSamplingMethod);
+        //baudClkCounter(uartConfigStruct.uartOverSamplingMethod);
         // fork
-        // BclkCounter(uartConfigStruct.uartOverSamplingMethod);
+        // baudClkCounter(uartConfigStruct.uartOverSamplingMethod);
         Deserializer(uartTxPacketStruct,uartConfigStruct);
          //        join_any
          // @(negedge oversamplingClk);
@@ -135,19 +135,19 @@ endfunction
         if(uartConfigStruct.OverSampledBaudFrequencyClk==1)begin
         // repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
         for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
-        	repeat(8) @(posedge bclk); 
+        	repeat(8) @(posedge baudClk); 
 					uartTxPacketStruct.transmissionData[i] = tx;
-          repeat(8) @(posedge bclk);
+          repeat(8) @(posedge baudClk);
         end
         if(uartConfigStruct.uartParityEnable ==1) begin
-					repeat(8) @(posedge bclk);
+					repeat(8) @(posedge baudClk);
 					uartTxPacketStruct.parity = tx;
 				  parityCheck(uartConfigStruct,uartTxPacketStruct,tx);
-					repeat(8) @(posedge bclk);
+					repeat(8) @(posedge baudClk);
         end
-        repeat(8) @(posedge bclk);
+        repeat(8) @(posedge baudClk);
 				stopBitCheck(uartTxPacketStruct,tx);
-				repeat(8) @(posedge bclk);
+				repeat(8) @(posedge baudClk);
         end
         else if(uartConfigStruct.OverSampledBaudFrequencyClk==0)begin
          repeat(1)@(posedge baudClk);
