@@ -28,6 +28,8 @@ interface UartRxMonitorBfm (input  logic   clk,
 	bit baudClk;
 	
 	bit oversamplingClk;
+
+	UartTransmitterStateEnum uartTransmitterState;
 	
   //-------------------------------------------------------
   // Used to display the name of the interface
