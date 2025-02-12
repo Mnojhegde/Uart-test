@@ -151,6 +151,7 @@ task Deserializer(inout UartRxPacketStruct uartRxPacketStruct, inout UartConfigS
       	repeat(8) @(posedge baudClk);
 	uartTransmitterState = STOPBIT;
 	repeat(8) @(posedge baudClk);
+	repeat(8) @(posedge baudClk);
 	uartTransmitterState = IDLE;
 	end 
 	else if(uartConfigStruct.OverSampledBaudFrequencyClk==0)begin 
