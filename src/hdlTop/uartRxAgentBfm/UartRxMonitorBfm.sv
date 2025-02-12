@@ -133,25 +133,25 @@ task Deserializer(inout UartRxPacketStruct uartRxPacketStruct, inout UartConfigS
        	if(uartConfigStruct.OverSampledBaudFrequencyClk==1)begin 
 	repeat(8) @(posedge baudClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
 	uartTransmitterState = STARTBIT;
-	repeat(8) @(posedge baudClk);	
+	//repeat(8) @(posedge baudClk);	
        	for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
-     			repeat(8) @(posedge baudClk); begin
+		repeat(16) @(posedge baudClk); begin
         		uartRxPacketStruct.receivingData[i] = rx;
 			uartTransmitterState = DATABITTRANSFER;
 			$display("i$$$$$$$$$$rx in receiver monitor is %b",rx);
         	end
-		repeat(8) @(posedge baudClk);
+		//repeat(8) @(posedge baudClk);
        	end
       	if(uartConfigStruct.uartParityEnable ==1) begin   
-	   			repeat(8) @(posedge baudClk);
+			repeat(16) @(posedge baudClk);
 	   			uartRxPacketStruct.parity = rx;
 				uartTransmitterState = PARITYBIT;
-				repeat(8) @(posedge baudClk);
+				//repeat(8) @(posedge baudClk);
       	end
-      	repeat(8) @(posedge baudClk);
+		repeat(16) @(posedge baudClk);
 	uartTransmitterState = STOPBIT;
-	repeat(8) @(posedge baudClk);
-	repeat(8) @(posedge baudClk);
+		repeat(16) @(posedge baudClk);
+	//repeat(8) @(posedge baudClk);
 	uartTransmitterState = IDLE;
 	end 
 	else if(uartConfigStruct.OverSampledBaudFrequencyClk==0)begin 
