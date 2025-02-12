@@ -194,8 +194,8 @@ task SampleData(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigSt
   if(uartConfigStruct.OverSampledBaudFrequencyClk ==1)begin 
     repeat(8) @(posedge baudClk);
     tx = START_BIT;
-    repeat(8) @(posedge baudClk);
     uartTransmitterState = STARTBIT;
+    repeat(8) @(posedge baudClk);
     for( int i=0 ; i< uartConfigStruct.uartDataType ; i++) begin
       repeat(8) @(posedge baudClk);
       tx = uartTxPacketStruct.transmissionData[i];
