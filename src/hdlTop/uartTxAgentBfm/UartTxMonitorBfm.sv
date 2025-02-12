@@ -98,12 +98,12 @@ interface UartTxMonitorBfm (input  logic   clk,
   endtask: WaitForReset
         task StartMonitoring(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
         //BclkCounter(uartConfigStruct.uartOverSamplingMethod);
-        fork
-        BclkCounter(uartConfigStruct.uartOverSamplingMethod);
+        // fork
+        // BclkCounter(uartConfigStruct.uartOverSamplingMethod);
         Deserializer(uartTxPacketStruct,uartConfigStruct);
-                join_any
-         @(negedge oversamplingClk);
-         disable fork ;
+         //        join_any
+         // @(negedge oversamplingClk);
+         // disable fork ;
         endtask
 
 function evenParityCompute(input UartConfigStruct uartConfigStruct,input UartTxPacketStruct uartTxPacketStruct);
@@ -133,21 +133,21 @@ endfunction
   task Deserializer(inout UartTxPacketStruct uartTxPacketStruct, inout UartConfigStruct uartConfigStruct);
         @(negedge tx);
         if(uartConfigStruct.OverSampledBaudFrequencyClk==1)begin
-        repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
+        // repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
         for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
-                        @(posedge oversamplingClk) begin
-                        uartTxPacketStruct.transmissionData[i] = tx;
-                end
+        	repeat(8) @(posedge bclk); 
+					uartTxPacketStruct.transmissionData[i] = tx;
+          repeat(8) @(posedge bclk);
         end
         if(uartConfigStruct.uartParityEnable ==1) begin
-                                @(posedge oversamplingClk)
-                                uartTxPacketStruct.parity = tx;
-				parityCheck(uartConfigStruct,uartTxPacketStruct,tx);
-
+					repeat(8) @(posedge bclk);
+					uartTxPacketStruct.parity = tx;
+				  parityCheck(uartConfigStruct,uartTxPacketStruct,tx);
+					repeat(8) @(posedge bclk);
         end
-        @(posedge oversamplingClk);
-	stopBitCheck(uartTxPacketStruct,tx);
-
+        repeat(8) @(posedge bclk);
+				stopBitCheck(uartTxPacketStruct,tx);
+				repeat(8) @(posedge bclk);
         end
         else if(uartConfigStruct.OverSampledBaudFrequencyClk==0)begin
          repeat(1)@(posedge baudClk);
