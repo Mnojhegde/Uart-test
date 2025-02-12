@@ -113,11 +113,11 @@ interface UartRxMonitorBfm (input  logic   clk,
   endtask: WaitForReset
 
 	task StartMonitoring(inout UartRxPacketStruct uartRxPacketStruct , inout UartConfigStruct uartConfigStruct);
-		fork 
-    	BclkCounter(uartConfigStruct.uartOverSamplingMethod);
+		// fork 
+  //   	BclkCounter(uartConfigStruct.uartOverSamplingMethod);
 		Deserializer(uartRxPacketStruct,uartConfigStruct);
-	 	join_any
-   	disable fork ;
+	 	// join_any
+   // 	disable fork ;
 	endtask 
 
   //-------------------------------------------------------
@@ -127,18 +127,21 @@ interface UartRxMonitorBfm (input  logic   clk,
 		task Deserializer(inout UartRxPacketStruct uartRxPacketStruct, inout UartConfigStruct uartConfigStruct);
       	@(negedge rx);
        	if(uartConfigStruct.OverSampledBaudFrequencyClk==1)begin 
-	repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
+	// repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
        	for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
-     			@(posedge oversamplingClk) begin
+     			repeat(8) @(posedge bclk); begin
         		uartRxPacketStruct.receivingData[i] = rx;
 			$display("i$$$$$$$$$$rx in receiver monitor is %b",rx);
         	end
+		repeat(8) @(posedge bclk);
        	end
       	if(uartConfigStruct.uartParityEnable ==1) begin   
-	   			@(posedge oversamplingClk)
+	   			repeat(8) @(posedge bclk);
 	   			uartRxPacketStruct.parity = rx;
+				repeat(8) @(posedge bclk);
       	end
-      	@(posedge oversamplingClk);
+      	repeat(8) @(posedge bclk);
+	repeat(8) @(posedge bclk);
 
 	end 
 	else if(uartConfigStruct.OverSampledBaudFrequencyClk==0)begin 
