@@ -23,7 +23,7 @@ interface UartRxMonitorBfm (input  logic   clk,
    
   string name = "UART_TRANSMITTER_MONITOR_BFM"; 
 
-  //Variable: bclk
+  //Variable: baudClk
   //baud clock for uart transmisson/reception
 	bit baudClk;
 	
@@ -83,20 +83,20 @@ interface UartRxMonitorBfm (input  logic   clk,
     endtask
 
   //--------------------------------------------------------------------------------------------
-  // Task: bclk_counter
-  //  This task will count the number of cycles of bclk and generate oversamplingClk to sample data
+  // Task: baudClk_counter
+  //  This task will count the number of cycles of baudClk and generate oversamplingClk to sample data
   //--------------------------------------------------------------------------------------------
 
-  task BclkCounter(input int uartOverSamplingMethod);
-		static int countbClk = 0;
+  task baudClkCounter(input int uartOverSamplingMethod);
+		static int countbaudClk = 0;
 		forever begin
 			@(posedge baudClk)
-			if(countbClk == (uartOverSamplingMethod/2)-1) begin
+			if(countbaudClk == (uartOverSamplingMethod/2)-1) begin
 				oversamplingClk = ~oversamplingClk;
-				countbClk=0;
+				countbaudClk=0;
 			end
 			else begin
-				countbClk = countbClk+1;
+				countbaudClk = countbaudClk+1;
 			end 
 	  end
   endtask
@@ -114,7 +114,7 @@ interface UartRxMonitorBfm (input  logic   clk,
 
 	task StartMonitoring(inout UartRxPacketStruct uartRxPacketStruct , inout UartConfigStruct uartConfigStruct);
 		// fork 
-  //   	BclkCounter(uartConfigStruct.uartOverSamplingMethod);
+  //   	baudClkCounter(uartConfigStruct.uartOverSamplingMethod);
 		Deserializer(uartRxPacketStruct,uartConfigStruct);
 	 	// join_any
    // 	disable fork ;
@@ -129,19 +129,19 @@ interface UartRxMonitorBfm (input  logic   clk,
        	if(uartConfigStruct.OverSampledBaudFrequencyClk==1)begin 
 	// repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
        	for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
-     			repeat(8) @(posedge bclk); begin
+     			repeat(8) @(posedge baudClk); begin
         		uartRxPacketStruct.receivingData[i] = rx;
 			$display("i$$$$$$$$$$rx in receiver monitor is %b",rx);
         	end
-		repeat(8) @(posedge bclk);
+		repeat(8) @(posedge baudClk);
        	end
       	if(uartConfigStruct.uartParityEnable ==1) begin   
-	   			repeat(8) @(posedge bclk);
+	   			repeat(8) @(posedge baudClk);
 	   			uartRxPacketStruct.parity = rx;
-				repeat(8) @(posedge bclk);
+				repeat(8) @(posedge baudClk);
       	end
-      	repeat(8) @(posedge bclk);
-	repeat(8) @(posedge bclk);
+      	repeat(8) @(posedge baudClk);
+	repeat(8) @(posedge baudClk);
 
 	end 
 	else if(uartConfigStruct.OverSampledBaudFrequencyClk==0)begin 
