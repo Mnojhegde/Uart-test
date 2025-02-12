@@ -132,11 +132,11 @@ interface UartTxDriverBfm (input  logic   clk,
   //--------------------------------------------------------------------------------------------
 
   task DriveToBfm(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
-	fork
-		BclkCounter(uartConfigStruct.uartOverSamplingMethod);
+	// fork
+		// BclkCounter(uartConfigStruct.uartOverSamplingMethod);
 		SampleData(uartTxPacketStruct , uartConfigStruct);
-	join_any
-	disable fork;	
+	// join_any
+	// disable fork;	
   endtask: DriveToBfm
  
   //--------------------------------------------------------------------------------------------
@@ -170,6 +170,7 @@ task evenParityCompute(input UartConfigStruct uartConfigStruct,input UartTxPacke
   endcase
   $display("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&INSIDE THE PARITY BLOCK IN %t",$time);
   uartTransmitterState = PARITYBIT;
+	repeat(8) @(posedge bclk);
 endtask 
 
 task oddParityCompute(input UartConfigStruct uartConfigStruct,input UartTxPacketStruct uartTxPacketStruct,output tx);
@@ -183,53 +184,57 @@ task oddParityCompute(input UartConfigStruct uartConfigStruct,input UartTxPacket
 
   uartTransmitterState = PARITYBIT;
   $info("AFTERT STATE ASSIGNMENT");
+	repeat(8) @(posedge bclk);
 endtask
 
 
 
 task SampleData(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
   if(uartConfigStruct.OverSampledBaudFrequencyClk ==1)begin 
-    @(posedge oversamplingClk);
+    repeat(8) @(posedge bclk);
     tx = START_BIT;
     uartTransmitterState = STARTBIT;
     for( int i=0 ; i< uartConfigStruct.uartDataType ; i++) begin
-      @(posedge oversamplingClk)
+      repeat(8) @(posedge bclk);
       tx = uartTxPacketStruct.transmissionData[i];
       uartTransmitterState = DATABITTRANSFER;
+      repeat(8) @(posedge bclk);
     end
     if(uartConfigStruct.uartParityEnable ==1) begin 
       if(uartConfigStruct.uartParityErrorInjection==0) begin 
         if(uartConfigStruct.uartParityType == EVEN_PARITY)begin
-          @(posedge oversamplingClk)
-	  evenParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
+          repeat(8) @(posedge bclk);
+	  			evenParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
         end
         else if (uartConfigStruct.uartParityType == ODD_PARITY) begin 
-          @(posedge oversamplingClk)
-	  oddParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
+          repeat(8) @(posedge bclk);
+	  			oddParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
         end 
       end
       else begin 
         if(uartConfigStruct.uartParityType == EVEN_PARITY)begin
-         @(posedge oversamplingClk)
+         repeat(8) @(posedge bclk);
          oddParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
         end 
         else if(uartConfigStruct.uartParityType == ODD_PARITY) begin
-          @(posedge oversamplingClk)
-	  evenParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
+          repeat(8) @(posedge bclk);
+	  			evenParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
         end 
       end 
     end
     $display("THE FRAMING ERROR INJECTION VALUE IS %b",uartConfigStruct.uartFramingErrorInjection);
-    @(posedge oversamplingClk)
+    repeat(8) @(posedge bclk);
     if(uartConfigStruct.uartFramingErrorInjection == 0)begin 
     tx = STOP_BIT;  
     uartTransmitterState = STOPBIT;
+		repeat(8) @(posedge bclk);
     end 
     else begin
     tx='b x;
-    @(posedge oversamplingClk);
+		repeat(8) @(posedge bclk);
+		repeat(8) @(posedge bclk);
     tx=1;
-    
+    repeat(8) @(posedge bclk);
     end
   end
   else if(uartConfigStruct.OverSampledBaudFrequencyClk ==0)begin
@@ -270,8 +275,8 @@ task SampleData(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigSt
   end 
 endtask
 
-always@(posedge oversamplingClk)
- $display("TX IS %b in driver bfm @%t",tx,$time);
+// always@(posedge oversamplingClk)
+//  $display("TX IS %b in driver bfm @%t",tx,$time);
 
 
 endinterface : UartTxDriverBfm
