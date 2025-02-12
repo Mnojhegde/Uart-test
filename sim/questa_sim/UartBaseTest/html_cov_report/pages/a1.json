@@ -1,0 +1,22 @@
+var g_data = {
+a138:{
+scopes:[{s:'29',b:'1',val:'HdlTop'},{s:'38',b:'1',val:'uartTxAgentBfm'},{s:'106',b:'1',val:'uartTxMonitorBfm'},{link:'z.htm?f=0&s=138',val:'TransmissionAssertions'}]
+,assertions:[{dummy:0},{cr:'c',c:'g',z:'IF_THERE_IS_FALLINGEDGE_ASSERTION_PASS',fc:'Gr',pc:'Gr',h0:'0',h1:'55',h2:'281',h3:'17',h4:'192',h5:'17',h6:'47'}
+,{cr:'c',c:'g',z:'CHECK_FOR_DATA_WIDTH_LENGTH',fc:'Gr',pc:'Gr',h0:'0',h1:'2',h2:'281',h3:'0',h4:'279',h5:'0',h6:'17'}
+,{cr:'m',c:'Z',z:'CHECK_FOR_EVEN_PROPERTY',fc:'Gr',pc:'Rr',h0:'0',h1:'0',h2:'281',h3:'0',h4:'281',h5:'0',h6:'0'}
+,{cr:'c',c:'g',z:'CHECK_FOR_ODD_PROPERTY',fc:'Gr',pc:'Gr',h0:'0',h1:'2',h2:'281',h3:'0',h4:'279',h5:'0',h6:'17'}
+,{cr:'c',c:'g',z:'CHECK_FOR_STOP_BIT',fc:'Gr',pc:'Gr',h0:'0',h1:'2',h2:'281',h3:'0',h4:'279',h5:'0',h6:'17'}
+],
+},
+a23:{
+scopes:[{link:'z.htm?f=0&s=23',val:'work.UartTxAssertions'}]
+,assertions:[{dummy:0},{cr:'c',c:'g',z:'IF_THERE_IS_FALLINGEDGE_ASSERTION_PASS',fc:'Gr',pc:'Gr',h0:'0',h1:'55',h2:'281',h3:'17',h4:'192',h5:'17',h6:'47'}
+,{cr:'c',c:'g',z:'CHECK_FOR_DATA_WIDTH_LENGTH',fc:'Gr',pc:'Gr',h0:'0',h1:'2',h2:'281',h3:'0',h4:'279',h5:'0',h6:'17'}
+,{cr:'m',c:'Z',z:'CHECK_FOR_EVEN_PROPERTY',fc:'Gr',pc:'Rr',h0:'0',h1:'0',h2:'281',h3:'0',h4:'281',h5:'0',h6:'0'}
+,{cr:'c',c:'g',z:'CHECK_FOR_ODD_PROPERTY',fc:'Gr',pc:'Gr',h0:'0',h1:'2',h2:'281',h3:'0',h4:'279',h5:'0',h6:'17'}
+,{cr:'c',c:'g',z:'CHECK_FOR_STOP_BIT',fc:'Gr',pc:'Gr',h0:'0',h1:'2',h2:'281',h3:'0',h4:'279',h5:'0',h6:'17'}
+],
+},
+dummyEnd:0
+};
+processAssertionsData(g_data,1);
