@@ -108,6 +108,7 @@ interface UartRxMonitorBfm (input  logic   clk,
   task WaitForReset();
     @(negedge reset);
     `uvm_info(name, $sformatf("system reset activated"), UVM_LOW)
+    uartTransmitterState = RESET;
     @(posedge reset);
     `uvm_info(name, $sformatf("system reset deactivated"), UVM_LOW)
   endtask: WaitForReset
@@ -124,13 +125,16 @@ interface UartRxMonitorBfm (input  logic   clk,
   // Task: DeSerializer
   //  converts serial data to parallel
   //-------------------------------------------------------
-		task Deserializer(inout UartRxPacketStruct uartRxPacketStruct, inout UartConfigStruct uartConfigStruct);
+task Deserializer(inout UartRxPacketStruct uartRxPacketStruct, inout UartConfigStruct uartConfigStruct);
       	@(negedge rx);
        	if(uartConfigStruct.OverSampledBaudFrequencyClk==1)begin 
-	// repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
+	repeat(8) @(posedge baudClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
+	uartTransmitterState = STARTBIT;
+	repeat(8) @(posedge baudClk);	
        	for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
      			repeat(8) @(posedge baudClk); begin
         		uartRxPacketStruct.receivingData[i] = rx;
+			uartTransmitterState = DATABITTRANSFER;
 			$display("i$$$$$$$$$$rx in receiver monitor is %b",rx);
         	end
 		repeat(8) @(posedge baudClk);
@@ -138,9 +142,11 @@ interface UartRxMonitorBfm (input  logic   clk,
       	if(uartConfigStruct.uartParityEnable ==1) begin   
 	   			repeat(8) @(posedge baudClk);
 	   			uartRxPacketStruct.parity = rx;
+				uartTransmitterState = PARITYBIT;
 				repeat(8) @(posedge baudClk);
       	end
       	repeat(8) @(posedge baudClk);
+	uartTransmitterState = STOPBIT;
 	repeat(8) @(posedge baudClk);
 
 	end 
