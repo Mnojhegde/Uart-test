@@ -124,6 +124,7 @@ interface UartTxDriverBfm (input  logic   clk,
 	  tx = 1; //DRIVE THE UART TO IDEAL STATE
 	  @(posedge reset);
 	  `uvm_info(name,$sformatf("RESET DEASSERTED"),UVM_LOW);
+	  uartTransmitterState = IDLE;
   endtask: WaitForReset
   
   //--------------------------------------------------------------------------------------------
@@ -193,6 +194,7 @@ task SampleData(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigSt
   if(uartConfigStruct.OverSampledBaudFrequencyClk ==1)begin 
     repeat(8) @(posedge baudClk);
     tx = START_BIT;
+    repeat(8) @(posedge baudClk);
     uartTransmitterState = STARTBIT;
     for( int i=0 ; i< uartConfigStruct.uartDataType ; i++) begin
       repeat(8) @(posedge baudClk);
@@ -228,12 +230,14 @@ task SampleData(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigSt
     tx = STOP_BIT;  
     uartTransmitterState = STOPBIT;
 		repeat(8) @(posedge baudClk);
+   uartTransmitterState = IDLE;
     end 
     else begin
     tx='b x;
 		repeat(8) @(posedge baudClk);
 		repeat(8) @(posedge baudClk);
     tx=1;
+    uartTransmitterState = IDLE;
     repeat(8) @(posedge baudClk);
     end
   end
