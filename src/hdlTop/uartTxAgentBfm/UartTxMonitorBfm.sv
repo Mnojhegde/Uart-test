@@ -20,6 +20,9 @@ interface UartTxMonitorBfm (input  logic   clk,
   //baud clock for uart transmisson/reception
         bit baudClk;
         bit oversamplingClk;
+
+  UartTransmitterStateEnum uartTransmitterState;
+
   //-------------------------------------------------------
   // Used to display the name of the interface
   //-------------------------------------------------------
@@ -93,6 +96,7 @@ interface UartTxMonitorBfm (input  logic   clk,
   task WaitForReset();
     @(negedge reset);
     `uvm_info(name, $sformatf("system reset activated"), UVM_LOW)
+		uartTransmitterState = RESET;
     @(posedge reset);
     `uvm_info(name, $sformatf("system reset deactivated"), UVM_LOW)
   endtask: WaitForReset
@@ -133,20 +137,25 @@ endfunction
   task Deserializer(inout UartTxPacketStruct uartTxPacketStruct, inout UartConfigStruct uartConfigStruct);
         @(negedge tx);
         if(uartConfigStruct.OverSampledBaudFrequencyClk==1)begin
-        // repeat(1) @(posedge oversamplingClk);//needs this posedge or 1 cycle delay to avoid race around or delay in output
+        repeat(8) @(posedge baudClk); //needs this posedge or 1 cycle delay to avoid race around or delay in output
+				uartTransmitterState = STARTBIT;
+				repeat(8) @(posedge baudClk); 
         for( int i=0 ; i < uartConfigStruct.uartDataType ; i++) begin
         	repeat(8) @(posedge baudClk); 
 					uartTxPacketStruct.transmissionData[i] = tx;
+					uartTransmitterState = DATABITTRANSFER;
           repeat(8) @(posedge baudClk);
         end
         if(uartConfigStruct.uartParityEnable ==1) begin
 					repeat(8) @(posedge baudClk);
 					uartTxPacketStruct.parity = tx;
 				  parityCheck(uartConfigStruct,uartTxPacketStruct,tx);
+					uartTransmitterState = PARITYBIT;
 					repeat(8) @(posedge baudClk);
         end
         repeat(8) @(posedge baudClk);
 				stopBitCheck(uartTxPacketStruct,tx);
+				uartTransmitterState = STOPBIT;
 				repeat(8) @(posedge baudClk);
         end
         else if(uartConfigStruct.OverSampledBaudFrequencyClk==0)begin
