@@ -64,6 +64,6 @@ package UartGlobalPkg;
 												  bit OverSampledBaudFrequencyClk;} UartConfigStruct;
 
 
-typedef enum{RESET,STARTBIT ,DATABITTRANSFER ,PARITYBIT, STOPBIT}UartTransmitterStateEnum;
+	typedef enum{RESET, IDLE, STARTBIT ,DATABITTRANSFER ,PARITYBIT, STOPBIT}UartTransmitterStateEnum;
 endpackage : UartGlobalPkg
 `endif 
