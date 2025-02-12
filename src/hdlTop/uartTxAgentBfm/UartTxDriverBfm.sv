@@ -230,6 +230,7 @@ task SampleData(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigSt
     tx = STOP_BIT;  
     uartTransmitterState = STOPBIT;
 		repeat(8) @(posedge baudClk);
+	    	repeat(8) @(posedge baudClk);
    uartTransmitterState = IDLE;
     end 
     else begin
