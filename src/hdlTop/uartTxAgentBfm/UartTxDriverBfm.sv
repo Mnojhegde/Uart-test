@@ -29,7 +29,7 @@ interface UartTxDriverBfm (input  logic   clk,
   string name = "UART_TRANSMITTER_DRIVER_BFM"; 
 
   
-   //Variable: bclk
+   //Variable: baudClk
   //baud clock for uart transmisson/reception	
   bit baudClk;
      
@@ -47,7 +47,7 @@ interface UartTxDriverBfm (input  logic   clk,
 
   //Variable: baudDivider
   //to count the no of baud clock cycles
-  int countbClk = 0;	
+  int countbaudClk = 0;	
   
   //Creating the handle for the proxy_driver
   UartTxDriverProxy uartTxDriverProxy;
@@ -133,26 +133,26 @@ interface UartTxDriverBfm (input  logic   clk,
 
   task DriveToBfm(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
 	// fork
-		// BclkCounter(uartConfigStruct.uartOverSamplingMethod);
+		// baudClkCounter(uartConfigStruct.uartOverSamplingMethod);
 		SampleData(uartTxPacketStruct , uartConfigStruct);
 	// join_any
 	// disable fork;	
   endtask: DriveToBfm
  
   //--------------------------------------------------------------------------------------------
-  //  This block will count the number of cycles of bclk and generate oversamplingClk to sample data
+  //  This block will count the number of cycles of baudClk and generate oversamplingClk to sample data
   //--------------------------------------------------------------------------------------------
 
-  task BclkCounter(input int uartOverSamplingMethod);
-		static int countbClk = 0;
+  task baudClkCounter(input int uartOverSamplingMethod);
+		static int countbaudClk = 0;
 		forever begin
 			@(posedge baudClk)
-			if(countbClk == (uartOverSamplingMethod/2)-1) begin
+			if(countbaudClk == (uartOverSamplingMethod/2)-1) begin
 				oversamplingClk = ~oversamplingClk;
-				countbClk=0;
+				countbaudClk=0;
 			end
 			else begin
-				countbClk = countbClk+1;
+				countbaudClk = countbaudClk+1;
 			end
 		end 
 	endtask 
@@ -170,7 +170,7 @@ task evenParityCompute(input UartConfigStruct uartConfigStruct,input UartTxPacke
   endcase
   $display("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&INSIDE THE PARITY BLOCK IN %t",$time);
   uartTransmitterState = PARITYBIT;
-	repeat(8) @(posedge bclk);
+	repeat(8) @(posedge baudClk);
 endtask 
 
 task oddParityCompute(input UartConfigStruct uartConfigStruct,input UartTxPacketStruct uartTxPacketStruct,output tx);
@@ -184,57 +184,57 @@ task oddParityCompute(input UartConfigStruct uartConfigStruct,input UartTxPacket
 
   uartTransmitterState = PARITYBIT;
   $info("AFTERT STATE ASSIGNMENT");
-	repeat(8) @(posedge bclk);
+	repeat(8) @(posedge baudClk);
 endtask
 
 
 
 task SampleData(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
   if(uartConfigStruct.OverSampledBaudFrequencyClk ==1)begin 
-    repeat(8) @(posedge bclk);
+    repeat(8) @(posedge baudClk);
     tx = START_BIT;
     uartTransmitterState = STARTBIT;
     for( int i=0 ; i< uartConfigStruct.uartDataType ; i++) begin
-      repeat(8) @(posedge bclk);
+      repeat(8) @(posedge baudClk);
       tx = uartTxPacketStruct.transmissionData[i];
       uartTransmitterState = DATABITTRANSFER;
-      repeat(8) @(posedge bclk);
+      repeat(8) @(posedge baudClk);
     end
     if(uartConfigStruct.uartParityEnable ==1) begin 
       if(uartConfigStruct.uartParityErrorInjection==0) begin 
         if(uartConfigStruct.uartParityType == EVEN_PARITY)begin
-          repeat(8) @(posedge bclk);
+          repeat(8) @(posedge baudClk);
 	  			evenParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
         end
         else if (uartConfigStruct.uartParityType == ODD_PARITY) begin 
-          repeat(8) @(posedge bclk);
+          repeat(8) @(posedge baudClk);
 	  			oddParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
         end 
       end
       else begin 
         if(uartConfigStruct.uartParityType == EVEN_PARITY)begin
-         repeat(8) @(posedge bclk);
+         repeat(8) @(posedge baudClk);
          oddParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
         end 
         else if(uartConfigStruct.uartParityType == ODD_PARITY) begin
-          repeat(8) @(posedge bclk);
+          repeat(8) @(posedge baudClk);
 	  			evenParityCompute(uartConfigStruct,uartTxPacketStruct,tx);
         end 
       end 
     end
     $display("THE FRAMING ERROR INJECTION VALUE IS %b",uartConfigStruct.uartFramingErrorInjection);
-    repeat(8) @(posedge bclk);
+    repeat(8) @(posedge baudClk);
     if(uartConfigStruct.uartFramingErrorInjection == 0)begin 
     tx = STOP_BIT;  
     uartTransmitterState = STOPBIT;
-		repeat(8) @(posedge bclk);
+		repeat(8) @(posedge baudClk);
     end 
     else begin
     tx='b x;
-		repeat(8) @(posedge bclk);
-		repeat(8) @(posedge bclk);
+		repeat(8) @(posedge baudClk);
+		repeat(8) @(posedge baudClk);
     tx=1;
-    repeat(8) @(posedge bclk);
+    repeat(8) @(posedge baudClk);
     end
   end
   else if(uartConfigStruct.OverSampledBaudFrequencyClk ==0)begin
