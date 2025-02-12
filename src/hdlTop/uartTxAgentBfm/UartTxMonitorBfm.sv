@@ -99,6 +99,7 @@ interface UartTxMonitorBfm (input  logic   clk,
 		uartTransmitterState = RESET;
     @(posedge reset);
     `uvm_info(name, $sformatf("system reset deactivated"), UVM_LOW)
+     uartTransmitterState = IDLE;
   endtask: WaitForReset
         task StartMonitoring(inout UartTxPacketStruct uartTxPacketStruct , inout UartConfigStruct uartConfigStruct);
         //baudClkCounter(uartConfigStruct.uartOverSamplingMethod);
@@ -157,6 +158,7 @@ endfunction
 				stopBitCheck(uartTxPacketStruct,tx);
 				uartTransmitterState = STOPBIT;
 				repeat(8) @(posedge baudClk);
+				uartTransmitterState = IDLE;
         end
         else if(uartConfigStruct.OverSampledBaudFrequencyClk==0)begin
          repeat(1)@(posedge baudClk);
