@@ -162,8 +162,8 @@ interface UartTxAssertions ( input bit uartClk , input logic uartTx);
     end 
   property stop_bit_detection_property;
     @(posedge uartClk) disable iff (!(uartStopDetectInitiation))
-    if(overSamplingMethod==OVERSAMPLING_16) ##16 ($rose(uartTx) || $stable(uartTx))
-    else if(overSamplingMethod==OVERSAMPLING_13) ##13 ($rose(uartTx) || $stable(uartTx));
+    if(overSamplingMethod==OVERSAMPLING_16) ##16 uartTx
+    else if(overSamplingMethod==OVERSAMPLING_13) ##13 uartTx;
   endproperty
 
   CHECK_FOR_STOP_BIT : assert property(stop_bit_detection_property)begin 
