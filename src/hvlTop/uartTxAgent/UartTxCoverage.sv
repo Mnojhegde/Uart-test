@@ -22,11 +22,11 @@ class UartTxCoverage extends uvm_subscriber #(UartTxTransaction);
   //-------------------------------------------------------
   covergroup UartTxCovergroup with function sample (UartTxAgentConfig uartTxAgentConfig,  bit[DATA_WIDTH-1:0] data);
     TX_CP : coverpoint data{
-     option.comment = "tx";
+     //option.comment = "tx";
      bins UART_TX  = {[0:255]};}
 
      DATA_WIDTH_CP : coverpoint uartTxAgentConfig.uartDataType{
-       option.comment = "data_width";
+       //option.comment = "data_width";
        bins TRANSFER_BIT_5 = {FIVE_BIT};
        bins TRANSFER_BIT_6 = {SIX_BIT};
        bins TRANSFER_BIT_7 = {SEVEN_BIT};
@@ -34,38 +34,38 @@ class UartTxCoverage extends uvm_subscriber #(UartTxTransaction);
      }
 
     PARITY_CP : coverpoint uartTxAgentConfig.uartParityType{
-       option.comment = "parity_type";
+       //option.comment = "parity_type";
        bins PARITY_EVEN = {EVEN_PARITY};
        bins PARITY_oDD = {ODD_PARITY};
     }
 
     STOP_BIT_CP : coverpoint uartTxAgentConfig.uartStopBit{
-       option.comment = "stop bit width";
+       //option.comment = "stop bit width";
        bins STOP_BIT_1 = {ONE_BIT};
        bins STOP_BIT_2 = {TWO_BIT};
     }
 
     OVERSAMPLING_CP : coverpoint uartTxAgentConfig.uartOverSamplingMethod {
-       option.comment = "oversampling_rate";
+       //option.comment = "oversampling_rate";
        bins OVERSAMPLING_13X = {OVERSAMPLING_13}; 
        bins OVERSAMPLING_16X = {OVERSAMPLING_16};
    }
 
     BAUD_RATE_CP : coverpoint uartTxAgentConfig.uartBaudRate {
-       option.comment = "baud_rate";
+       //option.comment = "baud_rate";
        bins BAUD_4800 = {BAUD_4800};
        bins BAUD_9800 = {BAUD_9600};
        bins BAUD_13200 = {BAUD_19200};
   }
 
     PARITY_ERROR_INJECTION_CP : coverpoint uartTxAgentConfig.parityErrorInjection {
-       option.comment = "parity error injection";
+       //option.comment = "parity error injection";
        bins NO_ERROR = {0};
        bins ERROR_INJECTED = {1};
  }
 
     HAS_PARITY_CP : coverpoint uartTxAgentConfig.hasParity {
-       option.comment = "has parity";
+       //option.comment = "has parity";
        bins PARITY_DISABLED = {0};
        bins PARITY_ENABLED = {1};
  }
