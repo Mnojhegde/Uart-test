@@ -21,7 +21,7 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
   //-------------------------------------------------------
   covergroup UartRxCovergroup with function sample (UartRxAgentConfig uartRxAgentConfig, bit[DATA_WIDTH-1:0] data);
     RX_CP : coverpoint data{
-      option.comment = "rx";
+      //option.comment = "rx";
       bins UART_TX1 = {[0:63]};
       bins UART_TX2 = {[64:127]};
       bins UART_TX3 = {[128:191]};
@@ -29,7 +29,7 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
     }
 
     DATA_WIDTH_CP : coverpoint uartRxAgentConfig.uartDataType{
-      option.comment = "data_width";
+      //option.comment = "data_width";
       bins TRANSFER_BIT_5 = { FIVE_BIT};
       bins TRANSFER_BIT_6 = {SIX_BIT};
       bins TRANSFER_BIT_7 = {SEVEN_BIT};
@@ -37,38 +37,38 @@ class UartRxCoverage extends uvm_subscriber #(UartRxTransaction);
     }
 
     BAUD_RATE_CP:coverpoint uartRxAgentConfig.uartBaudRate{
-      option.comment="baud_rate";
+      //option.comment="baud_rate";
       bins BAUD_4800_1 = {BAUD_4800};
       bins BAUD_9600_2 = {BAUD_9600};
       bins BAUD_19200_3 = {BAUD_19200};
     }
 
     // OVER_SAMPLING_CP: coverpoint uartRXAgentConfig.uartOverSamplingMethod{
-    //   option.comment="over_sampling";
+    //   //option.comment="over_sampling";
     //   bins OVERSAMPLING_16_1_1 = {OVERSAMPLING_16};
     //   bins OVERSAMPLING_13_2_2 = {OVERSAMPLING_13};
     // }
     
     PARITY_CP : coverpoint uartRxAgentConfig.uartParityType{
-      option.comment = "parity_type";
+      //option.comment = "parity_type";
       bins EVEN_PARITY_0 = {0};
       bins ODD_PARITY_1 = {1};
     }
 
     STOP_BIT_CP : coverpoint uartRxAgentConfig.uartStopBit{
-      option.comment = "stop bit width";
+      //option.comment = "stop bit width";
       bins STOP_BIT_1_1 = {1};
       bins STOP_BIT_2_2 = {2};
     }
     
     HAS_PARITY_CP: coverpoint uartRxAgentConfig.hasParity{
-      option.comment = "has parity";
+      //option.comment = "has parity";
       bins HAS_PARITY_0 = {0};
       bins HAS_PARITY_1 = {1};
     }
  
     PARITY_ERROR_INJECTION:coverpoint uartRxAgentConfig.parityErrorInjection{
-      option.comment = "parity error injection";
+      //option.comment = "parity error injection";
       bins WITH_NO_ERROR = {0};
       bins WITH_ERROR = {1};
     }
