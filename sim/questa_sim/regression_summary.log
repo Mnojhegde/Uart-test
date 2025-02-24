@@ -1,0 +1,1116 @@
+# vsim -vopt work.HvlTop work.HdlTop -voptargs="+acc=npr" -assertdebug "+UVM_TESTNAME=UartSample16BaudRate4800Datatype5EvenParityStopbit1" "+UVM_VERBOSITY=UVM_MEDIUM" "+define+UartBaseTest" -l UartSample16BaudRate4800Datatype5EvenParityStopbit1_24022025-095720/UartSample16BaudRate4800Datatype5EvenParityStopbit1.log -sva -coverage -c -do "log -r /*; add wave -r /*; coverage save -onexit -assert -directive -cvg -codeAll UartSample16BaudRate4800Datatype5EvenParityStopbit1_24022025-095720/UartSample16BaudRate4800Datatype5EvenParityStopbit1_coverage.ucdb; run -all; exit" -wlf UartSample16BaudRate4800Datatype5EvenParityStopbit1_24022025-095720/waveform.wlf 
+# Start time: 09:57:22 on Feb 24,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim
+# //  Version 10.6c linux Jul 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.UartRxDriverBfm(fast)
+# Loading work.UartRxMonitorBfm(fast)
+# Loading work.UartGlobalPkg(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.UartRxPkg(fast)
+# Loading work.UartRxSequencePkg(fast)
+# Loading work.UartTxDriverBfm(fast)
+# Loading work.UartTxMonitorBfm(fast)
+# Loading work.UartTxPkg(fast)
+# Loading work.UartTxSequencePkg(fast)
+# Loading work.UartEnvPkg(fast)
+# Loading work.UartVirtualSequencePkg(fast)
+# Loading work.UartBaseTestPkg(fast)
+# Loading work.HvlTop(fast)
+# Loading work.HdlTop(fast)
+# Loading work.UartInterface_sv_unit(fast)
+# Loading work.UartIf(fast)
+# Loading work.UartTxAgentBfm(fast)
+# Loading work.UartTxDriverBfm_sv_unit(fast)
+# Loading work.UartTxDriverBfm(fast)
+# Loading work.UartTxMonitorBfm_sv_unit(fast)
+# Loading work.UartTxMonitorBfm(fast)
+# Loading work.UartTxAssertions_sv_unit(fast)
+# Loading work.UartTxAssertions(fast)
+# Loading work.UartRxAgentBfm(fast)
+# Loading work.UartRxDriverBfm_sv_unit(fast)
+# Loading work.UartRxDriverBfm(fast)
+# Loading work.UartRxMonitorBfm_sv_unit(fast)
+# Loading work.UartRxMonitorBfm(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# ** Warning: (vsim-3839) ../../src/hdlTop/UartHdlTop.sv(70): Variable '/HdlTop/uartIf/rx', driven via a port connection, is multiply driven. See ../../src/hdlTop/uartRxAgentBfm/UartRxAgentBfm.sv(23).
+#    Time: 0 ps  Iteration: 0  Instance: /HdlTop File: ../../src/hdlTop/UartHdlTop.sv
+# Loading /tools/mentor/questasim_10.6c/questasim/uvm-1.1d/linux/uvm_dpi.so
+# log -r /*
+#  add wave -r /*
+#  coverage save -onexit -assert -directive -cvg -codeAll UartSample16BaudRate4800Datatype5EvenParityStopbit1_24022025-095720/UartSample16BaudRate4800Datatype5EvenParityStopbit1_coverage.ucdb
+#  run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test UartSample16BaudRate4800Datatype5EvenParityStopbit1...
+# UVM_INFO ../../src/hdlTop/UartHdlTop.sv(15) @ 0: reporter [HDL_TOP] HDL_TOP
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxAgentBfm.sv(16) @ 0: reporter [uart transmitter agent bfm] UART TRANSMITTER AGENT BFM
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxDriverBfm.sv(58) @ 0: reporter [UART_TRANSMITTER_DRIVER_BFM] UART_TRANSMITTER_DRIVER_BFM
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxMonitorBfm.sv(33) @ 0: reporter [UART_TRANSMITTER_MONITOR_BFM] UART_TRANSMITTER_MONITOR_BFM
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxAgentBfm.sv(16) @ 0: reporter [uart transmitter agent bfm] UART TRANSMITTER AGENT BFM
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxDriverBfm.sv(64) @ 0: reporter [UART_RECIEVER_DRIVER_BFM] UART_RECIEVER_DRIVER_BFM
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxMonitorBfm.sv(35) @ 0: reporter [UART_TRANSMITTER_MONITOR_BFM] UART_TRANSMITTER_MONITOR_BFM
+# Warning: In instance '\/UartRxPkg::UartRxCoverage::UartRxCovergroup ' the 'option.per_instance' is set to '0' (false). Assignment to members 'weight', 'goal' and 'comment' of 'option' would not have any effect.
+# Warning: In instance '\/UartTxPkg::UartTxCoverage::UartTxCovergroup ' the 'option.per_instance' is set to '0' (false). Assignment to members 'weight', 'goal' and 'comment' of 'option' would not have any effect.
+# UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+# ------------------------------------------------------------------------------------------------------
+# Name                                  Type                                                 Size  Value
+# ------------------------------------------------------------------------------------------------------
+# uvm_test_top                          UartSample16BaudRate4800Datatype5EvenParityStopbit1  -     @473 
+#   uartEnv                             UartEnv                                              -     @511 
+#     uartRxAgent                       UartRxAgent                                          -     @642 
+#       uartRxAgentAnalysisPort         uvm_analysis_port                                    -     @665 
+#       uartRxCoverage                  UartRxCoverage                                       -     @650 
+#         analysis_imp                  uvm_analysis_imp                                     -     @657 
+#       uartRxMonitorProxy              UartRxMonitorProxy                                   -     @673 
+#         uartRxMonitorAnalysisPort     uvm_analysis_port                                    -     @680 
+#     uartScoreboard                    UartScoreboard                                       -     @628 
+#       uartScoreboardRxAnalysisExport  uvm_analysis_export                                  -     @699 
+#       uartScoreboardRxAnalysisFifo    uvm_tlm_analysis_fifo #(T)                           -     @754 
+#         analysis_export               uvm_analysis_imp                                     -     @793 
+#         get_ap                        uvm_analysis_port                                    -     @785 
+#         get_peek_export               uvm_get_peek_imp                                     -     @769 
+#         put_ap                        uvm_analysis_port                                    -     @777 
+#         put_export                    uvm_put_imp                                          -     @761 
+#       uartScoreboardTxAnalysisExport  uvm_analysis_export                                  -     @691 
+#       uartScoreboardTxAnalysisFifo    uvm_tlm_analysis_fifo #(T)                           -     @707 
+#         analysis_export               uvm_analysis_imp                                     -     @746 
+#         get_ap                        uvm_analysis_port                                    -     @738 
+#         get_peek_export               uvm_get_peek_imp                                     -     @722 
+#         put_ap                        uvm_analysis_port                                    -     @730 
+#         put_export                    uvm_put_imp                                          -     @714 
+#     uartTxAgent                       UartTxAgent                                          -     @635 
+#       uartTxAgentAnalysisPort         uvm_analysis_port                                    -     @966 
+#       uartTxCoverage                  UartTxCoverage                                       -     @951 
+#         analysis_imp                  uvm_analysis_imp                                     -     @958 
+#       uartTxDriverProxy               UartTxDriverProxy                                    -     @819 
+#         rsp_port                      uvm_analysis_port                                    -     @834 
+#         seq_item_port                 uvm_seq_item_pull_port                               -     @826 
+#       uartTxMonitorProxy              UartTxMonitorProxy                                   -     @804 
+#         uartTxMonitorAnalysisPort     uvm_analysis_port                                    -     @811 
+#       uartTxSequencer                 UartTxSequencer                                      -     @842 
+#         rsp_export                    uvm_analysis_export                                  -     @849 
+#         seq_item_export               uvm_seq_item_pull_imp                                -     @943 
+#         arbitration_queue             array                                                0     -    
+#         lock_queue                    array                                                0     -    
+#         num_last_reqs                 integral                                             32    'd1  
+#         num_last_rsps                 integral                                             32    'd1  
+#     uartVirtualSequencer              UartVirtualSequencer                                 -     @519 
+#       rsp_export                      uvm_analysis_export                                  -     @526 
+#       seq_item_export                 uvm_seq_item_pull_imp                                -     @620 
+#       arbitration_queue               array                                                0     -    
+#       lock_queue                      array                                                0     -    
+#       num_last_reqs                   integral                                             32    'd1  
+#       num_last_rsps                   integral                                             32    'd1  
+# ------------------------------------------------------------------------------------------------------
+# 
+# ----------------------------------------------------------------------
+# Name                     Type                             Size  Value 
+# ----------------------------------------------------------------------
+# uartVirtualBaseSequence  UartVirtualTransmissionSequence  -     @998  
+#   req                    object                           -     <null>
+#   rsp                    object                           -     <null>
+# ----------------------------------------------------------------------
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartVirtualSequencer@@uartVirtualBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer@@uartVirtualBaseSequence.uartTxBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxMonitorBfm.sv(87) @ 1000: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset activated
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxDriverBfm.sv(116) @ 1000: reporter [UART_TRANSMITTER_DRIVER_BFM] RESET DETECTED
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxMonitorBfm.sv(85) @ 1000: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset activated
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxMonitorBfm.sv(88) @ 1100: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset deactivated
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxDriverBfm.sv(121) @ 1100: reporter [UART_TRANSMITTER_DRIVER_BFM] RESET DEASSERTED
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxMonitorBfm.sv(90) @ 1100: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset deactivated
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# Name                           Type               Size  Value                                                                               
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# req                            UartTxTransaction  -     @1025                                                                               
+#   begin_time                   time               64    1100                                                                                
+#   depth                        int                32    'd3                                                                                 
+#   parent sequence (name)       string             18    uartTxBaseSequence                                                                  
+#   parent sequence (full name)  string             84    uvm_test_top.uartEnv.uartVirtualSequencer.uartVirtualBaseSequence.uartTxBaseSequence
+#   sequencer                    string             48    uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer                                    
+#   transmissionData[7]          integral           1     'b0                                                                                 
+#   transmissionData[6]          integral           1     'b1                                                                                 
+#   transmissionData[5]          integral           1     'b1                                                                                 
+#   transmissionData[4]          integral           1     'b1                                                                                 
+#   transmissionData[3]          integral           1     'b1                                                                                 
+#   transmissionData[2]          integral           1     'b1                                                                                 
+#   transmissionData[1]          integral           1     'b1                                                                                 
+#   transmissionData[0]          integral           1     'b0                                                                                 
+#   parity                       integral           1     'b0x                                                                                
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartTxAgent//UartTxDriverProxy.sv(78) @ 1100: uvm_test_top.uartEnv.uartTxAgent.uartTxDriverProxy [[DRIVER PROXY]] UartDataType = FIVE_BIT 
+# The baudrate of Uart = BAUD_4800 
+# The parity enable = PARITY_ENABLED 
+#  No. of stop bits = ONE_BIT
+#  oversampling method = OVERSAMPLING_16
+# Data to be sent : 01111 
+# ** Info: *******************************START BIT DETECTED : ASSERTION PASS
+#    Time: 19800 ps Started: 6800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.IF_THERE_IS_FALLINGEDGE_ASSERTION_PASS File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 104
+# PARITY IN ASSERTION IS 0
+# ** Info: *********************EVEN PARITY IS DETECTED : ASSERTION PASS
+#    Time: 1267800 ps Started: 1059800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_EVEN_PROPERTY File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 140
+# ** Info: *****************************DATA WIDTH IS MATCHING : ASSERTION PASS
+#    Time: 1267800 ps Started: 1059800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_DATA_WIDTH_LENGTH File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 120
+# ** Info: STOP BIT IS BEING DETECTED : ASSERTION PASS
+#    Time: 1475800 ps Started: 1267800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_STOP_BIT File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 170
+# Data received : 01111 
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(132) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing transmissionData= xxx11110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(135) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing receivingData= xxx11110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 7
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 6
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 5
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 4
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 3
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 2
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 0,RecievingData = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(200) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] PACKET MATCH SUCCESSFUL
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(207) @ 1670800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+#  transmissionData:xxx11110
+#  receivingData:xxx11110
+#  tx parity:0 rx parity:0
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# Name                           Type               Size  Value                                                                               
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# req                            UartTxTransaction  -     @1025                                                                               
+#   begin_time                   time               64    1670800                                                                             
+#   end_time                     time               64    1670800                                                                             
+#   depth                        int                32    'd3                                                                                 
+#   parent sequence (name)       string             18    uartTxBaseSequence                                                                  
+#   parent sequence (full name)  string             84    uvm_test_top.uartEnv.uartVirtualSequencer.uartVirtualBaseSequence.uartTxBaseSequence
+#   sequencer                    string             48    uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer                                    
+#   transmissionData[7]          integral           1     'b1                                                                                 
+#   transmissionData[6]          integral           1     'b1                                                                                 
+#   transmissionData[5]          integral           1     'b1                                                                                 
+#   transmissionData[4]          integral           1     'b1                                                                                 
+#   transmissionData[3]          integral           1     'b0                                                                                 
+#   transmissionData[2]          integral           1     'b1                                                                                 
+#   transmissionData[1]          integral           1     'b1                                                                                 
+#   transmissionData[0]          integral           1     'b0                                                                                 
+#   parity                       integral           1     'b0x                                                                                
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartTxAgent//UartTxDriverProxy.sv(78) @ 1670800: uvm_test_top.uartEnv.uartTxAgent.uartTxDriverProxy [[DRIVER PROXY]] UartDataType = FIVE_BIT 
+# The baudrate of Uart = BAUD_4800 
+# The parity enable = PARITY_ENABLED 
+#  No. of stop bits = ONE_BIT
+#  oversampling method = OVERSAMPLING_16
+# Data to be sent : 01101 
+# ** Info: *******************************START BIT DETECTED : ASSERTION PASS
+#    Time: 1696800 ps Started: 1475800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.IF_THERE_IS_FALLINGEDGE_ASSERTION_PASS File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 104
+# PARITY IN ASSERTION IS 1
+# ** Info: *****************************DATA WIDTH IS MATCHING : ASSERTION PASS
+#    Time: 2944800 ps Started: 2736800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_DATA_WIDTH_LENGTH File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 120
+# ** Info: *********************EVEN PARITY IS DETECTED : ASSERTION PASS
+#    Time: 2944800 ps Started: 2736800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_EVEN_PROPERTY File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 140
+# ** Info: STOP BIT IS BEING DETECTED : ASSERTION PASS
+#    Time: 3152800 ps Started: 2944800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_STOP_BIT File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 170
+# Data received : 01101 
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(132) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing transmissionData= xxx10110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(135) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing receivingData= xxx10110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 7
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 6
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 5
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 4
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 3
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 0,RecievingData = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 2
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 0,RecievingData = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(200) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] PACKET MATCH SUCCESSFUL
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(207) @ 3347800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+#  transmissionData:xxx10110
+#  receivingData:xxx10110
+#  tx parity:1 rx parity:1
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 3447800: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../../src/hvlTop/uartRxAgent/UartRxCoverage.sv(131) @ 3447800: uvm_test_top.uartEnv.uartRxAgent.uartRxCoverage [UartRxCoverage] ******************** UART RX Agent Coverage = 33.80 % *********************
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(228) @ 3447800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+# Packet 1 Summary:
+#  TransmissionData:00011110
+#  RecievingData:00011110
+#  Packet matched
+#  Parity match
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+# 
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(228) @ 3447800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+# Packet 2 Summary:
+#  TransmissionData:00010110
+#  RecievingData:00010110
+#  Packet matched
+#  Parity match
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+# 
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartTxAgent//UartTxCoverage.sv(128) @ 3447800: uvm_test_top.uartEnv.uartTxAgent.uartTxCoverage [UartTxCoverage] ******************** UART TX Agent Coverage = 35.42 % *********************
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   64
+# UVM_WARNING :    2
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [HDL_TOP]     1
+# [Questa UVM]     2
+# [RNTST]     1
+# [TEST_DONE]     1
+# [UART_RECIEVER_DRIVER_BFM]     1
+# [UART_TRANSMITTER_DRIVER_BFM]     3
+# [UART_TRANSMITTER_MONITOR_BFM]     6
+# [UVMTOP]     1
+# [UartRxCoverage]     1
+# [UartScoreboard]    42
+# [UartTxCoverage]     1
+# [[DRIVER PROXY]]     2
+# [uart transmitter agent bfm]     2
+# [uvm_sequence_base]     2
+# ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 3447800 ps  Iteration: 54  Instance: /HvlTop
+# Saving coverage database on exit...
+# End time: 09:57:26 on Feb 24,2025, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 3
+
+-----------------------------------------------------------------
+-------------------- Simulation Report --------------------------
+
+Simulator Errors
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+# Errors: 0, Warnings: 3
+
+UVM Fatal
+# UVM_FATAL :    0
+
+UVM Errors
+# UVM_ERROR :    0
+
+UVM Warnings
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartVirtualSequencer@@uartVirtualBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer@@uartVirtualBaseSequence.uartTxBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_WARNING :    2
+
+Testname: UartSample16BaudRate4800Datatype5EvenParityStopbit1
+
+Log file path: UartSample16BaudRate4800Datatype5EvenParityStopbit1_24022025-095720/UartSample16BaudRate4800Datatype5EvenParityStopbit1.log
+
+Waveform: vsim -view UartSample16BaudRate4800Datatype5EvenParityStopbit1_24022025-095720/waveform.wlf &
+
+Coverage report: firefox UartSample16BaudRate4800Datatype5EvenParityStopbit1_24022025-095720/html_cov_report/index.html &
+
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+# vsim -vopt work.HvlTop work.HdlTop -voptargs="+acc=npr" -assertdebug "+UVM_TESTNAME=UartSample16BaudRate4800Datatype5EvenParityStopbit2" "+UVM_VERBOSITY=UVM_MEDIUM" "+define+UartBaseTest" -l UartSample16BaudRate4800Datatype5EvenParityStopbit2_24022025-095727/UartSample16BaudRate4800Datatype5EvenParityStopbit2.log -sva -coverage -c -do "log -r /*; add wave -r /*; coverage save -onexit -assert -directive -cvg -codeAll UartSample16BaudRate4800Datatype5EvenParityStopbit2_24022025-095727/UartSample16BaudRate4800Datatype5EvenParityStopbit2_coverage.ucdb; run -all; exit" -wlf UartSample16BaudRate4800Datatype5EvenParityStopbit2_24022025-095727/waveform.wlf 
+# Start time: 09:57:28 on Feb 24,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim
+# //  Version 10.6c linux Jul 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.UartRxDriverBfm(fast)
+# Loading work.UartRxMonitorBfm(fast)
+# Loading work.UartGlobalPkg(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.UartRxPkg(fast)
+# Loading work.UartRxSequencePkg(fast)
+# Loading work.UartTxDriverBfm(fast)
+# Loading work.UartTxMonitorBfm(fast)
+# Loading work.UartTxPkg(fast)
+# Loading work.UartTxSequencePkg(fast)
+# Loading work.UartEnvPkg(fast)
+# Loading work.UartVirtualSequencePkg(fast)
+# Loading work.UartBaseTestPkg(fast)
+# Loading work.HvlTop(fast)
+# Loading work.HdlTop(fast)
+# Loading work.UartInterface_sv_unit(fast)
+# Loading work.UartIf(fast)
+# Loading work.UartTxAgentBfm(fast)
+# Loading work.UartTxDriverBfm_sv_unit(fast)
+# Loading work.UartTxDriverBfm(fast)
+# Loading work.UartTxMonitorBfm_sv_unit(fast)
+# Loading work.UartTxMonitorBfm(fast)
+# Loading work.UartTxAssertions_sv_unit(fast)
+# Loading work.UartTxAssertions(fast)
+# Loading work.UartRxAgentBfm(fast)
+# Loading work.UartRxDriverBfm_sv_unit(fast)
+# Loading work.UartRxDriverBfm(fast)
+# Loading work.UartRxMonitorBfm_sv_unit(fast)
+# Loading work.UartRxMonitorBfm(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# ** Warning: (vsim-3839) ../../src/hdlTop/UartHdlTop.sv(70): Variable '/HdlTop/uartIf/rx', driven via a port connection, is multiply driven. See ../../src/hdlTop/uartRxAgentBfm/UartRxAgentBfm.sv(23).
+#    Time: 0 ps  Iteration: 0  Instance: /HdlTop File: ../../src/hdlTop/UartHdlTop.sv
+# Loading /tools/mentor/questasim_10.6c/questasim/uvm-1.1d/linux/uvm_dpi.so
+# log -r /*
+#  add wave -r /*
+#  coverage save -onexit -assert -directive -cvg -codeAll UartSample16BaudRate4800Datatype5EvenParityStopbit2_24022025-095727/UartSample16BaudRate4800Datatype5EvenParityStopbit2_coverage.ucdb
+#  run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test UartSample16BaudRate4800Datatype5EvenParityStopbit2...
+# UVM_INFO ../../src/hdlTop/UartHdlTop.sv(15) @ 0: reporter [HDL_TOP] HDL_TOP
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxAgentBfm.sv(16) @ 0: reporter [uart transmitter agent bfm] UART TRANSMITTER AGENT BFM
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxDriverBfm.sv(58) @ 0: reporter [UART_TRANSMITTER_DRIVER_BFM] UART_TRANSMITTER_DRIVER_BFM
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxMonitorBfm.sv(33) @ 0: reporter [UART_TRANSMITTER_MONITOR_BFM] UART_TRANSMITTER_MONITOR_BFM
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxAgentBfm.sv(16) @ 0: reporter [uart transmitter agent bfm] UART TRANSMITTER AGENT BFM
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxDriverBfm.sv(64) @ 0: reporter [UART_RECIEVER_DRIVER_BFM] UART_RECIEVER_DRIVER_BFM
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxMonitorBfm.sv(35) @ 0: reporter [UART_TRANSMITTER_MONITOR_BFM] UART_TRANSMITTER_MONITOR_BFM
+# Warning: In instance '\/UartRxPkg::UartRxCoverage::UartRxCovergroup ' the 'option.per_instance' is set to '0' (false). Assignment to members 'weight', 'goal' and 'comment' of 'option' would not have any effect.
+# Warning: In instance '\/UartTxPkg::UartTxCoverage::UartTxCovergroup ' the 'option.per_instance' is set to '0' (false). Assignment to members 'weight', 'goal' and 'comment' of 'option' would not have any effect.
+# UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+# ------------------------------------------------------------------------------------------------------
+# Name                                  Type                                                 Size  Value
+# ------------------------------------------------------------------------------------------------------
+# uvm_test_top                          UartSample16BaudRate4800Datatype5EvenParityStopbit2  -     @473 
+#   uartEnv                             UartEnv                                              -     @511 
+#     uartRxAgent                       UartRxAgent                                          -     @642 
+#       uartRxAgentAnalysisPort         uvm_analysis_port                                    -     @665 
+#       uartRxCoverage                  UartRxCoverage                                       -     @650 
+#         analysis_imp                  uvm_analysis_imp                                     -     @657 
+#       uartRxMonitorProxy              UartRxMonitorProxy                                   -     @673 
+#         uartRxMonitorAnalysisPort     uvm_analysis_port                                    -     @680 
+#     uartScoreboard                    UartScoreboard                                       -     @628 
+#       uartScoreboardRxAnalysisExport  uvm_analysis_export                                  -     @699 
+#       uartScoreboardRxAnalysisFifo    uvm_tlm_analysis_fifo #(T)                           -     @754 
+#         analysis_export               uvm_analysis_imp                                     -     @793 
+#         get_ap                        uvm_analysis_port                                    -     @785 
+#         get_peek_export               uvm_get_peek_imp                                     -     @769 
+#         put_ap                        uvm_analysis_port                                    -     @777 
+#         put_export                    uvm_put_imp                                          -     @761 
+#       uartScoreboardTxAnalysisExport  uvm_analysis_export                                  -     @691 
+#       uartScoreboardTxAnalysisFifo    uvm_tlm_analysis_fifo #(T)                           -     @707 
+#         analysis_export               uvm_analysis_imp                                     -     @746 
+#         get_ap                        uvm_analysis_port                                    -     @738 
+#         get_peek_export               uvm_get_peek_imp                                     -     @722 
+#         put_ap                        uvm_analysis_port                                    -     @730 
+#         put_export                    uvm_put_imp                                          -     @714 
+#     uartTxAgent                       UartTxAgent                                          -     @635 
+#       uartTxAgentAnalysisPort         uvm_analysis_port                                    -     @966 
+#       uartTxCoverage                  UartTxCoverage                                       -     @951 
+#         analysis_imp                  uvm_analysis_imp                                     -     @958 
+#       uartTxDriverProxy               UartTxDriverProxy                                    -     @819 
+#         rsp_port                      uvm_analysis_port                                    -     @834 
+#         seq_item_port                 uvm_seq_item_pull_port                               -     @826 
+#       uartTxMonitorProxy              UartTxMonitorProxy                                   -     @804 
+#         uartTxMonitorAnalysisPort     uvm_analysis_port                                    -     @811 
+#       uartTxSequencer                 UartTxSequencer                                      -     @842 
+#         rsp_export                    uvm_analysis_export                                  -     @849 
+#         seq_item_export               uvm_seq_item_pull_imp                                -     @943 
+#         arbitration_queue             array                                                0     -    
+#         lock_queue                    array                                                0     -    
+#         num_last_reqs                 integral                                             32    'd1  
+#         num_last_rsps                 integral                                             32    'd1  
+#     uartVirtualSequencer              UartVirtualSequencer                                 -     @519 
+#       rsp_export                      uvm_analysis_export                                  -     @526 
+#       seq_item_export                 uvm_seq_item_pull_imp                                -     @620 
+#       arbitration_queue               array                                                0     -    
+#       lock_queue                      array                                                0     -    
+#       num_last_reqs                   integral                                             32    'd1  
+#       num_last_rsps                   integral                                             32    'd1  
+# ------------------------------------------------------------------------------------------------------
+# 
+# ----------------------------------------------------------------------
+# Name                     Type                             Size  Value 
+# ----------------------------------------------------------------------
+# uartVirtualBaseSequence  UartVirtualTransmissionSequence  -     @998  
+#   req                    object                           -     <null>
+#   rsp                    object                           -     <null>
+# ----------------------------------------------------------------------
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartVirtualSequencer@@uartVirtualBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer@@uartVirtualBaseSequence.uartTxBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxMonitorBfm.sv(87) @ 1000: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset activated
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxDriverBfm.sv(116) @ 1000: reporter [UART_TRANSMITTER_DRIVER_BFM] RESET DETECTED
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxMonitorBfm.sv(85) @ 1000: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset activated
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxMonitorBfm.sv(88) @ 1100: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset deactivated
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxDriverBfm.sv(121) @ 1100: reporter [UART_TRANSMITTER_DRIVER_BFM] RESET DEASSERTED
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxMonitorBfm.sv(90) @ 1100: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset deactivated
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# Name                           Type               Size  Value                                                                               
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# req                            UartTxTransaction  -     @1025                                                                               
+#   begin_time                   time               64    1100                                                                                
+#   depth                        int                32    'd3                                                                                 
+#   parent sequence (name)       string             18    uartTxBaseSequence                                                                  
+#   parent sequence (full name)  string             84    uvm_test_top.uartEnv.uartVirtualSequencer.uartVirtualBaseSequence.uartTxBaseSequence
+#   sequencer                    string             48    uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer                                    
+#   transmissionData[7]          integral           1     'b0                                                                                 
+#   transmissionData[6]          integral           1     'b1                                                                                 
+#   transmissionData[5]          integral           1     'b1                                                                                 
+#   transmissionData[4]          integral           1     'b1                                                                                 
+#   transmissionData[3]          integral           1     'b1                                                                                 
+#   transmissionData[2]          integral           1     'b1                                                                                 
+#   transmissionData[1]          integral           1     'b1                                                                                 
+#   transmissionData[0]          integral           1     'b0                                                                                 
+#   parity                       integral           1     'b0x                                                                                
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartTxAgent//UartTxDriverProxy.sv(78) @ 1100: uvm_test_top.uartEnv.uartTxAgent.uartTxDriverProxy [[DRIVER PROXY]] UartDataType = FIVE_BIT 
+# The baudrate of Uart = BAUD_4800 
+# The parity enable = PARITY_ENABLED 
+#  No. of stop bits = TWO_BIT
+#  oversampling method = OVERSAMPLING_16
+# Data to be sent : 01111 
+# ** Info: *******************************START BIT DETECTED : ASSERTION PASS
+#    Time: 19800 ps Started: 6800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.IF_THERE_IS_FALLINGEDGE_ASSERTION_PASS File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 104
+# PARITY IN ASSERTION IS 0
+# ** Info: *********************EVEN PARITY IS DETECTED : ASSERTION PASS
+#    Time: 1267800 ps Started: 1059800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_EVEN_PROPERTY File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 140
+# ** Info: *****************************DATA WIDTH IS MATCHING : ASSERTION PASS
+#    Time: 1267800 ps Started: 1059800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_DATA_WIDTH_LENGTH File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 120
+# ** Info: STOP BIT IS BEING DETECTED : ASSERTION PASS
+#    Time: 1475800 ps Started: 1267800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_STOP_BIT File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 170
+# Data received : 01111 
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(132) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing transmissionData= xxx11110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(135) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing receivingData= xxx11110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 7
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 6
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 5
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 4
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 3
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 2
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 0,RecievingData = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(200) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] PACKET MATCH SUCCESSFUL
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(207) @ 1878800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+#  transmissionData:xxx11110
+#  receivingData:xxx11110
+#  tx parity:0 rx parity:0
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# Name                           Type               Size  Value                                                                               
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# req                            UartTxTransaction  -     @1025                                                                               
+#   begin_time                   time               64    1878800                                                                             
+#   end_time                     time               64    1878800                                                                             
+#   depth                        int                32    'd3                                                                                 
+#   parent sequence (name)       string             18    uartTxBaseSequence                                                                  
+#   parent sequence (full name)  string             84    uvm_test_top.uartEnv.uartVirtualSequencer.uartVirtualBaseSequence.uartTxBaseSequence
+#   sequencer                    string             48    uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer                                    
+#   transmissionData[7]          integral           1     'b1                                                                                 
+#   transmissionData[6]          integral           1     'b1                                                                                 
+#   transmissionData[5]          integral           1     'b1                                                                                 
+#   transmissionData[4]          integral           1     'b1                                                                                 
+#   transmissionData[3]          integral           1     'b0                                                                                 
+#   transmissionData[2]          integral           1     'b1                                                                                 
+#   transmissionData[1]          integral           1     'b1                                                                                 
+#   transmissionData[0]          integral           1     'b0                                                                                 
+#   parity                       integral           1     'b0x                                                                                
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartTxAgent//UartTxDriverProxy.sv(78) @ 1878800: uvm_test_top.uartEnv.uartTxAgent.uartTxDriverProxy [[DRIVER PROXY]] UartDataType = FIVE_BIT 
+# The baudrate of Uart = BAUD_4800 
+# The parity enable = PARITY_ENABLED 
+#  No. of stop bits = TWO_BIT
+#  oversampling method = OVERSAMPLING_16
+# Data to be sent : 01101 
+# ** Info: *******************************START BIT DETECTED : ASSERTION PASS
+#    Time: 1904800 ps Started: 1475800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.IF_THERE_IS_FALLINGEDGE_ASSERTION_PASS File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 104
+# PARITY IN ASSERTION IS 1
+# ** Info: *****************************DATA WIDTH IS MATCHING : ASSERTION PASS
+#    Time: 3152800 ps Started: 2944800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_DATA_WIDTH_LENGTH File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 120
+# ** Info: *********************EVEN PARITY IS DETECTED : ASSERTION PASS
+#    Time: 3152800 ps Started: 2944800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_EVEN_PROPERTY File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 140
+# ** Info: STOP BIT IS BEING DETECTED : ASSERTION PASS
+#    Time: 3360800 ps Started: 3152800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_STOP_BIT File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 170
+# Data received : 01101 
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(132) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing transmissionData= xxx10110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(135) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing receivingData= xxx10110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 7
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 6
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 5
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 4
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 3
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 0,RecievingData = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 2
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 0,RecievingData = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(200) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] PACKET MATCH SUCCESSFUL
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(207) @ 3763800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+#  transmissionData:xxx10110
+#  receivingData:xxx10110
+#  tx parity:1 rx parity:1
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 3863800: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../../src/hvlTop/uartRxAgent/UartRxCoverage.sv(131) @ 3863800: uvm_test_top.uartEnv.uartRxAgent.uartRxCoverage [UartRxCoverage] ******************** UART RX Agent Coverage = 33.80 % *********************
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(228) @ 3863800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+# Packet 1 Summary:
+#  TransmissionData:00011110
+#  RecievingData:00011110
+#  Packet matched
+#  Parity match
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+# 
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(228) @ 3863800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+# Packet 2 Summary:
+#  TransmissionData:00010110
+#  RecievingData:00010110
+#  Packet matched
+#  Parity match
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+# 
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartTxAgent//UartTxCoverage.sv(128) @ 3863800: uvm_test_top.uartEnv.uartTxAgent.uartTxCoverage [UartTxCoverage] ******************** UART TX Agent Coverage = 35.42 % *********************
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   64
+# UVM_WARNING :    2
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [HDL_TOP]     1
+# [Questa UVM]     2
+# [RNTST]     1
+# [TEST_DONE]     1
+# [UART_RECIEVER_DRIVER_BFM]     1
+# [UART_TRANSMITTER_DRIVER_BFM]     3
+# [UART_TRANSMITTER_MONITOR_BFM]     6
+# [UVMTOP]     1
+# [UartRxCoverage]     1
+# [UartScoreboard]    42
+# [UartTxCoverage]     1
+# [[DRIVER PROXY]]     2
+# [uart transmitter agent bfm]     2
+# [uvm_sequence_base]     2
+# ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 3863800 ps  Iteration: 54  Instance: /HvlTop
+# Saving coverage database on exit...
+# End time: 09:57:30 on Feb 24,2025, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 3
+
+-----------------------------------------------------------------
+-------------------- Simulation Report --------------------------
+
+Simulator Errors
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+# Errors: 0, Warnings: 3
+
+UVM Fatal
+# UVM_FATAL :    0
+
+UVM Errors
+# UVM_ERROR :    0
+
+UVM Warnings
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartVirtualSequencer@@uartVirtualBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer@@uartVirtualBaseSequence.uartTxBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_WARNING :    2
+
+Testname: UartSample16BaudRate4800Datatype5EvenParityStopbit2
+
+Log file path: UartSample16BaudRate4800Datatype5EvenParityStopbit2_24022025-095727/UartSample16BaudRate4800Datatype5EvenParityStopbit2.log
+
+Waveform: vsim -view UartSample16BaudRate4800Datatype5EvenParityStopbit2_24022025-095727/waveform.wlf &
+
+Coverage report: firefox UartSample16BaudRate4800Datatype5EvenParityStopbit2_24022025-095727/html_cov_report/index.html &
+
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+# vsim -vopt work.HvlTop work.HdlTop -voptargs="+acc=npr" -assertdebug "+UVM_TESTNAME=UartBaseTest" "+UVM_VERBOSITY=UVM_MEDIUM" "+define+UartBaseTest" -l UartBaseTest/UartBaseTest.log -sva -coverage -c -do "log -r /*; add wave -r /*; coverage save -onexit -assert -directive -cvg -codeAll UartBaseTest/UartBaseTest_coverage.ucdb; run -all; exit" -wlf UartBaseTest/waveform.wlf 
+# Start time: 10:16:57 on Feb 24,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim
+# //  Version 10.6c linux Jul 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.UartRxDriverBfm(fast)
+# Loading work.UartRxMonitorBfm(fast)
+# Loading work.UartGlobalPkg(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.UartRxPkg(fast)
+# Loading work.UartRxSequencePkg(fast)
+# Loading work.UartTxDriverBfm(fast)
+# Loading work.UartTxMonitorBfm(fast)
+# Loading work.UartTxPkg(fast)
+# Loading work.UartTxSequencePkg(fast)
+# Loading work.UartEnvPkg(fast)
+# Loading work.UartVirtualSequencePkg(fast)
+# Loading work.UartBaseTestPkg(fast)
+# Loading work.HvlTop(fast)
+# Loading work.HdlTop(fast)
+# Loading work.UartInterface_sv_unit(fast)
+# Loading work.UartIf(fast)
+# Loading work.UartTxAgentBfm(fast)
+# Loading work.UartTxDriverBfm_sv_unit(fast)
+# Loading work.UartTxDriverBfm(fast)
+# Loading work.UartTxMonitorBfm_sv_unit(fast)
+# Loading work.UartTxMonitorBfm(fast)
+# Loading work.UartTxAssertions_sv_unit(fast)
+# Loading work.UartTxAssertions(fast)
+# Loading work.UartRxAgentBfm(fast)
+# Loading work.UartRxDriverBfm_sv_unit(fast)
+# Loading work.UartRxDriverBfm(fast)
+# Loading work.UartRxMonitorBfm_sv_unit(fast)
+# Loading work.UartRxMonitorBfm(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# ** Warning: (vsim-3839) ../../src/hdlTop/UartHdlTop.sv(70): Variable '/HdlTop/uartIf/rx', driven via a port connection, is multiply driven. See ../../src/hdlTop/uartRxAgentBfm/UartRxAgentBfm.sv(23).
+#    Time: 0 ps  Iteration: 0  Instance: /HdlTop File: ../../src/hdlTop/UartHdlTop.sv
+# Loading /tools/mentor/questasim_10.6c/questasim/uvm-1.1d/linux/uvm_dpi.so
+# log -r /*
+#  add wave -r /*
+#  coverage save -onexit -assert -directive -cvg -codeAll UartBaseTest/UartBaseTest_coverage.ucdb
+#  run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test UartBaseTest...
+# UVM_INFO ../../src/hdlTop/UartHdlTop.sv(15) @ 0: reporter [HDL_TOP] HDL_TOP
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxAgentBfm.sv(16) @ 0: reporter [uart transmitter agent bfm] UART TRANSMITTER AGENT BFM
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxDriverBfm.sv(58) @ 0: reporter [UART_TRANSMITTER_DRIVER_BFM] UART_TRANSMITTER_DRIVER_BFM
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxMonitorBfm.sv(33) @ 0: reporter [UART_TRANSMITTER_MONITOR_BFM] UART_TRANSMITTER_MONITOR_BFM
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxAgentBfm.sv(16) @ 0: reporter [uart transmitter agent bfm] UART TRANSMITTER AGENT BFM
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxDriverBfm.sv(64) @ 0: reporter [UART_RECIEVER_DRIVER_BFM] UART_RECIEVER_DRIVER_BFM
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxMonitorBfm.sv(35) @ 0: reporter [UART_TRANSMITTER_MONITOR_BFM] UART_TRANSMITTER_MONITOR_BFM
+# Warning: In instance '\/UartRxPkg::UartRxCoverage::UartRxCovergroup ' the 'option.per_instance' is set to '0' (false). Assignment to members 'weight', 'goal' and 'comment' of 'option' would not have any effect.
+# Warning: In instance '\/UartTxPkg::UartTxCoverage::UartTxCovergroup ' the 'option.per_instance' is set to '0' (false). Assignment to members 'weight', 'goal' and 'comment' of 'option' would not have any effect.
+# UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+# -----------------------------------------------------------------------------
+# Name                                  Type                        Size  Value
+# -----------------------------------------------------------------------------
+# uvm_test_top                          UartBaseTest                -     @473 
+#   uartEnv                             UartEnv                     -     @511 
+#     uartRxAgent                       UartRxAgent                 -     @642 
+#       uartRxAgentAnalysisPort         uvm_analysis_port           -     @665 
+#       uartRxCoverage                  UartRxCoverage              -     @650 
+#         analysis_imp                  uvm_analysis_imp            -     @657 
+#       uartRxMonitorProxy              UartRxMonitorProxy          -     @673 
+#         uartRxMonitorAnalysisPort     uvm_analysis_port           -     @680 
+#     uartScoreboard                    UartScoreboard              -     @628 
+#       uartScoreboardRxAnalysisExport  uvm_analysis_export         -     @699 
+#       uartScoreboardRxAnalysisFifo    uvm_tlm_analysis_fifo #(T)  -     @754 
+#         analysis_export               uvm_analysis_imp            -     @793 
+#         get_ap                        uvm_analysis_port           -     @785 
+#         get_peek_export               uvm_get_peek_imp            -     @769 
+#         put_ap                        uvm_analysis_port           -     @777 
+#         put_export                    uvm_put_imp                 -     @761 
+#       uartScoreboardTxAnalysisExport  uvm_analysis_export         -     @691 
+#       uartScoreboardTxAnalysisFifo    uvm_tlm_analysis_fifo #(T)  -     @707 
+#         analysis_export               uvm_analysis_imp            -     @746 
+#         get_ap                        uvm_analysis_port           -     @738 
+#         get_peek_export               uvm_get_peek_imp            -     @722 
+#         put_ap                        uvm_analysis_port           -     @730 
+#         put_export                    uvm_put_imp                 -     @714 
+#     uartTxAgent                       UartTxAgent                 -     @635 
+#       uartTxAgentAnalysisPort         uvm_analysis_port           -     @966 
+#       uartTxCoverage                  UartTxCoverage              -     @951 
+#         analysis_imp                  uvm_analysis_imp            -     @958 
+#       uartTxDriverProxy               UartTxDriverProxy           -     @819 
+#         rsp_port                      uvm_analysis_port           -     @834 
+#         seq_item_port                 uvm_seq_item_pull_port      -     @826 
+#       uartTxMonitorProxy              UartTxMonitorProxy          -     @804 
+#         uartTxMonitorAnalysisPort     uvm_analysis_port           -     @811 
+#       uartTxSequencer                 UartTxSequencer             -     @842 
+#         rsp_export                    uvm_analysis_export         -     @849 
+#         seq_item_export               uvm_seq_item_pull_imp       -     @943 
+#         arbitration_queue             array                       0     -    
+#         lock_queue                    array                       0     -    
+#         num_last_reqs                 integral                    32    'd1  
+#         num_last_rsps                 integral                    32    'd1  
+#     uartVirtualSequencer              UartVirtualSequencer        -     @519 
+#       rsp_export                      uvm_analysis_export         -     @526 
+#       seq_item_export                 uvm_seq_item_pull_imp       -     @620 
+#       arbitration_queue               array                       0     -    
+#       lock_queue                      array                       0     -    
+#       num_last_reqs                   integral                    32    'd1  
+#       num_last_rsps                   integral                    32    'd1  
+# -----------------------------------------------------------------------------
+# 
+# ----------------------------------------------------------------------
+# Name                     Type                             Size  Value 
+# ----------------------------------------------------------------------
+# uartVirtualBaseSequence  UartVirtualTransmissionSequence  -     @998  
+#   req                    object                           -     <null>
+#   rsp                    object                           -     <null>
+# ----------------------------------------------------------------------
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartVirtualSequencer@@uartVirtualBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer@@uartVirtualBaseSequence.uartTxBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxMonitorBfm.sv(87) @ 1000: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset activated
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxDriverBfm.sv(116) @ 1000: reporter [UART_TRANSMITTER_DRIVER_BFM] RESET DETECTED
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxMonitorBfm.sv(85) @ 1000: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset activated
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxMonitorBfm.sv(88) @ 1100: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset deactivated
+# UVM_INFO ../../src/hdlTop/uartTxAgentBfm/UartTxDriverBfm.sv(121) @ 1100: reporter [UART_TRANSMITTER_DRIVER_BFM] RESET DEASSERTED
+# UVM_INFO ../../src/hdlTop/uartRxAgentBfm/UartRxMonitorBfm.sv(90) @ 1100: reporter [UART_TRANSMITTER_MONITOR_BFM] system reset deactivated
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# Name                           Type               Size  Value                                                                               
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# req                            UartTxTransaction  -     @1025                                                                               
+#   begin_time                   time               64    1100                                                                                
+#   depth                        int                32    'd3                                                                                 
+#   parent sequence (name)       string             18    uartTxBaseSequence                                                                  
+#   parent sequence (full name)  string             84    uvm_test_top.uartEnv.uartVirtualSequencer.uartVirtualBaseSequence.uartTxBaseSequence
+#   sequencer                    string             48    uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer                                    
+#   transmissionData[7]          integral           1     'b0                                                                                 
+#   transmissionData[6]          integral           1     'b1                                                                                 
+#   transmissionData[5]          integral           1     'b1                                                                                 
+#   transmissionData[4]          integral           1     'b1                                                                                 
+#   transmissionData[3]          integral           1     'b1                                                                                 
+#   transmissionData[2]          integral           1     'b1                                                                                 
+#   transmissionData[1]          integral           1     'b1                                                                                 
+#   transmissionData[0]          integral           1     'b0                                                                                 
+#   parity                       integral           1     'b0x                                                                                
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartTxAgent//UartTxDriverProxy.sv(78) @ 1100: uvm_test_top.uartEnv.uartTxAgent.uartTxDriverProxy [[DRIVER PROXY]] UartDataType = FIVE_BIT 
+# The baudrate of Uart = BAUD_9600 
+# The parity enable = PARITY_ENABLED 
+#  No. of stop bits = ONE_BIT
+#  oversampling method = OVERSAMPLING_16
+# Data to be sent : 01111 
+# ** Info: *******************************START BIT DETECTED : ASSERTION PASS
+#    Time: 10200 ps Started: 3600 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.IF_THERE_IS_FALLINGEDGE_ASSERTION_PASS File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 104
+# PARITY IN ASSERTION IS 0
+# ** Info: *********************EVEN PARITY IS DETECTED : ASSERTION PASS
+#    Time: 643800 ps Started: 538200 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_EVEN_PROPERTY File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 140
+# ** Info: *****************************DATA WIDTH IS MATCHING : ASSERTION PASS
+#    Time: 643800 ps Started: 538200 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_DATA_WIDTH_LENGTH File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 120
+# ** Info: STOP BIT IS BEING DETECTED : ASSERTION PASS
+#    Time: 749400 ps Started: 643800 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_STOP_BIT File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 170
+# Data received : 01111 
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(132) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing transmissionData= xxx11110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(135) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing receivingData= xxx11110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 7
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 6
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 5
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 4
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 3
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 2
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 0,RecievingData = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(200) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] PACKET MATCH SUCCESSFUL
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(207) @ 848400: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+#  transmissionData:xxx11110
+#  receivingData:xxx11110
+#  tx parity:0 rx parity:0
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# Name                           Type               Size  Value                                                                               
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# req                            UartTxTransaction  -     @1025                                                                               
+#   begin_time                   time               64    848400                                                                              
+#   end_time                     time               64    848400                                                                              
+#   depth                        int                32    'd3                                                                                 
+#   parent sequence (name)       string             18    uartTxBaseSequence                                                                  
+#   parent sequence (full name)  string             84    uvm_test_top.uartEnv.uartVirtualSequencer.uartVirtualBaseSequence.uartTxBaseSequence
+#   sequencer                    string             48    uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer                                    
+#   transmissionData[7]          integral           1     'b1                                                                                 
+#   transmissionData[6]          integral           1     'b1                                                                                 
+#   transmissionData[5]          integral           1     'b1                                                                                 
+#   transmissionData[4]          integral           1     'b1                                                                                 
+#   transmissionData[3]          integral           1     'b0                                                                                 
+#   transmissionData[2]          integral           1     'b1                                                                                 
+#   transmissionData[1]          integral           1     'b1                                                                                 
+#   transmissionData[0]          integral           1     'b0                                                                                 
+#   parity                       integral           1     'b0x                                                                                
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartTxAgent//UartTxDriverProxy.sv(78) @ 848400: uvm_test_top.uartEnv.uartTxAgent.uartTxDriverProxy [[DRIVER PROXY]] UartDataType = FIVE_BIT 
+# The baudrate of Uart = BAUD_9600 
+# The parity enable = PARITY_ENABLED 
+#  No. of stop bits = ONE_BIT
+#  oversampling method = OVERSAMPLING_16
+# Data to be sent : 01101 
+# ** Info: *******************************START BIT DETECTED : ASSERTION PASS
+#    Time: 861600 ps Started: 749400 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.IF_THERE_IS_FALLINGEDGE_ASSERTION_PASS File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 104
+# PARITY IN ASSERTION IS 1
+# ** Info: *****************************DATA WIDTH IS MATCHING : ASSERTION PASS
+#    Time: 1495200 ps Started: 1389600 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_DATA_WIDTH_LENGTH File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 120
+# ** Info: *********************EVEN PARITY IS DETECTED : ASSERTION PASS
+#    Time: 1495200 ps Started: 1389600 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_EVEN_PROPERTY File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 140
+# ** Info: STOP BIT IS BEING DETECTED : ASSERTION PASS
+#    Time: 1600800 ps Started: 1495200 ps  Scope: HdlTop.uartTxAgentBfm.uartTxMonitorBfm.TransmissionAssertions.CHECK_FOR_STOP_BIT File: ../../src/hdlTop/uartTxAgentBfm/UartTxAssertions.sv Line: 170
+# Data received : 01101 
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(132) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing transmissionData= xxx10110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(135) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Printing receivingData= xxx10110
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 7
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 6
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 5
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = x,RecievingData = x
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 4
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 3
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 0,RecievingData = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 2
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 1,RecievingData = 1
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(160) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] Bit Match = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(161) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] TransmissionData = 0,RecievingData = 0
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(200) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] PACKET MATCH SUCCESSFUL
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(207) @ 1699800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+#  transmissionData:xxx10110
+#  receivingData:xxx10110
+#  tx parity:1 rx parity:1
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 1799800: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../../src/hvlTop/uartRxAgent/UartRxCoverage.sv(131) @ 1799800: uvm_test_top.uartEnv.uartRxAgent.uartRxCoverage [UartRxCoverage] ******************** UART RX Agent Coverage = 33.80 % *********************
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(228) @ 1799800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+# Packet 1 Summary:
+#  TransmissionData:00011110
+#  RecievingData:00011110
+#  Packet matched
+#  Parity match
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+# 
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartEnv/UartScoreboard.sv(228) @ 1799800: uvm_test_top.uartEnv.uartScoreboard [UartScoreboard] 
+# Packet 2 Summary:
+#  TransmissionData:00010110
+#  RecievingData:00010110
+#  Packet matched
+#  Parity match
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+# 
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# UVM_INFO ../../src/hvlTop/uartTxAgent//UartTxCoverage.sv(128) @ 1799800: uvm_test_top.uartEnv.uartTxAgent.uartTxCoverage [UartTxCoverage] ******************** UART TX Agent Coverage = 35.42 % *********************
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   64
+# UVM_WARNING :    2
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [HDL_TOP]     1
+# [Questa UVM]     2
+# [RNTST]     1
+# [TEST_DONE]     1
+# [UART_RECIEVER_DRIVER_BFM]     1
+# [UART_TRANSMITTER_DRIVER_BFM]     3
+# [UART_TRANSMITTER_MONITOR_BFM]     6
+# [UVMTOP]     1
+# [UartRxCoverage]     1
+# [UartScoreboard]    42
+# [UartTxCoverage]     1
+# [[DRIVER PROXY]]     2
+# [uart transmitter agent bfm]     2
+# [uvm_sequence_base]     2
+# ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 1799800 ps  Iteration: 54  Instance: /HvlTop
+# Saving coverage database on exit...
+# End time: 10:17:01 on Feb 24,2025, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 3
+
+-----------------------------------------------------------------
+-------------------- Simulation Report --------------------------
+
+Simulator Errors
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+#  tx framingError:0 rx framingError:0
+#  tx parityError:0 rx parityError:0
+#  tx breakingError:0 rx breakingError:0
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+#  Parity Error match
+#  Breaking Error match
+#  Framing Error match
+# Errors: 0, Warnings: 3
+
+UVM Fatal
+# UVM_FATAL :    0
+
+UVM Errors
+# UVM_ERROR :    0
+
+UVM Warnings
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartVirtualSequencer@@uartVirtualBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_WARNING @ 0: uvm_test_top.uartEnv.uartTxAgent.uartTxSequencer@@uartVirtualBaseSequence.uartTxBaseSequence [uvm_sequence_base] Body definition undefined
+# UVM_WARNING :    2
+
+Testname: UartBaseTest
+
+Log file path: UartBaseTest/UartBaseTest.log
+
+Waveform: vsim -view UartBaseTest/waveform.wlf &
+
+Coverage report: firefox UartBaseTest/html_cov_report/index.html &
+
+-----------------------------------------------------------------
+-----------------------------------------------------------------
